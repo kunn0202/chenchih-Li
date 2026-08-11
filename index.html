@@ -160,9 +160,6 @@ const MA_OPTIONS=[
 ];
 let maOn=new Set(MA_OPTIONS.filter(m=>m[2]).map(m=>m[0]));
 
-const DED_PERIODS=[
-  [5,"#333333"],[10,"#e8734a"],[24,"#f0a04b"],[72,"#5b9bd5"],[200,"#c9a3e8"]
-];
 const PERIOD_LABEL={D:"日",W:"週",M:"月"};
 
 let DATA=[],sel=new Set(),shown=[],cur=null,raw=null;
@@ -551,7 +548,9 @@ function draw(){
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  const dedSeries=DED_PERIODS.map(([n,col])=>{
+  // 扣抵線：只建立目前有勾選的均線週期對應的線
+  const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
+  const dedSeries=activeDed.map(([n,col])=>{
     const sr=c1.addLineSeries({
       color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
       priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,
@@ -560,12 +559,19 @@ function draw(){
     return {n,col,sr};
   });
 
+  const mas=activeDed.map(([n,col])=>{
+    const sr=c1.addLineSeries({color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false});
+    sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
+    return {n,col,sr};
+  });
+
   let dedMarks=[],hlMarks=[];
   function refreshMarkers(){
     cs.setMarkers([...dedMarks,...hlMarks].sort((a,b)=>a.time.localeCompare(b.time)));
   }
 
-  function updateDeduction(hoverIdx){
+  function updateAll(hoverIdx){
+    // 扣抵線 + 三角形（只算目前有勾選的均線）
     const marks=[];
     dedSeries.forEach(({n,col,sr})=>{
       const idx=hoverIdx-n;
@@ -575,39 +581,33 @@ function draw(){
           {time:bars[idx].time,value:price},
           {time:bars[hoverIdx].time,value:price}
         ]);
-        marks.push({time:bars[idx].time,position:"belowBar",color:col,shape:"arrowUp",size:0.6,text:""});
+        marks.push({time:bars[idx].time,position:"belowBar",color:col,shape:"arrowUp",size:0.7,text:""});
       }else{
         sr.setData([]);
       }
     });
     dedMarks=marks;
-    refreshMarkers();
-  }
 
-  function updateRangeHighLow(){
+    // 波段高低點（依目前可視範圍）
     const range=c1.timeScale().getVisibleLogicalRange();
-    if(!range)return;
-    const from=Math.max(0,Math.floor(range.from));
-    const to=Math.min(bars.length-1,Math.ceil(range.to));
-    if(to<from||bars.length===0)return;
-    let hiIdx=from,loIdx=from;
-    for(let i=from;i<=to;i++){
-      if(bars[i].high>bars[hiIdx].high)hiIdx=i;
-      if(bars[i].low<bars[loIdx].low)loIdx=i;
+    if(range){
+      const from=Math.max(0,Math.floor(range.from));
+      const to=Math.min(bars.length-1,Math.ceil(range.to));
+      if(to>=from&&bars.length>0){
+        let hiIdx=from,loIdx=from;
+        for(let i=from;i<=to;i++){
+          if(bars[i].high>bars[hiIdx].high)hiIdx=i;
+          if(bars[i].low<bars[loIdx].low)loIdx=i;
+        }
+        hlMarks=[
+          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
+          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
+        ];
+      }
     }
-    const hiP=bars[hiIdx].high,loP=bars[loIdx].low;
-    hlMarks=[
-      {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:hiP.toFixed(2)},
-      {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:loP.toFixed(2)},
-    ];
     refreshMarkers();
   }
 
-  const mas=MA_OPTIONS.filter(([n])=>maOn.has(n)).map(([n,col])=>{
-    const sr=c1.addLineSeries({color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false});
-    sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
-    return {n,col,sr};
-  });
   charts.push(c1);
 
   const c2=LightweightCharts.createChart(document.getElementById("c2"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false}});
@@ -645,13 +645,13 @@ function draw(){
     if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
   sync(c1,[c2,c3]);sync(c2,[c1,c3]);sync(c3,[c1,c2]);
 
-  let dedTimer=null;
+  let updTimer=null;
   c1.subscribeCrosshairMove(p=>{
     const lg=document.getElementById("lg1");
     if(!p.time){
       lg.innerHTML=maLegend(mas,bars.length-1,bars);
-      clearTimeout(dedTimer);
-      dedTimer=setTimeout(()=>updateDeduction(bars.length-1),50);
+      clearTimeout(updTimer);
+      updTimer=setTimeout(()=>updateAll(bars.length-1),50);
       return;
     }
     const b=p.seriesData.get(cs);if(!b)return;
@@ -660,25 +660,21 @@ function draw(){
     lg.innerHTML=`<span style="color:${up}">${p.time}　開 ${b.open}　高 ${b.high}　低 ${b.low}　收 ${b.close}</span><br>${maLegend(mas,i,bars)}`;
     document.getElementById("lg2").innerHTML=`量 ${bars[i].volume.toLocaleString()} 張`;
     if(i>=0){
-      clearTimeout(dedTimer);
-      dedTimer=setTimeout(()=>updateDeduction(i),50);
+      clearTimeout(updTimer);
+      updTimer=setTimeout(()=>updateAll(i),50);
     }
   });
 
-  let hlTimer=null;
   c1.timeScale().subscribeVisibleLogicalRangeChange(()=>{
-    clearTimeout(hlTimer);
-    hlTimer=setTimeout(updateRangeHighLow,80);
+    clearTimeout(updTimer);
+    updTimer=setTimeout(()=>updateAll(bars.length-1),80);
   });
 
   document.getElementById("lg1").innerHTML=maLegend(mas,bars.length-1,bars);
   document.getElementById("lg3").innerHTML=s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join("　");
 
   c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});
-  setTimeout(()=>{
-    updateRangeHighLow();
-    updateDeduction(bars.length-1);
-  },100);
+  setTimeout(()=>updateAll(bars.length-1),150);
 }
 function maLegend(mas,i,bars){
   const cl=bars.map(b=>b.close);
