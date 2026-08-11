@@ -436,10 +436,10 @@ function drawRevenueChart(rev){
   <div id="revTip" class="tip">滑過圖表查看數值</div>`;
 
   const svgEl=document.getElementById("revSvg");
-  svgEl.addEventListener("mousemove",e=>{
+  function moveHandler(clientX){
     const rect=svgEl.getBoundingClientRect();
     const scaleX=W/rect.width;
-    const mx=(e.clientX-rect.left)*scaleX;
+    const mx=(clientX-rect.left)*scaleX;
     let idx=Math.round((mx-PL)/((W-PL-PR)/n)-0.5);
     idx=Math.max(0,Math.min(n-1,idx));
     const x=X(idx);
@@ -449,7 +449,10 @@ function drawRevenueChart(rev){
     const r=rev[idx];
     document.getElementById("revTip").innerHTML=
       `<b>${labels[idx]}</b>　營收 <b style="color:#8b7cd8">${bars[idx].toFixed(2)}億</b>　年增率 <b style="color:#d64545">${r.yoy!=null?r.yoy+'%':'-'}</b>`;
-  });
+  }
+  svgEl.addEventListener("mousemove",e=>moveHandler(e.clientX));
+  svgEl.addEventListener("touchmove",e=>{e.preventDefault();moveHandler(e.touches[0].clientX)},{passive:false});
+  svgEl.addEventListener("touchstart",e=>moveHandler(e.touches[0].clientX));
   svgEl.addEventListener("mouseleave",()=>{
     document.getElementById("revCross").style.display="none";
     document.getElementById("revTip").textContent="滑過圖表查看數值";
@@ -491,10 +494,10 @@ function drawMarginChart(fin){
   <div id="finTip" class="tip">滑過圖表查看數值</div>`;
 
   const svgEl=document.getElementById("finSvg");
-  svgEl.addEventListener("mousemove",e=>{
+  function moveHandler(clientX){
     const rect=svgEl.getBoundingClientRect();
     const scaleX=W/rect.width;
-    const mx=(e.clientX-rect.left)*scaleX;
+    const mx=(clientX-rect.left)*scaleX;
     let idx=Math.round((mx-PL)/((W-PL-PR)/(n-1||1)));
     idx=Math.max(0,Math.min(n-1,idx));
     const x=X(idx);
@@ -504,7 +507,10 @@ function drawMarginChart(fin){
     const f=fin[idx];
     document.getElementById("finTip").innerHTML=
       `<b>${f.date.slice(0,7)}</b>　毛利率 <b style="color:#6b5ce7">${f.gross_margin??'-'}%</b>　營益率 <b style="color:#5b9bd5">${f.op_margin??'-'}%</b>`;
-  });
+  }
+  svgEl.addEventListener("mousemove",e=>moveHandler(e.clientX));
+  svgEl.addEventListener("touchmove",e=>{e.preventDefault();moveHandler(e.touches[0].clientX)},{passive:false});
+  svgEl.addEventListener("touchstart",e=>moveHandler(e.touches[0].clientX));
   svgEl.addEventListener("mouseleave",()=>{
     document.getElementById("finCross").style.display="none";
     document.getElementById("finTip").textContent="滑過圖表查看數值";
@@ -545,25 +551,26 @@ function draw(){
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  const punit=PERIOD_LABEL[period];
-  const dedSets=DED_PERIODS.map(([n,col])=>[n,col]);
-
+  const dedSets=DED_PERIODS;
   let dedLines=[];
 
   function updateDeduction(hoverIdx){
-    dedLines.forEach(pl=>{try{cs.removePriceLine(pl)}catch(e){}});
+    dedLines.forEach(sr=>{try{c1.removeSeries(sr)}catch(e){}});
     dedLines=[];
     dedSets.forEach(([n,col])=>{
       const idx=hoverIdx-n;
       if(idx>=0&&idx<bars.length){
         const price=bars[idx].close;
-        const pl=cs.createPriceLine({
-          price,color:col,lineWidth:1,
-          lineStyle:LightweightCharts.LineStyle.Dashed,
-          axisLabelVisible:false,
-          title:""
+        const sr=c1.addLineSeries({
+          color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
+          priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false
         });
-        dedLines.push(pl);
+        const from=Math.max(0,idx-1),to=Math.min(bars.length-1,idx+1);
+        sr.setData([
+          {time:bars[from].time,value:price},
+          {time:bars[to].time,value:price}
+        ]);
+        dedLines.push(sr);
       }
     });
   }
