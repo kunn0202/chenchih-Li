@@ -551,29 +551,36 @@ function draw(){
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  // 預先建立 5 條扣抵線 series（固定存在，只更新內容，避免動態新增刪除造成渲染問題）
   const dedSeries=DED_PERIODS.map(([n,col])=>{
     const sr=c1.addLineSeries({
-      color:col,lineWidth:1.3,lineStyle:LightweightCharts.LineStyle.Dashed,
+      color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
       priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false
     });
     return {n,col,sr};
   });
 
+  let dedMarks=[],hlMarks=[];
+  function refreshMarkers(){
+    cs.setMarkers([...dedMarks,...hlMarks].sort((a,b)=>a.time.localeCompare(b.time)));
+  }
+
   function updateDeduction(hoverIdx){
-    dedSeries.forEach(({n,sr})=>{
+    const marks=[];
+    dedSeries.forEach(({n,col,sr})=>{
       const idx=hoverIdx-n;
       if(idx>=0&&idx<bars.length){
         const price=bars[idx].close;
-        const from=Math.max(0,idx-2),to=Math.min(bars.length-1,idx+2);
         sr.setData([
-          {time:bars[from].time,value:price},
-          {time:bars[to].time,value:price}
+          {time:bars[idx].time,value:price},
+          {time:bars[hoverIdx].time,value:price}
         ]);
+        marks.push({time:bars[idx].time,position:"belowBar",color:col,shape:"arrowUp",size:0.6,text:""});
       }else{
         sr.setData([]);
       }
     });
+    dedMarks=marks;
+    refreshMarkers();
   }
 
   function updateRangeHighLow(){
@@ -588,10 +595,11 @@ function draw(){
       if(bars[i].low<bars[loIdx].low)loIdx=i;
     }
     const hiP=bars[hiIdx].high,loP=bars[loIdx].low;
-    cs.setMarkers([
+    hlMarks=[
       {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:hiP.toFixed(2)},
       {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:loP.toFixed(2)},
-    ]);
+    ];
+    refreshMarkers();
   }
 
   const mas=MA_OPTIONS.filter(([n])=>maOn.has(n)).map(([n,col])=>{
