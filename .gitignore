@@ -1,0 +1,8 @@
+stock_data/
+inst_data/
+revenue_data/
+fin_data/
+share_data/
+*.py
+stock_list.csv
+screener_result.csv
