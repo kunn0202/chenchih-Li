@@ -351,7 +351,7 @@ function renderChartTab(){
        <button onclick="toggleFS()">${fs?"還原":"全螢幕"}</button>
      </div>
      <div class="malist" id="malist"></div>
-    <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
+     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div><div id="c1b" style="margin-top:-4px"></div></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
@@ -546,12 +546,20 @@ function draw(){
   const c1=LightweightCharts.createChart(document.getElementById("c1"),{...opt,height:H});
   const cs=c1.addCandlestickSeries({upColor:"#d64545",downColor:"#2e9e5b",
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
-  cs.setData(bars);const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{...opt,height:18,timeScale:{...opt.timeScale,visible:false},rightPriceScale:{visible:false}});
+  cs.setData(bars);
+
+  // 固定基準列圖表：專門用來放扣抵三角形，跟主圖同步縮放但獨立座標軸
+  const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{
+    ...opt,height:20,
+    timeScale:{...opt.timeScale,visible:false},
+    rightPriceScale:{visible:false},
+    handleScroll:false,handleScale:false
+  });
   const dedBar=c1b.addLineSeries({color:"rgba(0,0,0,0)",lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
   dedBar.setData(bars.map(b=>({time:b.time,value:0})));
 
-  // 扣抵線：只建立目前有勾選的均線週期對應的線
   const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
+
   const dedSeries=activeDed.map(([n,col])=>{
     const sr=c1.addLineSeries({
       color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
@@ -567,14 +575,9 @@ function draw(){
     return {n,col,sr};
   });
 
-  let dedMarks=[],hlMarks=[];
-  function refreshMarkers(){
-    cs.setMarkers([...dedMarks,...hlMarks].sort((a,b)=>a.time.localeCompare(b.time)));
-  }
-
+  let hlMarks=[];
   function updateAll(hoverIdx){
-    // 扣抵線 + 三角形（只算目前有勾選的均線）
-    const marks=[];
+    const triMarks=[];
     dedSeries.forEach(({n,col,sr})=>{
       const idx=hoverIdx-n;
       if(idx>=0&&idx<bars.length){
@@ -583,14 +586,13 @@ function draw(){
           {time:bars[idx].time,value:price},
           {time:bars[hoverIdx].time,value:price}
         ]);
-        marks.push({time:bars[idx].time,position:"inBar",color:col,shape:"arrowUp",size:0.7,text:""});
+        triMarks.push({time:bars[idx].time,position:"inBar",color:col,shape:"circle",size:0,text:"▲"});
       }else{
         sr.setData([]);
       }
     });
-    dedBar.setMarkers(marks);
+    dedBar.setMarkers(triMarks);
 
-    // 波段高低點（依目前可視範圍）
     const range=c1.timeScale().getVisibleLogicalRange();
     if(range){
       const from=Math.max(0,Math.floor(range.from));
@@ -601,16 +603,16 @@ function draw(){
           if(bars[i].high>bars[hiIdx].high)hiIdx=i;
           if(bars[i].low<bars[loIdx].low)loIdx=i;
         }
-        hlMarks=[
+        cs.setMarkers([
           {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
           {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
-        ];
+        ]);
       }
     }
-    refreshMarkers();
   }
 
   charts.push(c1);
+  charts.push(c1b);
 
   const c2=LightweightCharts.createChart(document.getElementById("c2"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false}});
   const vs=c2.addHistogramSeries({priceFormat:{type:"volume"}});
@@ -645,7 +647,7 @@ function draw(){
 
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
-  sync(c1,[c2,c3]);sync(c2,[c1,c3]);sync(c3,[c1,c2]);
+  sync(c1,[c1b,c2,c3]);sync(c2,[c1,c1b,c3]);sync(c3,[c1,c1b,c2]);
 
   let updTimer=null;
   c1.subscribeCrosshairMove(p=>{
