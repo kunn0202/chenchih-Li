@@ -554,7 +554,8 @@ function draw(){
   const dedSeries=DED_PERIODS.map(([n,col])=>{
     const sr=c1.addLineSeries({
       color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
-      priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false
+      priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,
+      autoscaleInfoProvider:()=>null
     });
     return {n,col,sr};
   });
