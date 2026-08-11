@@ -351,7 +351,7 @@ function renderChartTab(){
        <button onclick="toggleFS()">${fs?"還原":"全螢幕"}</button>
      </div>
      <div class="malist" id="malist"></div>
-     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div><div id="c1b" style="margin-top:-4px"></div></div>
+     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div><div id="c1b" style="margin-top:0px"></div></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
@@ -549,8 +549,8 @@ function draw(){
   cs.setData(bars);
 
   // 固定基準列圖表：專門用來放扣抵三角形，跟主圖同步縮放但獨立座標軸
-  const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{
-    ...opt,height:20,
+ const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{
+    ...opt,height:30,fontSize:18,
     timeScale:{...opt.timeScale,visible:false},
     rightPriceScale:{visible:false},
     handleScroll:false,handleScale:false
@@ -586,7 +586,7 @@ function draw(){
           {time:bars[idx].time,value:price},
           {time:bars[hoverIdx].time,value:price}
         ]);
-        triMarks.push({time:bars[idx].time,position:"inBar",color:col,shape:"circle",size:0,text:"▲"});
+         triMarks.push({time:bars[idx].time,position:"inBar",color:col,shape:"circle",size:0,text:"▲"});
       }else{
         sr.setData([]);
       }
