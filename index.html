@@ -546,34 +546,26 @@ function draw(){
   cs.setData(bars);
 
   const punit=PERIOD_LABEL[period];
-  const dedSets=DED_PERIODS.map(([n,col])=>[n,col,`${n}${punit}`]);
+  const dedSets=DED_PERIODS.map(([n,col])=>[n,col]);
 
-  let dedLines=[],dedMarksArr=[];
-  let hlLines=[],hlMarksArr=[];
-
-  function refreshMarkers(){
-    const all=[...dedMarksArr,...hlMarksArr].sort((a,b)=>a.time.localeCompare(b.time));
-    cs.setMarkers(all);
-  }
+  let dedLines=[];
 
   function updateDeduction(hoverIdx){
     dedLines.forEach(pl=>{try{cs.removePriceLine(pl)}catch(e){}});
     dedLines=[];
-    dedMarksArr=[];
-    dedSets.forEach(([n,col,label])=>{
+    dedSets.forEach(([n,col])=>{
       const idx=hoverIdx-n;
       if(idx>=0&&idx<bars.length){
         const price=bars[idx].close;
         const pl=cs.createPriceLine({
           price,color:col,lineWidth:1,
           lineStyle:LightweightCharts.LineStyle.Dashed,
-          axisLabelVisible:true,title:label
+          axisLabelVisible:false,
+          title:""
         });
         dedLines.push(pl);
-        dedMarksArr.push({time:bars[idx].time,position:"belowBar",color:col,shape:"arrowUp",text:label});
       }
     });
-    refreshMarkers();
   }
 
   function updateRangeHighLow(){
@@ -582,22 +574,16 @@ function draw(){
     const from=Math.max(0,Math.floor(range.from));
     const to=Math.min(bars.length-1,Math.ceil(range.to));
     if(to<from||bars.length===0)return;
-    hlLines.forEach(pl=>{try{cs.removePriceLine(pl)}catch(e){}});
-    hlLines=[];
     let hiIdx=from,loIdx=from;
     for(let i=from;i<=to;i++){
       if(bars[i].high>bars[hiIdx].high)hiIdx=i;
       if(bars[i].low<bars[loIdx].low)loIdx=i;
     }
     const hiP=bars[hiIdx].high,loP=bars[loIdx].low;
-    const plHi=cs.createPriceLine({price:hiP,color:"#d64545",lineWidth:1,lineStyle:LightweightCharts.LineStyle.Solid,axisLabelVisible:true,title:"波段高"});
-    const plLo=cs.createPriceLine({price:loP,color:"#2e9e5b",lineWidth:1,lineStyle:LightweightCharts.LineStyle.Solid,axisLabelVisible:true,title:"波段低"});
-    hlLines=[plHi,plLo];
-    hlMarksArr=[
-      {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"arrowDown",text:"高 "+hiP},
-      {time:bars[loIdx].time,position:"belowBar",color:"#2e9e5b",shape:"arrowUp",text:"低 "+loP},
-    ];
-    refreshMarkers();
+    cs.setMarkers([
+      {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:hiP.toFixed(2)},
+      {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:loP.toFixed(2)},
+    ]);
   }
 
   updateDeduction(bars.length-1);
