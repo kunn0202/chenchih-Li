@@ -82,6 +82,8 @@ tbody tr.on{background:#f0edff}
 .fintable td:first-child{text-align:left;font-weight:600}
 .tip{font-size:15px;color:#3a3f47;margin-top:8px;min-height:20px;font-weight:500;padding:8px 10px;background:#faf9fc;border-radius:8px}
 .tip b{font-size:16px}
+.dedrow{position:relative;height:20px;overflow:hidden;background:#fafafc;border-top:1px solid #f0f1f3;border-bottom:1px solid #f0f1f3}
+.dedtri{position:absolute;top:6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;transform:translateX(-50%)}
 @media(max-width:900px){
  .wrap{flex-direction:column;padding:10px}
  .left{width:100%}
@@ -352,6 +354,7 @@ function renderChartTab(){
      </div>
      <div class="malist" id="malist"></div>
      <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
+     <div class="dedrow" id="dedrow"></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
@@ -548,12 +551,6 @@ function draw(){
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  // 隱形基準線：固定貼在目前可視範圍最低點，扣抵三角形統一畫在這條線上
-  const floorSeries=c1.addLineSeries({
-    color:"rgba(0,0,0,0)",lineWidth:1,priceLineVisible:false,lastValueVisible:false,
-    crosshairMarkerVisible:false,autoscaleInfoProvider:()=>null
-  });
-
   const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
 
   const dedSeries=activeDed.map(([n,col])=>{
@@ -571,9 +568,11 @@ function draw(){
     return {n,col,sr};
   });
 
+  const dedRowEl=document.getElementById("dedrow");
+
   function updateAll(hoverIdx){
+    // 波段高低點
     const range=c1.timeScale().getVisibleLogicalRange();
-    let floorVal=bars[hoverIdx].low;
     if(range){
       const from=Math.max(0,Math.floor(range.from));
       const to=Math.min(bars.length-1,Math.ceil(range.to));
@@ -583,19 +582,15 @@ function draw(){
           if(bars[i].high>bars[hiIdx].high)hiIdx=i;
           if(bars[i].low<bars[loIdx].low)loIdx=i;
         }
-        const hiP=bars[hiIdx].high,loP=bars[loIdx].low;
-        floorVal=loP-(hiP-loP)*0.04;
         cs.setMarkers([
-          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:hiP.toFixed(2)},
-          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:loP.toFixed(2)},
+          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
+          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
         ]);
       }
     }
 
-    floorSeries.setData(bars.map(b=>({time:b.time,value:floorVal})));
-
-    const triMarks=[];
-    dedSeries.forEach(({n,col,sr})=>{
+    // 扣抵虛線
+    dedSeries.forEach(({n,sr})=>{
       const idx=hoverIdx-n;
       if(idx>=0&&idx<bars.length){
         const price=bars[idx].close;
@@ -603,12 +598,26 @@ function draw(){
           {time:bars[idx].time,value:price},
           {time:bars[hoverIdx].time,value:price}
         ]);
-        triMarks.push({time:bars[idx].time,position:"aboveBar",color:col,shape:"arrowUp",size:1.1});
       }else{
         sr.setData([]);
       }
     });
-    floorSeries.setMarkers(triMarks);
+
+    // 扣抵三角形：純DOM疊加，用timeToCoordinate算精確像素位置
+    if(dedRowEl){
+      const rowW=dedRowEl.clientWidth||1;
+      let html="";
+      dedSeries.forEach(({n,col})=>{
+        const idx=hoverIdx-n;
+        if(idx>=0&&idx<bars.length){
+          const x=c1.timeScale().timeToCoordinate(bars[idx].time);
+          if(x!=null&&x>=0&&x<=rowW){
+            html+=`<div class="dedtri" style="left:${x}px;border-bottom:8px solid ${col}"></div>`;
+          }
+        }
+      });
+      dedRowEl.innerHTML=html;
+    }
   }
 
   charts.push(c1);
