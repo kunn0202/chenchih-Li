@@ -623,12 +623,12 @@ function draw(){
 
   charts.push(c1);
 
-  const c2=LightweightCharts.createChart(document.getElementById("c2"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false}});
+  const c2=LightweightCharts.createChart(document.getElementById("c2"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   const vs=c2.addHistogramSeries({priceFormat:{type:"volume"}});
   vs.setData(bars.map(b=>({time:b.time,value:b.volume,color:b.close>=b.open?"#e8a0a0":"#96ccae"})));
   charts.push(c2);
 
-  const c3=LightweightCharts.createChart(document.getElementById("c3"),{...opt,height:fs?160:130});
+  const c3=LightweightCharts.createChart(document.getElementById("c3"),{...opt,height:fs?160:130,crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   let s3=[];
   if(sub==="KD"){
     const {k,d}=calcKD(bars);
@@ -656,7 +656,21 @@ function draw(){
 
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
-  sync(c1,[c2,c3]);sync(c2,[c1,c3]);sync(c3,[c1,c2]);
+  sync(c1,[c2,c3]);sync(c2,[c1,c3]);sync(c3,[c1,c2]);// 十字線同步：三張圖共用同一條垂直線
+  const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c3,s:s3[0].sr}];
+  let crossLock=false;
+  crossList.forEach(({c})=>{
+    c.subscribeCrosshairMove(p=>{
+      if(crossLock)return;
+      crossLock=true;
+      crossList.forEach(t=>{
+        if(t.c===c)return;
+        if(!p.time)t.c.clearCrosshairPosition();
+        else t.c.setCrosshairPosition(0,p.time,t.s);
+      });
+      crossLock=false;
+    });
+  });
 
   let updTimer=null;
   c1.subscribeCrosshairMove(p=>{
