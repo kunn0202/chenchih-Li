@@ -351,7 +351,7 @@ function renderChartTab(){
        <button onclick="toggleFS()">${fs?"還原":"全螢幕"}</button>
      </div>
      <div class="malist" id="malist"></div>
-     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div><div id="c1b" style="margin-top:0px"></div></div>
+     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
@@ -476,7 +476,7 @@ function drawMarginChart(fin){
   for(let i=0;i<=3;i++){
     const v=lo+(hi-lo)*i/3, y=Y(v);
     grid+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#f0f1f3"/>
-           <text x="${PL-6}" y="${y+4}" font-size="11" fill="#9aa0a8" text-anchor="end">${v.toFixed(0)}</text>`;
+           <text x="${PL-5}" y="${y+4}" font-size="11" fill="#9aa0a8" text-anchor="end">${v.toFixed(0)}</text>`;
   }
   let xlabels="";
   for(let i=0;i<n;i+=Math.ceil(n/6)){
@@ -548,15 +548,11 @@ function draw(){
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  // 固定基準列圖表：專門用來放扣抵三角形，跟主圖同步縮放但獨立座標軸
- const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{
-    ...opt,height:30,fontSize:18,
-    timeScale:{...opt.timeScale,visible:false},
-    rightPriceScale:{visible:false},
-    handleScroll:false,handleScale:false
+  // 隱形基準線：固定貼在目前可視範圍最低點，扣抵三角形統一畫在這條線上
+  const floorSeries=c1.addLineSeries({
+    color:"rgba(0,0,0,0)",lineWidth:1,priceLineVisible:false,lastValueVisible:false,
+    crosshairMarkerVisible:false,autoscaleInfoProvider:()=>null
   });
-  const dedBar=c1b.addLineSeries({color:"rgba(0,0,0,0)",lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
-  dedBar.setData(bars.map(b=>({time:b.time,value:0})));
 
   const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
 
@@ -575,25 +571,9 @@ function draw(){
     return {n,col,sr};
   });
 
-  let hlMarks=[];
   function updateAll(hoverIdx){
-    const triMarks=[];
-    dedSeries.forEach(({n,col,sr})=>{
-      const idx=hoverIdx-n;
-      if(idx>=0&&idx<bars.length){
-        const price=bars[idx].close;
-        sr.setData([
-          {time:bars[idx].time,value:price},
-          {time:bars[hoverIdx].time,value:price}
-        ]);
-         triMarks.push({time:bars[idx].time,position:"inBar",color:col,shape:"circle",size:0,text:"▲"});
-      }else{
-        sr.setData([]);
-      }
-    });
-    dedBar.setMarkers(triMarks);
-
     const range=c1.timeScale().getVisibleLogicalRange();
+    let floorVal=bars[hoverIdx].low;
     if(range){
       const from=Math.max(0,Math.floor(range.from));
       const to=Math.min(bars.length-1,Math.ceil(range.to));
@@ -603,16 +583,35 @@ function draw(){
           if(bars[i].high>bars[hiIdx].high)hiIdx=i;
           if(bars[i].low<bars[loIdx].low)loIdx=i;
         }
+        const hiP=bars[hiIdx].high,loP=bars[loIdx].low;
+        floorVal=loP-(hiP-loP)*0.04;
         cs.setMarkers([
-          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
-          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
+          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:hiP.toFixed(2)},
+          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:loP.toFixed(2)},
         ]);
       }
     }
+
+    floorSeries.setData(bars.map(b=>({time:b.time,value:floorVal})));
+
+    const triMarks=[];
+    dedSeries.forEach(({n,col,sr})=>{
+      const idx=hoverIdx-n;
+      if(idx>=0&&idx<bars.length){
+        const price=bars[idx].close;
+        sr.setData([
+          {time:bars[idx].time,value:price},
+          {time:bars[hoverIdx].time,value:price}
+        ]);
+        triMarks.push({time:bars[idx].time,position:"aboveBar",color:col,shape:"arrowUp",size:1.1});
+      }else{
+        sr.setData([]);
+      }
+    });
+    floorSeries.setMarkers(triMarks);
   }
 
   charts.push(c1);
-  charts.push(c1b);
 
   const c2=LightweightCharts.createChart(document.getElementById("c2"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false}});
   const vs=c2.addHistogramSeries({priceFormat:{type:"volume"}});
@@ -647,7 +646,7 @@ function draw(){
 
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
-  sync(c1,[c1b,c2,c3]);sync(c2,[c1,c1b,c3]);sync(c3,[c1,c1b,c2]);
+  sync(c1,[c2,c3]);sync(c2,[c1,c3]);sync(c3,[c1,c2]);
 
   let updTimer=null;
   c1.subscribeCrosshairMove(p=>{
