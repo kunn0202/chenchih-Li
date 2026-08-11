@@ -351,7 +351,7 @@ function renderChartTab(){
        <button onclick="toggleFS()">${fs?"還原":"全螢幕"}</button>
      </div>
      <div class="malist" id="malist"></div>
-     <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
+    <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
@@ -546,7 +546,9 @@ function draw(){
   const c1=LightweightCharts.createChart(document.getElementById("c1"),{...opt,height:H});
   const cs=c1.addCandlestickSeries({upColor:"#d64545",downColor:"#2e9e5b",
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
-  cs.setData(bars);
+  cs.setData(bars);const c1b=LightweightCharts.createChart(document.getElementById("c1b"),{...opt,height:18,timeScale:{...opt.timeScale,visible:false},rightPriceScale:{visible:false}});
+  const dedBar=c1b.addLineSeries({color:"rgba(0,0,0,0)",lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+  dedBar.setData(bars.map(b=>({time:b.time,value:0})));
 
   // 扣抵線：只建立目前有勾選的均線週期對應的線
   const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
@@ -581,12 +583,12 @@ function draw(){
           {time:bars[idx].time,value:price},
           {time:bars[hoverIdx].time,value:price}
         ]);
-        marks.push({time:bars[idx].time,position:"belowBar",color:col,shape:"arrowUp",size:0.7,text:""});
+        marks.push({time:bars[idx].time,position:"inBar",color:col,shape:"arrowUp",size:0.7,text:""});
       }else{
         sr.setData([]);
       }
     });
-    dedMarks=marks;
+    dedBar.setMarkers(marks);
 
     // 波段高低點（依目前可視範圍）
     const range=c1.timeScale().getVisibleLogicalRange();
