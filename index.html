@@ -71,6 +71,12 @@ tbody tr.on{background:#f0edff}
 .mapill input{width:13px;height:13px}
 .chart{position:relative}
 .legend{position:absolute;top:6px;left:8px;z-index:3;font-size:12px;color:#8b909a;background:rgba(255,255,255,.9);padding:3px 7px;border-radius:5px;pointer-events:none;line-height:1.6}
+.search{width:100%;padding:9px 12px;border:1px solid #eceef1;border-radius:8px;font-size:14px;outline:none;margin-bottom:10px;box-sizing:border-box}
+.search:focus{border-color:#8b7cd8}
+.searchbox{position:relative;margin-bottom:10px}
+.searchbox .search{margin-bottom:0;padding-right:34px}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:none;background:#eceef1;color:#8b909a;border-radius:50%;font-size:14px;line-height:1;cursor:pointer;display:none;padding:0}
+.clr.on{display:block}
 #close{display:none}
 .fs .right{position:fixed;inset:0;z-index:200;background:#f5f6f8;padding:12px;overflow-y:auto;width:100%}
 .fs .left{display:none}
@@ -101,8 +107,14 @@ tbody tr.on{background:#f0edff}
 <body>
 <div class="wrap" id="wrap">
 <div class="left">
+  
   <h1>台股選股系統</h1>
-  <div class="sub" id="meta">載入中…</div>
+   <div class="sub" id="meta">載入中…</div>
+    <div class="searchbox">
+    <input class="search" id="kw" placeholder="輸入代號或名稱搜尋…" oninput="render()">
+    <button class="clr" id="clrBtn" onclick="clearKw()">×</button>
+  </div>
+  
   <div class="box" id="conds"></div>
   <div class="bar">
     <div>符合條件<br><b id="cnt">0</b> 檔</div>
@@ -220,17 +232,27 @@ function buildConds(){
     el.onchange=()=>{el.checked?sel.add(el.dataset.k):sel.delete(el.dataset.k);render()};
   });
 }
-
+function clearKw(){
+  document.getElementById("kw").value="";
+  render();
+}
 function render(){
-  shown=DATA.filter(s=>[...sel].every(k=>pass(s,k)));
+  const kw=(document.getElementById("kw")?.value||"").trim().toLowerCase();
+  document.getElementById("clrBtn")?.classList.toggle("on",!!kw);
+  shown=kw
+    ? DATA.filter(s=>s.stock_id.toLowerCase().includes(kw)||(s.stock_name||"").toLowerCase().includes(kw))
+    : DATA.filter(s=>[...sel].every(k=>pass(s,k)));
   document.getElementById("cnt").textContent=shown.length;
   const tb=document.getElementById("tb");
-  if(!sel.size){tb.innerHTML='<tr><td colspan="4" class="empty">請勾選條件</td></tr>';return}
+ if(!sel.size&&!kw){tb.innerHTML='<tr><td colspan="4" class="empty">請勾選條件</td></tr>';return}
   if(!shown.length){tb.innerHTML='<tr><td colspan="4" class="empty">無符合條件的股票</td></tr>';return}
   tb.innerHTML=shown.slice(0,300).map(s=>`<tr onclick="pick('${s.stock_id}')" id="r${s.stock_id}">
     <td><span class="id">${s.stock_id}</span> <span class="nm">${s.stock_name}</span></td>
     <td class="px">${s.close}</td><td class="rs">${s.rs_score}</td>
     <td class="px nm">${s.vol20>=1000?Math.round(s.vol20/1000)+"K":Math.round(s.vol20)}</td></tr>`).join("");
+    if(kw&&shown.length===1&&(!cur||cur.stock_id!==shown[0].stock_id)){
+    pick(shown[0].stock_id);
+  }
 }
 
 function pick(id){
