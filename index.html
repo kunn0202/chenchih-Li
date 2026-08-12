@@ -356,7 +356,7 @@ function renderChartTab(){
      <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
      <div class="dedrow" id="dedrow"></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
-     <div class="chart"><div id="c4"></div></div>
+     <div class="chart"><div class="legend" id="lg4"></div><div id="c4"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
   draw();
@@ -702,19 +702,48 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   });
 
   let updTimer=null;
+
+  function instLegend(i){
+    if(i<0||!instAgg[i])return `<span style="color:#d64545">外資</span>　<span style="color:#5b9bd5">投信</span>`;
+    const x=instAgg[i];
+    const f=v=>(v>=0?"+":"")+v.toLocaleString(undefined,{maximumFractionDigits:1});
+    return `<span style="color:#d64545">外資 ${f(x.fi)}</span>　`+
+           `<span style="color:#5b9bd5">投信 ${f(x.it)}</span>　`+
+           `<span style="color:#8b909a">張</span>`;
+  }
+
+  function subLegend(i){
+    if(i<0)return s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join("　");
+    return s3.map(x=>{
+      const d=x.sr.data?x.sr.data():null;
+      let v=null;
+      if(d&&d[i]!=null)v=d[i].value!=null?d[i].value:null;
+      return `<span style="color:${x.col}">${x.n} ${v!=null?v.toFixed(2):"-"}</span>`;
+    }).join("　");
+  }
+
+  function setLegends(i){
+    document.getElementById("lg2").innerHTML=
+      i>=0&&bars[i]?`量 ${bars[i].volume.toLocaleString()} 張`:"成交量(張)";
+    document.getElementById("lg4").innerHTML=instLegend(i);
+    document.getElementById("lg3").innerHTML=subLegend(i);
+  }
+
   c1.subscribeCrosshairMove(p=>{
     const lg=document.getElementById("lg1");
     if(!p.time){
-      lg.innerHTML=maLegend(mas,bars.length-1,bars);
+      const last=bars.length-1;
+      lg.innerHTML=maLegend(mas,last,bars);
+      setLegends(last);
       clearTimeout(updTimer);
-      updTimer=setTimeout(()=>updateAll(bars.length-1),50);
+      updTimer=setTimeout(()=>updateAll(last),50);
       return;
     }
     const b=p.seriesData.get(cs);if(!b)return;
     const i=bars.findIndex(x=>x.time===p.time);
     const up=b.close>=b.open?"#d64545":"#2e9e5b";
     lg.innerHTML=`<span style="color:${up}">${p.time}　開 ${b.open}　高 ${b.high}　低 ${b.low}　收 ${b.close}</span><br>${maLegend(mas,i,bars)}`;
-    document.getElementById("lg2").innerHTML=`量 ${bars[i].volume.toLocaleString()} 張`;
+    setLegends(i);
     if(i>=0){
       clearTimeout(updTimer);
       updTimer=setTimeout(()=>updateAll(i),50);
@@ -727,7 +756,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   });
 
   document.getElementById("lg1").innerHTML=maLegend(mas,bars.length-1,bars);
-  document.getElementById("lg3").innerHTML=s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join("　");
+  setLegends(bars.length-1);
 
   c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});
   setTimeout(()=>updateAll(bars.length-1),150);
