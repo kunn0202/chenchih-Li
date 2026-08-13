@@ -1919,3 +1919,6 @@
 2026-08-12,5398,1,Dealer_self,101
 2026-08-12,5398,0,Foreign_Investor,1000
 2026-08-12,5398,0,Investment_Trust,0
+2026-08-13,5398,1,Dealer_self,21
+2026-08-13,5398,1000,Foreign_Investor,10000
+2026-08-13,5398,0,Investment_Trust,0
