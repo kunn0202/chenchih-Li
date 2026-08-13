@@ -1,0 +1,46 @@
+name: 每日更新台股資料
+
+on:
+  schedule:
+    - cron: '30 9 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 取出程式碼
+        uses: actions/checkout@v4
+
+      - name: 安裝 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安裝套件
+        run: pip install pandas requests
+
+      - name: 更新上市股價
+        run: python update_price.py
+
+      - name: 更新上櫃股價
+        run: python update_price_otc.py
+
+      - name: 更新三大法人
+        run: python update_inst.py
+
+      - name: 執行選股
+        run: python screener.py
+
+      - name: 匯出圖表
+        run: python export_charts.py
+
+      - name: 提交結果
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "自動更新 $(TZ=Asia/Taipei date +'%Y-%m-%d')"
+          git push
