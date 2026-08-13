@@ -266,8 +266,11 @@ function pick(id){
   fetch("chart/"+id+".json?"+Date.now()).then(r=>r.json()).then(d=>{raw=d;build()})
    .catch(()=>{document.getElementById("detail").innerHTML='<div class="ph">找不到線圖資料</div>'});
 }
-function closePanel(){document.getElementById("panel").classList.remove("show")}
-
+function closePanel(){
+  fs=false;
+  document.getElementById("wrap").classList.remove("fs");
+  document.getElementById("panel").classList.remove("show");
+}
 function toBars(d){
   const endY = DATA_DATE ? parseInt(DATA_DATE.slice(0,4)) : new Date().getFullYear();
   let py=null,yr=endY;
