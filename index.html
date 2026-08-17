@@ -569,7 +569,7 @@ function draw(){
   const isMobile=window.innerWidth<=900;
   const opt={layout:{background:{color:"#fff"},textColor:"#8b909a",fontSize:isMobile?13:11},
     grid:{vertLines:{color:"#f4f5f7"},horzLines:{color:"#f4f5f7"}},
-    rightPriceScale:{borderColor:"#eceef1"},timeScale:{borderColor:"#eceef1"},
+        rightPriceScale:{borderColor:"#eceef1",minimumWidth:64},timeScale:{borderColor:"#eceef1"},
     crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
     handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},
     kineticScroll:{mouse:false,touch:false}};
