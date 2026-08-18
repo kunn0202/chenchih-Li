@@ -3,7 +3,7 @@ import os
 import glob
 import json
 
-BASE_DIR = r"D:\stock_system"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 REV_DIR = os.path.join(BASE_DIR, "revenue_data")
 FIN_DIR = os.path.join(BASE_DIR, "fin_data")
 OUT_DIR = os.path.join(BASE_DIR, "fundamentals")
