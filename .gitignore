@@ -8,6 +8,5 @@ check_columns.py
 check_fin_columns.py
 check_fund_output.py
 check_missing.py
-export_fundamentals.py
 test_otc.py
 token.txt
