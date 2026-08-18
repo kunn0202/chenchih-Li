@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
 
       - name: 安裝套件
-        run: pip install pandas requests
+        run: pip install pandas requests lxml html5lib beautifulsoup4
 
       - name: 更新上市股價
         run: python update_price.py
@@ -31,11 +31,17 @@ jobs:
       - name: 更新三大法人
         run: python update_inst.py
 
+      - name: 更新月營收
+        run: python update_revenue.py
+
       - name: 執行選股
         run: python screener.py
 
       - name: 匯出圖表
         run: python export_charts.py
+
+      - name: 匯出財報
+        run: python export_fundamentals.py
 
       - name: 提交結果
         run: |
