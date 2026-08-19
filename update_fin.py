@@ -1,7 +1,8 @@
 import requests, pandas as pd, os, time
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TOKEN = open(os.path.join(BASE_DIR, "token.txt"), encoding="utf-8").read().strip()
+TOKEN = os.environ.get("FINMIND_TOKEN") or open(
+    os.path.join(BASE_DIR, "token.txt"), encoding="utf-8").read().strip()
 OUT_DIR = os.path.join(BASE_DIR, "fin_data")
 LIST_PATH = os.path.join(BASE_DIR, "stock_list.csv")
 URL = "https://api.finmindtrade.com/api/v4/data"

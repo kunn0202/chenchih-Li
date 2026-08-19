@@ -1,0 +1,40 @@
+name: 季度財報更新
+
+on:
+  schedule:
+    - cron: '0 18 15,20,25 3,5,8,11 *'
+  workflow_dispatch:
+
+jobs:
+  fin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+
+    steps:
+      - name: 取出程式碼
+        uses: actions/checkout@v4
+
+      - name: 安裝 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安裝套件
+        run: pip install pandas requests
+
+      - name: 更新財報
+        env:
+          FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+        run: python update_fin.py
+
+      - name: 匯出財報
+        run: python export_fundamentals.py
+
+      - name: 提交結果
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git pull --no-rebase -X ours
+          git add -A
+          git diff --staged --quiet || git commit -m "財報自動更新 $(TZ=Asia/Taipei date +'%Y-%m-%d')"
+          git push
