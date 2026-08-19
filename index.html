@@ -572,8 +572,9 @@ function draw(){
   charts.forEach(c=>{try{c.remove()}catch(e){}});charts=[];
   const bars=bakBars();
   const closes=bars.map(b=>b.close);
-  const H=fs?window.innerHeight*0.5:400;
-  const isMobile=window.innerWidth<=900;
+  const H=fs?window.innerHeight*0.5:(isMobile?Math.max(200,window.innerHeight*0.32):400);
+   const isMobile=window.innerWidth<=900;
+  const H=fs?window.innerHeight*0.5:(isMobile?Math.max(200,window.innerHeight*0.32):400);
   const opt={layout:{background:{color:"#fff"},textColor:"#8b909a",fontSize:isMobile?13:11},
     grid:{vertLines:{color:"#f4f5f7"},horzLines:{color:"#f4f5f7"}},
         rightPriceScale:{borderColor:"#eceef1",minimumWidth:64},timeScale:{borderColor:"#eceef1"},
