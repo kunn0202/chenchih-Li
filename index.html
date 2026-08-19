@@ -92,6 +92,13 @@ tbody tr.on{background:#f0edff}
 .dedtri{position:absolute;top:3px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;transform:translateX(-50%)}
 @media(max-width:900px){
  .wrap{flex-direction:column;padding:10px}
+ .tools{gap:4px;margin-bottom:6px}
+ .tools button{padding:5px 9px;font-size:12px;border-radius:6px}
+ .tools .sep{width:1px;height:20px;background:#e4e6ea;margin:0 3px;align-self:center}
+ .malist{gap:4px;margin-bottom:6px}
+ .mapill{padding:3px 7px;font-size:11.5px;border-width:1px}
+ .mapill input{width:11px;height:11px}
+ .maintabs{margin-bottom:8px}
  .left{width:100%}
  .right{position:fixed;bottom:0;left:0;right:0;height:88vh;overflow-y:auto;background:#f5f6f8;padding:10px;z-index:99;box-shadow:0 -3px 20px rgba(0,0,0,.15);border-radius:16px 16px 0 0;transform:translateY(100%);transition:.25s}
  .right.show{transform:translateY(0)}
@@ -370,12 +377,12 @@ function renderChartTab(){
        <button onclick="setP('D')" class="${period==="D"?"act":""}">日K</button>
        <button onclick="setP('W')" class="${period==="W"?"act":""}">週K</button>
        <button onclick="setP('M')" class="${period==="M"?"act":""}">月K</button>
-       <span style="width:10px"></span>
+       <span class="sep"></span>
        <button onclick="setS('KD')" class="${sub==="KD"?"act":""}">KD</button>
        <button onclick="setS('MACD')" class="${sub==="MACD"?"act":""}">MACD</button>
        <button onclick="setS('RSI')" class="${sub==="RSI"?"act":""}">RSI</button>
-       <span style="width:10px"></span>
-       <button onclick="toggleFS()">${fs?"還原":"全螢幕"}</button>
+       <span class="sep"></span>
+        <button onclick="toggleFS()" title="全螢幕">${fs?"⤡":"⤢"}</button>
      </div>
      <div class="malist" id="malist"></div>
      <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
