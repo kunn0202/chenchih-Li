@@ -25,10 +25,10 @@ jobs:
       - name: 更新財報
         env:
           FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
-        run: python update_fin.py
+        run: python -u update_fin.py
 
       - name: 匯出財報
-        run: python export_fundamentals.py
+        run: python -u export_fundamentals.py
 
       - name: 提交結果
         run: |
