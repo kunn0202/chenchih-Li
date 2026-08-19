@@ -94,6 +94,7 @@ tbody tr.on{background:#f0edff}
  .wrap{flex-direction:column;padding:10px}
  .tools{gap:4px;margin-bottom:6px}
  .tools button{padding:5px 9px;font-size:12px;border-radius:6px}
+  .tools button.fsbtn{font-size:17px;padding:3px 11px;color:#6b5ce7;font-weight:400}
  .tools .sep{width:1px;height:20px;background:#e4e6ea;margin:0 3px;align-self:center}
  .malist{gap:4px;margin-bottom:6px}
  .mapill{padding:3px 7px;font-size:11.5px;border-width:1px}
@@ -382,7 +383,7 @@ function renderChartTab(){
        <button onclick="setS('MACD')" class="${sub==="MACD"?"act":""}">MACD</button>
        <button onclick="setS('RSI')" class="${sub==="RSI"?"act":""}">RSI</button>
        <span class="sep"></span>
-        <button onclick="toggleFS()" title="全螢幕">${fs?"⤡":"⤢"}</button>
+      <button onclick="toggleFS()" class="fsbtn" title="全螢幕">${fs?"⤡":"⤢"}</button>
      </div>
      <div class="malist" id="malist"></div>
      <div class="chart"><div class="legend" id="lg1"></div><div id="c1"></div></div>
@@ -572,8 +573,7 @@ function draw(){
   charts.forEach(c=>{try{c.remove()}catch(e){}});charts=[];
   const bars=bakBars();
   const closes=bars.map(b=>b.close);
-  const H=fs?window.innerHeight*0.5:(isMobile?Math.max(200,window.innerHeight*0.32):400);
-   const isMobile=window.innerWidth<=900;
+    const isMobile=window.innerWidth<=900;
   const H=fs?window.innerHeight*0.5:(isMobile?Math.max(200,window.innerHeight*0.32):400);
   const opt={layout:{background:{color:"#fff"},textColor:"#8b909a",fontSize:isMobile?13:11},
     grid:{vertLines:{color:"#f4f5f7"},horzLines:{color:"#f4f5f7"}},
