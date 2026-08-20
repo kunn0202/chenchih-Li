@@ -397,3 +397,6 @@
 2026-08-17,6884,0,Dealer_self,0
 2026-08-17,6884,0,Foreign_Investor,1000
 2026-08-17,6884,0,Investment_Trust,0
+2026-08-20,6884,0,Dealer_self,0
+2026-08-20,6884,1000,Foreign_Investor,1000
+2026-08-20,6884,0,Investment_Trust,0
