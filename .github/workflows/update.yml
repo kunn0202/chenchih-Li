@@ -23,7 +23,7 @@ jobs:
         run: pip install pandas requests lxml html5lib beautifulsoup4
 
       - name: 更新上市股價
-         run: python -u update_price.py
+        run: python -u update_price.py
 
       - name: 更新上櫃股價
         run: python -u update_price_otc.py
@@ -47,6 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git pull --no-rebase -X ours
           git add -A
           git diff --staged --quiet || git commit -m "自動更新 $(TZ=Asia/Taipei date +'%Y-%m-%d')"
           git push

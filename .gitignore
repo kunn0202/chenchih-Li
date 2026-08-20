@@ -9,3 +9,4 @@ check_fund_output.py
 check_missing.py
 test_otc.py
 token.txt
+diff.txt
