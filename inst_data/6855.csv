@@ -900,3 +900,6 @@
 2026-08-20,6855,0,Dealer_self,0
 2026-08-20,6855,0,Foreign_Investor,1000
 2026-08-20,6855,0,Investment_Trust,0
+2026-08-24,6855,0,Dealer_self,0
+2026-08-24,6855,2000,Foreign_Investor,0
+2026-08-24,6855,0,Investment_Trust,0
