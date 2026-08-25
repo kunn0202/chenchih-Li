@@ -154,3 +154,14 @@
 2026-03-31,2801,OtherComprehensiveIncome,428534000.0,其他綜合損益（稅後）
 2026-03-31,2801,OtherComprehensiveIncomeAfterTaxThePeriod,5649670000.0,本期綜合損益總額（稅後）
 2026-03-31,2801,TAX,992320000.0,所得稅費用（利益）
+2026-06-30,2801,BadDebts,790953000.0,呆帳費用、承諾及保證責任準備提存
+2026-06-30,2801,EquityAttributableToOwnersOfParent,6093217000.0,淨利（損）歸屬於母公司業主
+2026-06-30,2801,IncomeAfterTax,6093217000.0,本期稅後淨利（淨損）
+2026-06-30,2801,IncomeBeforeTaxFromContinuingOperations,6899599000.0,繼續營業單位稅前淨利（淨損）
+2026-06-30,2801,IncomeFromContinuingOperations,6093217000.0,繼續營業單位本期稅後淨利（淨損）
+2026-06-30,2801,NetInterestIncome,7802596000.0,利息淨收益
+2026-06-30,2801,NetNonInterestIncome,5620913000.0,利息以外淨損益
+2026-06-30,2801,OperatingExpenses,5732957000.0,營業費用
+2026-06-30,2801,OtherComprehensiveIncome,7042973000.0,其他綜合損益（稅後）
+2026-06-30,2801,OtherComprehensiveIncomeAfterTaxThePeriod,13136190000.0,本期綜合損益總額（稅後）
+2026-06-30,2801,TAX,806382000.0,所得稅費用（利益）
