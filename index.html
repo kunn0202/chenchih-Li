@@ -710,10 +710,16 @@ function draw(){
     return {n,col,sr};
   });
 
-   window.goToLatest = () => {
-    const r = {from: Math.max(0, bars.length-120), to: bars.length-1};
-    c1.timeScale().setVisibleLogicalRange(r);
-    savedRange = c1.timeScale().getVisibleLogicalRange() || r;
+  // 🔥 修復：強制定格鎖，確保按下按鈕時，五張圖表精準就位，不被非同步事件彈回
+  window.goToLatest = () => {
+    const r = {from: Math.max(0, bars.length-120), to: bars.length};
+    window.syncLock = true; // 暫時封鎖圖表間的交互通訊
+    charts.forEach(c => {
+      try { c.timeScale().setVisibleLogicalRange(r); } catch(e){}
+    });
+    savedRange = r;
+    // 50毫秒後再解鎖，避免殘留的滾輪或滑鼠事件搗亂
+    setTimeout(() => { window.syncLock = false; }, 50);
   };
 
   window.toggleMaVisibility = (maNum, isVisible) => {
@@ -832,7 +838,6 @@ function draw(){
 
   const instSeries=[{k:"fi",c:"#d64545",n:"外資",s:fiSr},{k:"it",c:"#5b9bd5",n:"投信",s:itSr}];
   
-  // ── 大戶持股（400張以上）─────────────────
   const bigRaw = (raw && raw.big) || [];
   const rawBars2 = toBars(raw);
   const bigMap = {};
@@ -840,7 +845,6 @@ function draw(){
     if (bigRaw[i] != null) bigMap[b.time] = bigRaw[i];
   });
   
-  // 🔥 修復關鍵：絕對不能用 filter 刪除資料！必須讓陣列長度跟 K 棒一模一樣
   let lastBig = null;
   const bigAgg = bars.map(b => {
     if (bigMap[b.time] != null) lastBig = bigMap[b.time];
@@ -903,14 +907,17 @@ function draw(){
   }
   charts.push(c3);
 
-  let syncLock=false;
+  // 🔥 修復：改善多圖表同步的非同步鎖機制，避免時間差造成的鏡像回推
+  window.syncLock=false;
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
-    if(syncLock||!r)return;
-    syncLock=true;
+    if(window.syncLock||!r)return;
+    window.syncLock=true;
     others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}});
-    syncLock=false;
+    // 使用非同步釋放鎖，防止圖表內部計算未完成又觸發二次同步
+    setTimeout(() => { window.syncLock = false; }, 10);
   });
-    sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);
+  sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);
+  
   const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:instSeries[0].s},{c:c3,s:s3[0].sr}];
   let crossLock=false;
   crossList.forEach(({c})=>{
