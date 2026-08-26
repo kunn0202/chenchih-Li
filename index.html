@@ -420,6 +420,7 @@ function renderChartTab(){
      <div class="dedrow" id="dedrow"></div>
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg4"></div><div id="c4"></div></div>
+     <div class="chart"><div class="legend" id="lg5"></div><div id="c5"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
   draw();
@@ -720,6 +721,39 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   itSr.applyOptions({autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:itMax}})});
 
   const instSeries=[{k:"fi",c:"#d64545",n:"外資",s:fiSr},{k:"it",c:"#5b9bd5",n:"投信",s:itSr}];
+    // ── 大戶持股（400張以上）─────────────────
+  const bigRaw = (raw && raw.big) || [];
+  const rawBars2 = toBars(raw);
+  const bigMap = {};
+  rawBars2.forEach((b, i) => {
+    if (bigRaw[i] != null) bigMap[b.time] = bigRaw[i];
+  });
+  const bigAgg = bars.map(b => ({ time: b.time, v: bigMap[b.time] })).filter(x => x.v != null);
+
+  const c5 = LightweightCharts.createChart(document.getElementById("c5"),
+    {...opt, height: fs?130:110, timeScale:{...opt.timeScale, visible:false},
+     crosshair:{mode:LightweightCharts.CrosshairMode.Normal, horzLine:{visible:false,labelVisible:false}}});
+  charts.push(c5);
+
+  if (bigAgg.length) {
+    const vals = bigAgg.map(x => x.v);
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const pad = (hi - lo) * 0.15 || 0.5;
+    const base = lo - pad;
+    const bigSr = c5.addHistogramSeries({
+      priceFormat:{type:"price", precision:2, minMove:0.01},
+      base: base
+    });
+    bigSr.setData(bigAgg.map((x, i) => ({
+      time: x.time, value: x.v,
+      color: i === 0 || x.v >= bigAgg[i-1].v ? "#ef4444" : "#22c55e"
+    })));
+    bigSr.applyOptions({autoscaleInfoProvider: () => ({priceRange:{minValue: base, maxValue: hi + pad}})});
+    var bigSeries = bigAgg;
+  } else {
+    document.getElementById("lg5").innerHTML = '<span style="color:#64748b">大戶持股：無資料</span>';
+    var bigSeries = [];
+  }
   const c3=LightweightCharts.createChart(document.getElementById("c3"),{...opt,height:fs?160:130,crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   let s3=[];
   if(sub==="KD"){
@@ -748,7 +782,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
 
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
-  sync(c1,[c2,c3,c4]);sync(c2,[c1,c3,c4]);sync(c3,[c1,c2,c4]);sync(c4,[c1,c2,c3]);// 十字線同步：三張圖共用同一條垂直線
+    sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);// 十字線同步：三張圖共用同一條垂直線
   const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:instSeries[0].s},{c:c3,s:s3[0].sr}];
   let crossLock=false;
   crossList.forEach(({c})=>{
@@ -785,10 +819,23 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     }).join("　");
   }
 
+    function bigLegend(i){
+    if(!bigSeries.length)return '<span style="color:#64748b">大戶持股：無資料</span>';
+    const t=i>=0&&bars[i]?bars[i].time:null;
+    const cur=bigSeries.find(x=>x.time===t)||bigSeries[bigSeries.length-1];
+    const j=bigSeries.indexOf(cur);
+    const prev=j>0?bigSeries[j-1].v:null;
+    const diff=prev!=null?cur.v-prev:null;
+    const col=diff==null?"#8fa0b8":(diff>=0?"#ef4444":"#22c55e");
+    return `<span style="color:#8fa0b8">大戶(400張)</span> `+
+           `<span style="color:${col}">${cur.v.toFixed(2)}%`+
+           (diff!=null?` ${diff>=0?"+":""}${diff.toFixed(2)}`:"")+`</span>`;
+  }
   function setLegends(i){
     document.getElementById("lg2").innerHTML=
       i>=0&&bars[i]?`量 ${bars[i].volume.toLocaleString()} 張`:"成交量(張)";
     document.getElementById("lg4").innerHTML=instLegend(i);
+    document.getElementById("lg5").innerHTML=bigLegend(i);
     document.getElementById("lg3").innerHTML=subLegend(i);
   }
 

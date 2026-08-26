@@ -1944,3 +1944,15 @@
 2026-08-19,8107,0,Dealer_self,0
 2026-08-19,8107,4000,Foreign_Investor,0
 2026-08-19,8107,0,Investment_Trust,0
+2026-08-20,8107,0,Dealer_self,0
+2026-08-20,8107,0,Foreign_Investor,1000
+2026-08-20,8107,0,Investment_Trust,0
+2026-08-21,8107,0,Dealer_self,1
+2026-08-21,8107,6000,Foreign_Investor,1001
+2026-08-21,8107,0,Investment_Trust,0
+2026-08-24,8107,0,Dealer_self,0
+2026-08-24,8107,4000,Foreign_Investor,3000
+2026-08-24,8107,0,Investment_Trust,0
+2026-08-25,8107,0,Dealer_self,0
+2026-08-25,8107,9000,Foreign_Investor,2000
+2026-08-25,8107,0,Investment_Trust,0

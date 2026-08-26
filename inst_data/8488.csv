@@ -1514,3 +1514,15 @@
 2026-08-19,8488,0,Dealer_self,0
 2026-08-19,8488,1000,Foreign_Investor,11000
 2026-08-19,8488,0,Investment_Trust,0
+2026-08-20,8488,0,Dealer_self,0
+2026-08-20,8488,3000,Foreign_Investor,0
+2026-08-20,8488,0,Investment_Trust,0
+2026-08-21,8488,0,Dealer_self,0
+2026-08-21,8488,10000,Foreign_Investor,3000
+2026-08-21,8488,0,Investment_Trust,0
+2026-08-24,8488,0,Dealer_self,4000
+2026-08-24,8488,1000,Foreign_Investor,2000
+2026-08-24,8488,0,Investment_Trust,0
+2026-08-25,8488,4000,Dealer_self,1000
+2026-08-25,8488,174000,Foreign_Investor,178000
+2026-08-25,8488,0,Investment_Trust,0

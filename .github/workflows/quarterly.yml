@@ -2,7 +2,7 @@ name: 季度財報更新
 
 on:
   schedule:
-    - cron: '0 18 15,20,25 3,5,8,11 *'
+       - cron: '0 18 14,19,24 3,5,8,11 *'
   workflow_dispatch:
 
 jobs:

@@ -1389,3 +1389,12 @@
 2026-08-18,5604,0,Dealer_self,0
 2026-08-18,5604,0,Foreign_Investor,1000
 2026-08-18,5604,0,Investment_Trust,0
+2026-08-20,5604,0,Dealer_self,0
+2026-08-20,5604,1000,Foreign_Investor,0
+2026-08-20,5604,0,Investment_Trust,0
+2026-08-24,5604,0,Dealer_self,0
+2026-08-24,5604,1000,Foreign_Investor,0
+2026-08-24,5604,0,Investment_Trust,0
+2026-08-25,5604,0,Dealer_self,0
+2026-08-25,5604,2000,Foreign_Investor,0
+2026-08-25,5604,0,Investment_Trust,0

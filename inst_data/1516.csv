@@ -1911,3 +1911,15 @@
 2026-08-19,1516,0,Dealer_self,0
 2026-08-19,1516,0,Foreign_Investor,1000
 2026-08-19,1516,0,Investment_Trust,0
+2026-08-20,1516,0,Dealer_self,0
+2026-08-20,1516,1000,Foreign_Investor,0
+2026-08-20,1516,0,Investment_Trust,0
+2026-08-21,1516,0,Dealer_self,0
+2026-08-21,1516,1000,Foreign_Investor,1
+2026-08-21,1516,0,Investment_Trust,0
+2026-08-24,1516,0,Dealer_self,0
+2026-08-24,1516,0,Foreign_Investor,4000
+2026-08-24,1516,0,Investment_Trust,0
+2026-08-25,1516,0,Dealer_self,0
+2026-08-25,1516,2000,Foreign_Investor,2000
+2026-08-25,1516,0,Investment_Trust,0

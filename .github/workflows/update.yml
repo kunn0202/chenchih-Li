@@ -3,13 +3,13 @@ name: 每日更新台股資料
 on:
   schedule:
     - cron: '30 11 * * 1-5'
+    - cron: '0 2 * * 6'
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-
     steps:
       - name: 取出程式碼
         uses: actions/checkout@v4
@@ -22,25 +22,44 @@ jobs:
       - name: 安裝套件
         run: pip install pandas requests lxml html5lib beautifulsoup4
 
+      - name: 判斷是否為週六場次
+        id: mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "0 2 * * 6" ]; then
+            echo "sat=true" >> $GITHUB_OUTPUT
+          else
+            echo "sat=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: 更新上市股價
+        if: steps.mode.outputs.sat == 'false'
         run: python -u update_price.py
 
       - name: 更新上櫃股價
+        if: steps.mode.outputs.sat == 'false'
         run: python -u update_price_otc.py
 
       - name: 更新三大法人
+        if: steps.mode.outputs.sat == 'false'
         run: python -u update_inst.py
 
       - name: 更新月營收
+        if: steps.mode.outputs.sat == 'false'
         run: python -u update_revenue.py
 
+      - name: 更新大戶籌碼
+        run: python -u update_tdcc.py
+        continue-on-error: true
+
       - name: 執行選股
+        if: steps.mode.outputs.sat == 'false'
         run: python -u screener.py
 
       - name: 匯出圖表
         run: python -u export_charts.py
 
       - name: 匯出財報
+        if: steps.mode.outputs.sat == 'false'
         run: python -u export_fundamentals.py
 
       - name: 提交結果

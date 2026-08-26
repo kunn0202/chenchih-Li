@@ -1035,3 +1035,15 @@
 2026-08-18,7753,0,Dealer_self,0
 2026-08-18,7753,0,Foreign_Investor,2000
 2026-08-18,7753,0,Investment_Trust,0
+2026-08-20,7753,0,Dealer_self,0
+2026-08-20,7753,1000,Foreign_Investor,0
+2026-08-20,7753,0,Investment_Trust,0
+2026-08-21,7753,0,Dealer_self,0
+2026-08-21,7753,0,Foreign_Investor,1000
+2026-08-21,7753,0,Investment_Trust,0
+2026-08-24,7753,0,Dealer_self,0
+2026-08-24,7753,2000,Foreign_Investor,0
+2026-08-24,7753,0,Investment_Trust,0
+2026-08-25,7753,0,Dealer_self,0
+2026-08-25,7753,0,Foreign_Investor,2000
+2026-08-25,7753,0,Investment_Trust,0
