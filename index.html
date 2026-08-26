@@ -15,7 +15,7 @@
   --bg:#0b1220; --panel:#131c2b; --card:#1b2635; --line:#26344a;
   --text:#e6edf6; --muted:#8fa0b8; --dim:#64748b;
   --accent:#3b82f6; --accent-soft:rgba(59,130,246,.14);
-  --up:#ef4444; --down:#22c55e;
+  --up:#ef4444; --down:#22c55e; --star:#fbbf24;
 }
 body{font-family:-apple-system,"Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);font-size:15px;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 .wrap{display:flex;gap:12px;padding:12px;max-width:1800px;margin:0 auto}
@@ -52,8 +52,9 @@ h1{font-size:19px;margin-bottom:2px;letter-spacing:.5px}
 
 .bar{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border-radius:12px;padding:12px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 16px -6px rgba(59,130,246,.6)}
 .bar b{font-size:22px}
-.bar button{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:7px;padding:8px 13px;font-size:13px;cursor:pointer}
+.bar button{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:7px;padding:8px 13px;font-size:13px;cursor:pointer;white-space:nowrap}
 .bar button:hover{background:rgba(255,255,255,.28)}
+.bar button.on{background:#fff;color:#2563eb;border-color:#fff;font-weight:700}
 
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 th{background:var(--card);padding:9px 7px;text-align:left;color:var(--muted);font-size:11px;font-weight:600;border-bottom:1px solid var(--line)}
@@ -67,6 +68,12 @@ tbody tr.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)
 .px{text-align:right}
 .empty{text-align:center;color:var(--dim);padding:36px 0}
 .ph{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:100px 20px;text-align:center;color:var(--dim)}
+
+th.stcol,td.stcol{width:30px;padding-left:9px;padding-right:0;text-align:center}
+.star{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;
+  font-size:16px;color:#3a4a63;cursor:pointer;border-radius:50%;user-select:none;transition:.12s}
+.star:hover{background:rgba(251,191,36,.15);color:var(--star)}
+.star.on{color:var(--star)}
 
 .ct{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
 .ct h2{font-size:18px}
@@ -141,6 +148,7 @@ tbody tr.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)
  .legend{font-size:13px}
  .sectitle{font-size:14px}
  .fintable{font-size:13.5px}
+ .star{width:30px;height:30px;line-height:30px;font-size:18px}
 }
 </style>
 </head>
@@ -158,12 +166,12 @@ tbody tr.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)
   <div class="box" id="conds"></div>
   <div class="bar">
     <div>符合條件<br><b id="cnt">0</b> 檔</div>
-    <button onclick="copyList()">複製代碼</button>
+    <button id="favBtn" onclick="toggleFavOnly()">★ 自選 <span id="favCnt">0</span></button>
   </div>
   <div class="box" style="padding:0;overflow:hidden">
     <table>
-      <thead><tr><th>代碼/名稱</th><th style="text-align:right">股價</th><th style="text-align:right">RS</th><th style="text-align:right">均量</th></tr></thead>
-      <tbody id="tb"><tr><td colspan="4" class="empty">載入中…</td></tr></tbody>
+      <thead><tr><th class="stcol"></th><th>代碼/名稱</th><th style="text-align:right">股價</th><th style="text-align:right">RS</th><th style="text-align:right">均量</th></tr></thead>
+      <tbody id="tb"><tr><td colspan="5" class="empty">載入中…</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -222,12 +230,36 @@ let openGrp=new Set();
 let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
-let savedRange=null;          
+let savedRange=null;
+
+/* ── 自選股：存在這台裝置的瀏覽器裡，每個人各自獨立 ── */
+let fav=new Set();
+let favOnly=false;
+try{fav=new Set(JSON.parse(localStorage.getItem("favStocks")||"[]"));}catch(e){fav=new Set();}
+function saveFav(){
+  try{localStorage.setItem("favStocks",JSON.stringify([...fav]));}catch(e){}
+  const el=document.getElementById("favCnt");
+  if(el)el.textContent=fav.size;
+}
+function toggleFav(id,ev){
+  if(ev){ev.stopPropagation();}
+  fav.has(id)?fav.delete(id):fav.add(id);
+  saveFav();
+  const st=document.getElementById("st"+id);
+  if(st)st.classList.toggle("on",fav.has(id));
+  if(favOnly)render();
+}
+function toggleFavOnly(){
+  favOnly=!favOnly;
+  document.getElementById("favBtn").classList.toggle("on",favOnly);
+  render();
+}
 
 fetch("screener_data.json?"+Date.now()).then(r=>r.json()).then(j=>{
   DATA=j.stocks;
   DATA_DATE=j.updated;
   document.getElementById("meta").textContent=`資料日期 ${j.updated} 共 ${j.count} 檔`;
+  saveFav();
   buildConds();render();
 }).catch(()=>{document.getElementById("meta").textContent="資料載入失敗"});
 
@@ -280,17 +312,32 @@ function clearKw(){
 function render(){
   const kw=(document.getElementById("kw")?.value||"").trim().toLowerCase();
   document.getElementById("clrBtn")?.classList.toggle("on",!!kw);
-  shown=kw
-    ? DATA.filter(s=>s.stock_id.toLowerCase().includes(kw)||(s.stock_name||"").toLowerCase().includes(kw))
-    : DATA.filter(s=>[...sel].every(k=>pass(s,k)));
+
+  if(favOnly){
+    shown=DATA.filter(s=>fav.has(s.stock_id));
+    if(kw)shown=shown.filter(s=>s.stock_id.toLowerCase().includes(kw)||(s.stock_name||"").toLowerCase().includes(kw));
+  }else{
+    shown=kw
+      ? DATA.filter(s=>s.stock_id.toLowerCase().includes(kw)||(s.stock_name||"").toLowerCase().includes(kw))
+      : DATA.filter(s=>[...sel].every(k=>pass(s,k)));
+  }
+
   document.getElementById("cnt").textContent=shown.length;
   const tb=document.getElementById("tb");
- if(!sel.size&&!kw){tb.innerHTML='<tr><td colspan="4" class="empty">請勾選條件</td></tr>';return}
-  if(!shown.length){tb.innerHTML='<tr><td colspan="4" class="empty">無符合條件的股票</td></tr>';return}
+
+  if(favOnly&&!shown.length){
+    tb.innerHTML='<tr><td colspan="5" class="empty">尚未加入自選股<br><span style="font-size:12px">點列表左邊的 ☆ 加入</span></td></tr>';return
+  }
+  if(!favOnly&&!sel.size&&!kw){tb.innerHTML='<tr><td colspan="5" class="empty">請勾選條件</td></tr>';return}
+  if(!shown.length){tb.innerHTML='<tr><td colspan="5" class="empty">無符合條件的股票</td></tr>';return}
+
   tb.innerHTML=shown.slice(0,300).map(s=>`<tr onclick="pick('${s.stock_id}')" id="r${s.stock_id}">
+    <td class="stcol"><span class="star${fav.has(s.stock_id)?" on":""}" id="st${s.stock_id}"
+      onclick="toggleFav('${s.stock_id}',event)">${fav.has(s.stock_id)?"★":"☆"}</span></td>
     <td><span class="id">${s.stock_id}</span> <span class="nm">${s.stock_name}</span></td>
     <td class="px">${s.close}</td><td class="rs">${s.rs_score}</td>
     <td class="px nm">${s.vol20>=1000?Math.round(s.vol20/1000)+"K":Math.round(s.vol20)}</td></tr>`).join("");
+
     if(kw&&shown.length===1&&(!cur||cur.stock_id!==shown[0].stock_id)){
     pick(shown[0].stock_id);
   }
@@ -302,7 +349,7 @@ function pick(id){
   cur=DATA.find(s=>s.stock_id===id);
   mainTab="chart";
   fundData=null;
-  savedRange=null;                       
+  savedRange=null;
   document.getElementById("panel").classList.add("show");
   document.getElementById("detail").innerHTML='<div class="ph">載入中…</div>';
   fetch("chart/"+id+".json?"+Date.now())
@@ -399,7 +446,9 @@ function build(){
 
   document.getElementById("detail").innerHTML=`
    <div class="box">
-     <div class="ct"><h2>${s.stock_id} ${s.stock_name}</h2>
+     <div class="ct"><h2><span class="star${fav.has(s.stock_id)?" on":""}" id="stD${s.stock_id}"
+         onclick="toggleFav('${s.stock_id}',event);document.getElementById('stD${s.stock_id}').textContent=fav.has('${s.stock_id}')?'★':'☆'"
+         >${fav.has(s.stock_id)?"★":"☆"}</span> ${s.stock_id} ${s.stock_name}</h2>
        <div class="p ${cls}">${last.close} <span style="font-size:13px">${ch>=0?"+":""}${ch.toFixed(2)} (${pct}%)</span></div></div>
      <div class="cmeta">${s.industry} RS ${s.rs_score} 20日均量 ${Math.round(s.vol20)} 張</div>
      <div class="tags">${tags||'<span class="tag off">無符合條件</span>'}</div>
@@ -425,7 +474,7 @@ function renderChartTab(){
        <button onclick="setS('MACD')" class="${sub==="MACD"?"act":""}">MACD</button>
        <button onclick="setS('RSI')" class="${sub==="RSI"?"act":""}">RSI</button>
        <span class="sep"></span>
-      <button onclick="goToLatest&&goToLatest()" title="回到最新K棒">⇥</button>
+       <button onclick="goToLatest&&goToLatest()" title="回到最新K棒">⇥</button>
       <button onclick="toggleFS()" class="fsbtn" title="全螢幕">${fs?"⤡":"⤢"}</button>
      </div>
      <div class="malist" id="malist"></div>
@@ -660,11 +709,13 @@ function draw(){
     sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
     return {n,col,sr};
   });
- window.goToLatest = () => {
+
+  window.goToLatest = () => {
     const r = {from: Math.max(0, bars.length-120), to: bars.length};
     savedRange = r;
     c1.timeScale().setVisibleLogicalRange(r);
   };
+
   window.toggleMaVisibility = (maNum, isVisible) => {
     const ma = mas.find(m => m.n === maNum);
     if (ma) ma.sr.applyOptions({ visible: isVisible });
@@ -950,12 +1001,6 @@ function maLegend(mas,i,bars){
     }
     return `<span style="color:${m.col}">MA${m.n} ${v==null?"-":v.toFixed(2)}</span>`;
   }).join(" ");
-}
-
-function copyList(){
-  if(!shown.length)return;
-  navigator.clipboard.writeText(shown.map(s=>s.stock_id).join(" "))
-    .then(()=>alert(`已複製 ${shown.length} 檔代碼`));
 }
 
 let lastW=window.innerWidth,resizeTimer=null;
