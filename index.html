@@ -629,7 +629,7 @@ function draw(){
   });
 
   const mas=activeDed.map(([n,col])=>{
-    const sr=c1.addLineSeries({color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false});
+    const sr=c1.addLineSeries({color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
     sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
     return {n,col,sr};
   });
