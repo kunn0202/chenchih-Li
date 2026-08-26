@@ -710,15 +710,13 @@ function draw(){
     return {n,col,sr};
   });
 
-  // 🔥 修復：強制定格鎖，確保按下按鈕時，五張圖表精準就位，不被非同步事件彈回
   window.goToLatest = () => {
     const r = {from: Math.max(0, bars.length-120), to: bars.length};
-    window.syncLock = true; // 暫時封鎖圖表間的交互通訊
+    window.syncLock = true; 
     charts.forEach(c => {
       try { c.timeScale().setVisibleLogicalRange(r); } catch(e){}
     });
     savedRange = r;
-    // 50毫秒後再解鎖，避免殘留的滾輪或滑鼠事件搗亂
     setTimeout(() => { window.syncLock = false; }, 50);
   };
 
@@ -808,8 +806,8 @@ function draw(){
   const vs=c2.addHistogramSeries({priceFormat:{type:"volume"}});
   vs.setData(bars.map(b=>({time:b.time,value:b.volume,color:b.close>=b.open?"#e8a0a0":"#96ccae"})));
   charts.push(c2);
-  const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
-  charts.push(c4);
+
+  // ── 法人籌碼：外資、投信各一張 ──────────────
   const rawBars=toBars(raw);
   const instMap={};
   (raw&&raw.d||[]).forEach((dt,i)=>{
@@ -821,66 +819,23 @@ function draw(){
     const v=instMap[b.time]||{fi:0,it:0};
     return {time:b.time,fi:v.fi,it:v.it};
   });
-  const fiMax=Math.max(1,...instAgg.map(x=>Math.abs(x.fi)));
-  const itMax=Math.max(1,...instAgg.map(x=>Math.abs(x.it)));
 
-  const fiSr=c4.addHistogramSeries({priceFormat:{type:"volume"},priceScaleId:"fi"});
-  fiSr.setData(instAgg.map(x=>({time:x.time,value:Math.abs(x.fi),
-    color:x.fi>=0?"#d64545":"#f5c6c6"})));
-  c4.priceScale("fi").applyOptions({scaleMargins:{top:0.05,bottom:0.52},visible:false});
-  fiSr.applyOptions({autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:fiMax}})});
+  // c4：外資買賣超
+  const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
+  charts.push(c4);
+  const fiSr=c4.addHistogramSeries({priceFormat:{type:"volume"},base:0});
+  fiSr.setData(instAgg.map(x=>({time:x.time,value:x.fi,
+    color:x.fi>=0?"#ef4444":"#22c55e"})));
+  c4.priceScale("right").applyOptions({scaleMargins:{top:0.12,bottom:0.12}});
 
-  const itSr=c4.addHistogramSeries({priceFormat:{type:"volume"},priceScaleId:"it"});
-  itSr.setData(instAgg.map(x=>({time:x.time,value:Math.abs(x.it),
-    color:x.it>=0?"#5b9bd5":"#cbe0f0"})));
-  c4.priceScale("it").applyOptions({scaleMargins:{top:0.52,bottom:0.05},invertScale:true,visible:false});
-  itSr.applyOptions({autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:itMax}})});
-
-  const instSeries=[{k:"fi",c:"#d64545",n:"外資",s:fiSr},{k:"it",c:"#5b9bd5",n:"投信",s:itSr}];
-  
-  const bigRaw = (raw && raw.big) || [];
-  const rawBars2 = toBars(raw);
-  const bigMap = {};
-  rawBars2.forEach((b, i) => {
-    if (bigRaw[i] != null) bigMap[b.time] = bigRaw[i];
-  });
-  
-  let lastBig = null;
-  const bigAgg = bars.map(b => {
-    if (bigMap[b.time] != null) lastBig = bigMap[b.time];
-    return { time: b.time, v: lastBig };
-  });
-
-  const firstValidBig = bigAgg.find(x => x.v != null);
-  const fallbackBig = firstValidBig ? firstValidBig.v : 0;
-  bigAgg.forEach(x => {
-    if (x.v == null) x.v = fallbackBig;
-  });
-
-  const c5 = LightweightCharts.createChart(document.getElementById("c5"),
-    {...opt, height: fs?130:110, timeScale:{...opt.timeScale, visible:false},
-     crosshair:{mode:LightweightCharts.CrosshairMode.Normal, horzLine:{visible:false,labelVisible:false}}});
+  // c5：投信買賣超
+  const c5=LightweightCharts.createChart(document.getElementById("c5"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   charts.push(c5);
+  const itSr=c5.addHistogramSeries({priceFormat:{type:"volume"},base:0});
+  itSr.setData(instAgg.map(x=>({time:x.time,value:x.it,
+    color:x.it>=0?"#ef4444":"#22c55e"})));
+  c5.priceScale("right").applyOptions({scaleMargins:{top:0.12,bottom:0.12}});
 
-  if (bigAgg.length) {
-    const vals = bigAgg.map(x => x.v);
-    const hi = Math.max(...vals);
-    const base = 0;
-    const bigSr = c5.addHistogramSeries({
-      priceFormat:{type:"price", precision:2, minMove:0.01},
-      base: base
-    });
-    bigSr.setData(bigAgg.map((x, i) => ({
-      time: x.time, value: Math.max(0, x.v),
-      color: i === 0 || x.v >= bigAgg[i-1].v ? "#ef4444" : "#22c55e"
-    })));
-    bigSr.applyOptions({autoscaleInfoProvider: () => ({priceRange:{minValue: 0, maxValue: hi * 1.1}})});
-    c5.priceScale("right").applyOptions({scaleMargins:{top:0.1,bottom:0}});
-    var bigSeries = bigAgg;
-  } else {
-    document.getElementById("lg5").innerHTML = '<span style="color:#64748b">大戶持股：無資料</span>';
-    var bigSeries = [];
-  }
   const c3=LightweightCharts.createChart(document.getElementById("c3"),{...opt,height:fs?160:130,crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   let s3=[];
   if(sub==="KD"){
@@ -907,18 +862,16 @@ function draw(){
   }
   charts.push(c3);
 
-  // 🔥 修復：改善多圖表同步的非同步鎖機制，避免時間差造成的鏡像回推
   window.syncLock=false;
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(window.syncLock||!r)return;
     window.syncLock=true;
     others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}});
-    // 使用非同步釋放鎖，防止圖表內部計算未完成又觸發二次同步
     setTimeout(() => { window.syncLock = false; }, 10);
   });
   sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);
   
-  const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:instSeries[0].s},{c:c3,s:s3[0].sr}];
+  const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:fiSr},{c:c5,s:itSr},{c:c3,s:s3[0].sr}];
   let crossLock=false;
   crossList.forEach(({c})=>{
     c.subscribeCrosshairMove(p=>{
@@ -933,13 +886,21 @@ function draw(){
     });
   });
 
-  function instLegend(i){
-    if(i<0||!instAgg[i])return `<span style="color:#d64545">外資</span> <span style="color:#5b9bd5">投信</span>`;
-    const x=instAgg[i];
-    const f=v=>(v>=0?"+":"")+v.toLocaleString(undefined,{maximumFractionDigits:1});
-    return `<span style="color:#d64545">外資 ${f(x.fi)}</span> `+
-           `<span style="color:#5b9bd5">投信 ${f(x.it)}</span> `+
-           `<span style="color:#8b909a">張</span>`;
+  const fmtLot=v=>(v>=0?"+":"")+v.toLocaleString(undefined,{maximumFractionDigits:1});
+
+  function fiLegend(i){
+    if(i<0||!instAgg[i])return `<span style="color:#8fa0b8">外資買賣超(張)</span>`;
+    const v=instAgg[i].fi;
+    return `<span style="color:#8fa0b8">外資</span> `+
+           `<span style="color:${v>=0?"#ef4444":"#22c55e"}">${fmtLot(v)}</span> `+
+           `<span style="color:#8fa0b8">張</span>`;
+  }
+  function itLegend(i){
+    if(i<0||!instAgg[i])return `<span style="color:#8fa0b8">投信買賣超(張)</span>`;
+    const v=instAgg[i].it;
+    return `<span style="color:#8fa0b8">投信</span> `+
+           `<span style="color:${v>=0?"#ef4444":"#22c55e"}">${fmtLot(v)}</span> `+
+           `<span style="color:#8fa0b8">張</span>`;
   }
 
   function subLegend(i){
@@ -952,24 +913,11 @@ function draw(){
     }).join(" ");
   }
 
-  function bigLegend(i){
-    if(!bigSeries.length)return '<span style="color:#64748b">大戶持股：無資料</span>';
-    const t=i>=0&&bars[i]?bars[i].time:null;
-    const cur=bigSeries.find(x=>x.time===t)||bigSeries[bigSeries.length-1];
-    const j=bigSeries.indexOf(cur);
-    const prev=j>0?bigSeries[j-1].v:null;
-    const diff=prev!=null?cur.v-prev:null;
-    const col=diff==null?"#8fa0b8":(diff>=0?"#ef4444":"#22c55e");
-    return `<span style="color:#8fa0b8">大戶(400張)</span> `+
-           `<span style="color:${col}">${cur.v.toFixed(2)}%`+
-           (diff!=null?` ${diff>=0?"+":""}${diff.toFixed(2)}`:"")+`</span>`;
-  }
-  
   function setLegends(i){
     document.getElementById("lg2").innerHTML=
       i>=0&&bars[i]?`量 ${bars[i].volume.toLocaleString()} 張`:"成交量(張)";
-    document.getElementById("lg4").innerHTML=instLegend(i);
-    document.getElementById("lg5").innerHTML=bigLegend(i);
+    document.getElementById("lg4").innerHTML=fiLegend(i);
+    document.getElementById("lg5").innerHTML=itLegend(i);
     document.getElementById("lg3").innerHTML=subLegend(i);
   }
 
