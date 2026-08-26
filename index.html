@@ -425,6 +425,7 @@ function renderChartTab(){
        <button onclick="setS('MACD')" class="${sub==="MACD"?"act":""}">MACD</button>
        <button onclick="setS('RSI')" class="${sub==="RSI"?"act":""}">RSI</button>
        <span class="sep"></span>
+      <button onclick="goToLatest&&goToLatest()" title="回到最新K棒">⇥</button>
       <button onclick="toggleFS()" class="fsbtn" title="全螢幕">${fs?"⤡":"⤢"}</button>
      </div>
      <div class="malist" id="malist"></div>
@@ -659,7 +660,11 @@ function draw(){
     sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
     return {n,col,sr};
   });
-
+ window.goToLatest = () => {
+    const r = {from: Math.max(0, bars.length-120), to: bars.length};
+    savedRange = r;
+    c1.timeScale().setVisibleLogicalRange(r);
+  };
   window.toggleMaVisibility = (maNum, isVisible) => {
     const ma = mas.find(m => m.n === maNum);
     if (ma) ma.sr.applyOptions({ visible: isVisible });
