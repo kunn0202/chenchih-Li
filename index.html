@@ -609,7 +609,9 @@ function draw(){
   const opt={layout:{background:{color:"#131c2b"},textColor:"#8fa0b8",fontSize:isMobile?13:11},
     grid:{vertLines:{color:"#1c2739"},horzLines:{color:"#1c2739"}},
         rightPriceScale:{borderColor:"#26344a",minimumWidth:64},timeScale:{borderColor:"#26344a"},
-    crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    crosshair:{mode:LightweightCharts.CrosshairMode.Magnet,
+      vertLine:{color:"#8fa0b8",width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:"#3b82f6"},
+      horzLine:{color:"#8fa0b8",width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:"#3b82f6"}},
     handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},
     kineticScroll:{mouse:false,touch:false}};
   const c1=LightweightCharts.createChart(document.getElementById("c1"),{...opt,height:H,timeScale:{...opt.timeScale,visible:false}});
