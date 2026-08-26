@@ -710,10 +710,10 @@ function draw(){
     return {n,col,sr};
   });
 
-  window.goToLatest = () => {
-    const r = {from: Math.max(0, bars.length-120), to: bars.length};
-    savedRange = r;
+   window.goToLatest = () => {
+    const r = {from: Math.max(0, bars.length-120), to: bars.length-1};
     c1.timeScale().setVisibleLogicalRange(r);
+    savedRange = c1.timeScale().getVisibleLogicalRange() || r;
   };
 
   window.toggleMaVisibility = (maNum, isVisible) => {
