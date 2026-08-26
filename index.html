@@ -832,13 +832,26 @@ function draw(){
 
   const instSeries=[{k:"fi",c:"#d64545",n:"外資",s:fiSr},{k:"it",c:"#5b9bd5",n:"投信",s:itSr}];
   
+  // ── 大戶持股（400張以上）─────────────────
   const bigRaw = (raw && raw.big) || [];
   const rawBars2 = toBars(raw);
   const bigMap = {};
   rawBars2.forEach((b, i) => {
     if (bigRaw[i] != null) bigMap[b.time] = bigRaw[i];
   });
-  const bigAgg = bars.map(b => ({ time: b.time, v: bigMap[b.time] })).filter(x => x.v != null);
+  
+  // 🔥 修復關鍵：絕對不能用 filter 刪除資料！必須讓陣列長度跟 K 棒一模一樣
+  let lastBig = null;
+  const bigAgg = bars.map(b => {
+    if (bigMap[b.time] != null) lastBig = bigMap[b.time];
+    return { time: b.time, v: lastBig };
+  });
+
+  const firstValidBig = bigAgg.find(x => x.v != null);
+  const fallbackBig = firstValidBig ? firstValidBig.v : 0;
+  bigAgg.forEach(x => {
+    if (x.v == null) x.v = fallbackBig;
+  });
 
   const c5 = LightweightCharts.createChart(document.getElementById("c5"),
     {...opt, height: fs?130:110, timeScale:{...opt.timeScale, visible:false},
