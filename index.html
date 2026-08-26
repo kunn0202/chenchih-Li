@@ -739,9 +739,8 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
 
   if (bigAgg.length) {
     const vals = bigAgg.map(x => x.v);
-    const lo = Math.min(...vals), hi = Math.max(...vals);
-    const pad = (hi - lo) * 0.15 || 0.5;
-    const base = lo - pad;
+    const hi = Math.max(...vals);
+    const base = 0;
     const bigSr = c5.addHistogramSeries({
       priceFormat:{type:"price", precision:2, minMove:0.01},
       base: base
@@ -750,7 +749,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
       time: x.time, value: x.v,
       color: i === 0 || x.v >= bigAgg[i-1].v ? "#ef4444" : "#22c55e"
     })));
-    bigSr.applyOptions({autoscaleInfoProvider: () => ({priceRange:{minValue: base, maxValue: hi + pad}})});
+    bigSr.applyOptions({autoscaleInfoProvider: () => ({priceRange:{minValue: 0, maxValue: hi * 1.1}})});
     var bigSeries = bigAgg;
   } else {
     document.getElementById("lg5").innerHTML = '<span style="color:#64748b">大戶持股：無資料</span>';
