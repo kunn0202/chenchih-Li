@@ -222,12 +222,12 @@ let openGrp=new Set();
 let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
-let savedRange=null;          // 記住目前看到的區間，重畫後還原
+let savedRange=null;          
 
 fetch("screener_data.json?"+Date.now()).then(r=>r.json()).then(j=>{
   DATA=j.stocks;
   DATA_DATE=j.updated;
-  document.getElementById("meta").textContent=`資料日期 ${j.updated}　共 ${j.count} 檔`;
+  document.getElementById("meta").textContent=`資料日期 ${j.updated} 共 ${j.count} 檔`;
   buildConds();render();
 }).catch(()=>{document.getElementById("meta").textContent="資料載入失敗"});
 
@@ -302,11 +302,19 @@ function pick(id){
   cur=DATA.find(s=>s.stock_id===id);
   mainTab="chart";
   fundData=null;
-  savedRange=null;                       // 換股票 → 回到最新區間
+  savedRange=null;                       
   document.getElementById("panel").classList.add("show");
   document.getElementById("detail").innerHTML='<div class="ph">載入中…</div>';
-  fetch("chart/"+id+".json?"+Date.now()).then(r=>r.json()).then(d=>{raw=d;build()})
-   .catch(()=>{document.getElementById("detail").innerHTML='<div class="ph">找不到線圖資料</div>'});
+  fetch("chart/"+id+".json?"+Date.now())
+    .then(r=>r.json())
+    .then(d=>{
+      if(cur && cur.stock_id !== id) return;
+      raw=d;build()
+    })
+   .catch(()=>{
+     if(cur && cur.stock_id !== id) return;
+     document.getElementById("detail").innerHTML='<div class="ph">找不到線圖資料</div>'
+   });
 }
 function closePanel(){
   fs=false;
@@ -393,7 +401,7 @@ function build(){
    <div class="box">
      <div class="ct"><h2>${s.stock_id} ${s.stock_name}</h2>
        <div class="p ${cls}">${last.close} <span style="font-size:13px">${ch>=0?"+":""}${ch.toFixed(2)} (${pct}%)</span></div></div>
-     <div class="cmeta">${s.industry}　RS ${s.rs_score}　20日均量 ${Math.round(s.vol20)} 張</div>
+     <div class="cmeta">${s.industry} RS ${s.rs_score} 20日均量 ${Math.round(s.vol20)} 張</div>
      <div class="tags">${tags||'<span class="tag off">無符合條件</span>'}</div>
      <div class="maintabs">
        <button onclick="setMainTab('chart')" class="${mainTab==='chart'?'act':''}">技術線圖</button>
@@ -432,12 +440,17 @@ function renderChartTab(){
 
 function renderFundTab(){
   document.getElementById("tabBody").innerHTML=`<div class="ph" style="padding:60px 20px">載入中…</div>`;
-  fetch("fundamentals/"+cur.stock_id+".json?"+Date.now()).then(r=>r.json()).then(d=>{
-    fundData=d;
-    buildFundView();
-  }).catch(()=>{
-    document.getElementById("tabBody").innerHTML=`<div class="ph" style="padding:60px 20px">找不到營收財報資料</div>`;
-  });
+  const currentId = cur.stock_id;
+  fetch("fundamentals/"+currentId+".json?"+Date.now())
+    .then(r=>r.json())
+    .then(d=>{
+      if(cur && cur.stock_id !== currentId) return;
+      fundData=d;
+      buildFundView();
+    }).catch(()=>{
+      if(cur && cur.stock_id !== currentId) return;
+      document.getElementById("tabBody").innerHTML=`<div class="ph" style="padding:60px 20px">找不到營收財報資料</div>`;
+    });
 }
 
 function buildFundView(){
@@ -517,7 +530,7 @@ function drawRevenueChart(rev){
     document.getElementById("revCross").style.display="block";
     const r=rev[idx];
     document.getElementById("revTip").innerHTML=
-      `<b>${labels[idx]}</b>　營收 <b style="color:#8b7cd8">${bars[idx].toFixed(2)}億</b>　年增率 <b style="color:#d64545">${r.yoy!=null?r.yoy+'%':'-'}</b>`;
+      `<b>${labels[idx]}</b> 營收 <b style="color:#8b7cd8">${bars[idx].toFixed(2)}億</b> 年增率 <b style="color:#d64545">${r.yoy!=null?r.yoy+'%':'-'}</b>`;
   }
   svgEl.addEventListener("mousemove",e=>moveHandler(e.clientX));
   svgEl.addEventListener("touchmove",e=>{e.preventDefault();moveHandler(e.touches[0].clientX)},{passive:false});
@@ -575,7 +588,7 @@ function drawMarginChart(fin){
     document.getElementById("finCross").style.display="block";
     const f=fin[idx];
     document.getElementById("finTip").innerHTML=
-      `<b>${f.date.slice(0,7)}</b>　毛利率 <b style="color:#6b5ce7">${f.gross_margin??'-'}%</b>　營益率 <b style="color:#5b9bd5">${f.op_margin??'-'}%</b>`;
+      `<b>${f.date.slice(0,7)}</b> 毛利率 <b style="color:#6b5ce7">${f.gross_margin??'-'}%</b> 營益率 <b style="color:#5b9bd5">${f.op_margin??'-'}%</b>`;
   }
   svgEl.addEventListener("mousemove",e=>moveHandler(e.clientX));
   svgEl.addEventListener("touchmove",e=>{e.preventDefault();moveHandler(e.touches[0].clientX)},{passive:false});
@@ -596,7 +609,7 @@ function buildMaList(){
       const n=parseInt(el.dataset.ma);
       el.checked?maOn.add(n):maOn.delete(n);
       buildMaList();
-      draw();
+      if (window.toggleMaVisibility) window.toggleMaVisibility(n, el.checked);
     };
   });
 }
@@ -605,14 +618,13 @@ function setS(x){sub=x;renderChartTab()}
 function toggleFS(){fs=!fs;document.getElementById("wrap").classList.toggle("fs",fs);build()}
 
 function draw(){
-  // 重畫前先記住目前看到的區間
   if(charts.length){
     try{const r=charts[0].timeScale().getVisibleLogicalRange();if(r)savedRange=r;}catch(e){}
   }
   charts.forEach(c=>{try{c.remove()}catch(e){}});charts=[];
   const bars=bakBars();
   const closes=bars.map(b=>b.close);
-    const isMobile=window.innerWidth<=900;
+  const isMobile=window.innerWidth<=900;
   const H=fs?window.innerHeight*0.5:(isMobile?Math.max(200,window.innerHeight*0.32):400);
   const opt={layout:{background:{color:"#131c2b"},textColor:"#8fa0b8",fontSize:isMobile?13:11},
     grid:{vertLines:{color:"#1c2739"},horzLines:{color:"#1c2739"}},
@@ -624,31 +636,52 @@ function draw(){
     handleScale:{axisPressedMouseMove:{time:true,price:false},pinch:true,mouseWheel:true},
     kineticScroll:{mouse:false,touch:false}};
   const c1=LightweightCharts.createChart(document.getElementById("c1"),{...opt,height:H,timeScale:{...opt.timeScale,visible:false}});
+  
   const cs=c1.addCandlestickSeries({upColor:"#d64545",downColor:"#2e9e5b",
     borderUpColor:"#d64545",borderDownColor:"#2e9e5b",wickUpColor:"#d64545",wickDownColor:"#2e9e5b"});
   cs.setData(bars);
 
-  const activeDed=MA_OPTIONS.filter(([n])=>maOn.has(n));
-
-  const dedSeries=activeDed.map(([n,col])=>{
+  const dedSeries = MA_OPTIONS.map(([n,col])=>{
     const sr=c1.addLineSeries({
       color:col,lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,
       priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,
-      autoscaleInfoProvider:()=>null
+      autoscaleInfoProvider:()=>null,
+      visible: maOn.has(n)
     });
     return {n,col,sr};
   });
 
-  const mas=activeDed.map(([n,col])=>{
-    const sr=c1.addLineSeries({color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+  const mas = MA_OPTIONS.map(([n,col])=>{
+    const sr=c1.addLineSeries({
+      color:col,lineWidth:1.4,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,
+      visible: maOn.has(n)
+    });
     sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
     return {n,col,sr};
   });
 
+  window.toggleMaVisibility = (maNum, isVisible) => {
+    const ma = mas.find(m => m.n === maNum);
+    if (ma) ma.sr.applyOptions({ visible: isVisible });
+    const ded = dedSeries.find(d => d.n === maNum);
+    if (ded) ded.sr.applyOptions({ visible: isVisible });
+
+    const idx = lastHover >= 0 ? lastHover : bars.length - 1;
+    document.getElementById("lg1").innerHTML = maLegend(mas.filter(m => maOn.has(m.n)), idx, bars);
+    currentDedHover = -1; 
+    updateAll(idx);
+  };
+
   const dedRowEl=document.getElementById("dedrow");
+  
+  let updTimer=null,lastHover=-1;
+  let currentHiIdx = -1;
+  let currentLoIdx = -1;
+  let currentDedHover = -1;
 
   function updateAll(hoverIdx){
     lastHover=hoverIdx;
+    
     // 波段高低點
     const range=c1.timeScale().getVisibleLogicalRange();
     if(range){
@@ -660,41 +693,50 @@ function draw(){
           if(bars[i].high>bars[hiIdx].high)hiIdx=i;
           if(bars[i].low<bars[loIdx].low)loIdx=i;
         }
-        cs.setMarkers([
-          {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
-          {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
-        ]);
+        if (hiIdx !== currentHiIdx || loIdx !== currentLoIdx) {
+           currentHiIdx = hiIdx;
+           currentLoIdx = loIdx;
+           cs.setMarkers([
+             {time:bars[hiIdx].time,position:"aboveBar",color:"#d64545",shape:"circle",size:0,text:bars[hiIdx].high.toFixed(2)},
+             {time:bars[loIdx].time,position:"belowBar",color:"#3a3f47",shape:"circle",size:0,text:bars[loIdx].low.toFixed(2)},
+           ]);
+        }
       }
     }
 
-    // 扣抵虛線
-    dedSeries.forEach(({n,sr})=>{
-      const idx=hoverIdx-n;
-      if(idx>=0&&idx<bars.length){
-        const price=bars[idx].close;
-        sr.setData([
-          {time:bars[idx].time,value:price},
-          {time:bars[hoverIdx].time,value:price}
-        ]);
-      }else{
-        sr.setData([]);
-      }
-    });
+    // 扣抵虛線與三角形
+    if (hoverIdx !== currentDedHover) {
+       currentDedHover = hoverIdx;
+       
+       dedSeries.forEach(({n,sr})=>{
+         if(!maOn.has(n)) return;
+         const idx=hoverIdx-n;
+         if(idx>=0&&idx<bars.length){
+           const price=bars[idx].close;
+           sr.setData([
+             {time:bars[idx].time,value:price},
+             {time:bars[hoverIdx].time,value:price}
+           ]);
+         }else{
+           sr.setData([]);
+         }
+       });
 
-    // 扣抵三角形：純DOM疊加，用timeToCoordinate算精確像素位置
-    if(dedRowEl){
-      const rowW=dedRowEl.clientWidth||1;
-      let html="";
-      dedSeries.forEach(({n,col})=>{
-        const idx=hoverIdx-n;
-        if(idx>=0&&idx<bars.length){
-          const x=c1.timeScale().timeToCoordinate(bars[idx].time);
-          if(x!=null&&x>=0&&x<=rowW){
-            html+=`<div class="dedtri" style="left:${x}px;border-bottom:8px solid ${col}"></div>`;
-          }
-        }
-      });
-      dedRowEl.innerHTML=html;
+       if(dedRowEl){
+         const rowW=dedRowEl.clientWidth||1;
+         let html="";
+         dedSeries.forEach(({n,col})=>{
+           if(!maOn.has(n)) return;
+           const idx=hoverIdx-n;
+           if(idx>=0&&idx<bars.length){
+             const x=c1.timeScale().timeToCoordinate(bars[idx].time);
+             if(x!=null&&x>=0&&x<=rowW){
+               html+=`<div class="dedtri" style="left:${x}px;border-bottom:8px solid ${col}"></div>`;
+             }
+           }
+         });
+         dedRowEl.innerHTML=html;
+       }
     }
   }
 
@@ -704,7 +746,7 @@ function draw(){
   const vs=c2.addHistogramSeries({priceFormat:{type:"volume"}});
   vs.setData(bars.map(b=>({time:b.time,value:b.volume,color:b.close>=b.open?"#e8a0a0":"#96ccae"})));
   charts.push(c2);
-const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
+  const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   charts.push(c4);
   const rawBars=toBars(raw);
   const instMap={};
@@ -733,7 +775,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   itSr.applyOptions({autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:itMax}})});
 
   const instSeries=[{k:"fi",c:"#d64545",n:"外資",s:fiSr},{k:"it",c:"#5b9bd5",n:"投信",s:itSr}];
-    // ── 大戶持股（400張以上）─────────────────
+  
   const bigRaw = (raw && raw.big) || [];
   const rawBars2 = toBars(raw);
   const bigMap = {};
@@ -799,7 +841,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}});
     syncLock=false;
   });
-    sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);// 十字線同步：三張圖共用同一條垂直線
+    sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);
   const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:instSeries[0].s},{c:c3,s:s3[0].sr}];
   let crossLock=false;
   crossList.forEach(({c})=>{
@@ -815,28 +857,26 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     });
   });
 
-  let updTimer=null,lastHover=-1;
-
   function instLegend(i){
-    if(i<0||!instAgg[i])return `<span style="color:#d64545">外資</span>　<span style="color:#5b9bd5">投信</span>`;
+    if(i<0||!instAgg[i])return `<span style="color:#d64545">外資</span> <span style="color:#5b9bd5">投信</span>`;
     const x=instAgg[i];
     const f=v=>(v>=0?"+":"")+v.toLocaleString(undefined,{maximumFractionDigits:1});
-    return `<span style="color:#d64545">外資 ${f(x.fi)}</span>　`+
-           `<span style="color:#5b9bd5">投信 ${f(x.it)}</span>　`+
+    return `<span style="color:#d64545">外資 ${f(x.fi)}</span> `+
+           `<span style="color:#5b9bd5">投信 ${f(x.it)}</span> `+
            `<span style="color:#8b909a">張</span>`;
   }
 
   function subLegend(i){
-    if(i<0)return s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join("　");
+    if(i<0)return s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join(" ");
     return s3.map(x=>{
       const d=x.sr.data?x.sr.data():null;
       let v=null;
       if(d&&d[i]!=null)v=d[i].value!=null?d[i].value:null;
       return `<span style="color:${x.col}">${x.n} ${v!=null?v.toFixed(2):"-"}</span>`;
-    }).join("　");
+    }).join(" ");
   }
 
-    function bigLegend(i){
+  function bigLegend(i){
     if(!bigSeries.length)return '<span style="color:#64748b">大戶持股：無資料</span>';
     const t=i>=0&&bars[i]?bars[i].time:null;
     const cur=bigSeries.find(x=>x.time===t)||bigSeries[bigSeries.length-1];
@@ -848,6 +888,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
            `<span style="color:${col}">${cur.v.toFixed(2)}%`+
            (diff!=null?` ${diff>=0?"+":""}${diff.toFixed(2)}`:"")+`</span>`;
   }
+  
   function setLegends(i){
     document.getElementById("lg2").innerHTML=
       i>=0&&bars[i]?`量 ${bars[i].volume.toLocaleString()} 張`:"成交量(張)";
@@ -860,7 +901,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     const lg=document.getElementById("lg1");
     if(!p.time){
       const last=bars.length-1;
-      lg.innerHTML=maLegend(mas,last,bars);
+      lg.innerHTML=maLegend(mas.filter(m => maOn.has(m.n)),last,bars);
       setLegends(last);
       clearTimeout(updTimer);
       updTimer=setTimeout(()=>updateAll(last),50);
@@ -869,7 +910,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     const b=p.seriesData.get(cs);if(!b)return;
     const i=bars.findIndex(x=>x.time===p.time);
     const up=b.close>=b.open?"#d64545":"#2e9e5b";
-    lg.innerHTML=`<span style="color:${up}">${p.time}　開 ${b.open}　高 ${b.high}　低 ${b.low}　收 ${b.close}</span><br>${maLegend(mas,i,bars)}`;
+    lg.innerHTML=`<span style="color:${up}">${p.time} 開 ${b.open} 高 ${b.high} 低 ${b.low} 收 ${b.close}</span><br>${maLegend(mas.filter(m => maOn.has(m.n)),i,bars)}`;
     setLegends(i);
     if(i>=0){
       clearTimeout(updTimer);
@@ -882,10 +923,9 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     updTimer=setTimeout(()=>updateAll(lastHover<0?bars.length-1:lastHover),200);
   });
 
-  document.getElementById("lg1").innerHTML=maLegend(mas,bars.length-1,bars);
+  document.getElementById("lg1").innerHTML=maLegend(mas.filter(m => maOn.has(m.n)),bars.length-1,bars);
   setLegends(bars.length-1);
 
-  // 有記住的區間就還原，否則顯示最近 120 根
   if(savedRange){
     try{c1.timeScale().setVisibleLogicalRange(savedRange);}
     catch(e){c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});}
@@ -894,11 +934,17 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   }
   setTimeout(()=>updateAll(bars.length-1),150);
 }
+
 function maLegend(mas,i,bars){
-  const cl=bars.map(b=>b.close);
   return mas.map(m=>{
-    const v=MA(cl,m.n)[i];
-    return `<span style="color:${m.col}">MA${m.n} ${v==null?"-":v.toFixed(2)}</span>`}).join("　");
+    let v = null;
+    if(i >= m.n - 1) {
+      let sum = 0;
+      for(let j=0; j<m.n; j++) sum += bars[i-j].close;
+      v = sum / m.n;
+    }
+    return `<span style="color:${m.col}">MA${m.n} ${v==null?"-":v.toFixed(2)}</span>`;
+  }).join(" ");
 }
 
 function copyList(){
@@ -907,8 +953,6 @@ function copyList(){
     .then(()=>alert(`已複製 ${shown.length} 檔代碼`));
 }
 
-// 只有「寬度真的改變」才重畫，且延遲 250ms
-// 手機捲動時網址列縮放會觸發 resize，原本會整個重建圖表 → 超級卡
 let lastW=window.innerWidth,resizeTimer=null;
 window.addEventListener("resize",()=>{
   if(!raw||mainTab!=="chart")return;
