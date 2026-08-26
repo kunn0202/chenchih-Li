@@ -88,7 +88,9 @@ tbody tr.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)
 .mapill{display:flex;align-items:center;gap:5px;border:1.5px solid var(--line);border-radius:16px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:600;user-select:none;background:var(--card)}
 .mapill input{width:13px;height:13px;accent-color:currentColor}
 
-.chart{position:relative}
+/* 手機：垂直滑動交給頁面，水平拖曳才給圖表 */
+.chart{position:relative;touch-action:pan-y}
+.chart>div{touch-action:pan-y}
 .legend{position:absolute;top:6px;left:8px;z-index:3;font-size:12px;color:var(--muted);background:rgba(11,18,32,.85);padding:3px 7px;border-radius:5px;pointer-events:none;line-height:1.6}
 
 .search{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;outline:none;margin-bottom:10px;background:var(--card);color:var(--text)}
@@ -131,7 +133,7 @@ tbody tr.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)
  .left>.bar{order:4;position:sticky;top:0;z-index:50}
  .left>#conds{order:5}
  .left>.box:last-child{order:6;margin-top:14px}
- .right{position:fixed;bottom:0;left:0;right:0;height:88vh;overflow-y:auto;background:var(--bg);padding:10px;z-index:99;box-shadow:0 -3px 24px rgba(0,0,0,.6);border-radius:16px 16px 0 0;transform:translateY(100%);transition:.25s;border-top:1px solid var(--line)}
+ .right{position:fixed;bottom:0;left:0;right:0;height:88vh;overflow-y:auto;background:var(--bg);padding:10px;z-index:99;box-shadow:0 -3px 24px rgba(0,0,0,.6);border-radius:16px 16px 0 0;transform:translateY(100%);transition:.25s;border-top:1px solid var(--line);-webkit-overflow-scrolling:touch}
  .right.show{transform:translateY(0)}
  #close{display:block;position:fixed;top:14px;right:16px;background:var(--card);border:1px solid var(--line);border-radius:50%;width:34px;height:34px;font-size:19px;cursor:pointer;color:var(--text);z-index:101}
  .tip{font-size:16px;padding:10px 12px}
@@ -220,6 +222,7 @@ let openGrp=new Set();
 let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
+let savedRange=null;          // 記住目前看到的區間，重畫後還原
 
 fetch("screener_data.json?"+Date.now()).then(r=>r.json()).then(j=>{
   DATA=j.stocks;
@@ -299,6 +302,7 @@ function pick(id){
   cur=DATA.find(s=>s.stock_id===id);
   mainTab="chart";
   fundData=null;
+  savedRange=null;                       // 換股票 → 回到最新區間
   document.getElementById("panel").classList.add("show");
   document.getElementById("detail").innerHTML='<div class="ph">載入中…</div>';
   fetch("chart/"+id+".json?"+Date.now()).then(r=>r.json()).then(d=>{raw=d;build()})
@@ -596,11 +600,15 @@ function buildMaList(){
     };
   });
 }
-function setP(p){period=p;renderChartTab()}
+function setP(p){period=p;savedRange=null;renderChartTab()}
 function setS(x){sub=x;renderChartTab()}
 function toggleFS(){fs=!fs;document.getElementById("wrap").classList.toggle("fs",fs);build()}
 
 function draw(){
+  // 重畫前先記住目前看到的區間
+  if(charts.length){
+    try{const r=charts[0].timeScale().getVisibleLogicalRange();if(r)savedRange=r;}catch(e){}
+  }
   charts.forEach(c=>{try{c.remove()}catch(e){}});charts=[];
   const bars=bakBars();
   const closes=bars.map(b=>b.close);
@@ -613,6 +621,7 @@ function draw(){
       vertLine:{color:"#8fa0b8",width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:"#3b82f6"},
       horzLine:{color:"#8fa0b8",width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:"#3b82f6"}},
     handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},
+    handleScale:{axisPressedMouseMove:{time:true,price:false},pinch:true,mouseWheel:true},
     kineticScroll:{mouse:false,touch:false}};
   const c1=LightweightCharts.createChart(document.getElementById("c1"),{...opt,height:H,timeScale:{...opt.timeScale,visible:false}});
   const cs=c1.addCandlestickSeries({upColor:"#d64545",downColor:"#2e9e5b",
@@ -869,7 +878,13 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   document.getElementById("lg1").innerHTML=maLegend(mas,bars.length-1,bars);
   setLegends(bars.length-1);
 
-  c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});
+  // 有記住的區間就還原，否則顯示最近 120 根
+  if(savedRange){
+    try{c1.timeScale().setVisibleLogicalRange(savedRange);}
+    catch(e){c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});}
+  }else{
+    c1.timeScale().setVisibleLogicalRange({from:Math.max(0,bars.length-120),to:bars.length});
+  }
   setTimeout(()=>updateAll(bars.length-1),150);
 }
 function maLegend(mas,i,bars){
@@ -884,7 +899,17 @@ function copyList(){
   navigator.clipboard.writeText(shown.map(s=>s.stock_id).join(" "))
     .then(()=>alert(`已複製 ${shown.length} 檔代碼`));
 }
-window.addEventListener("resize",()=>{if(raw&&mainTab==="chart")draw()});
+
+// 只有「寬度真的改變」才重畫，且延遲 250ms
+// 手機捲動時網址列縮放會觸發 resize，原本會整個重建圖表 → 超級卡
+let lastW=window.innerWidth,resizeTimer=null;
+window.addEventListener("resize",()=>{
+  if(!raw||mainTab!=="chart")return;
+  if(window.innerWidth===lastW)return;
+  lastW=window.innerWidth;
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(()=>{if(raw&&mainTab==="chart")draw()},250);
+});
 </script>
 </body>
 </html>
