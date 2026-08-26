@@ -648,6 +648,7 @@ function draw(){
   const dedRowEl=document.getElementById("dedrow");
 
   function updateAll(hoverIdx){
+    lastHover=hoverIdx;
     // 波段高低點
     const range=c1.timeScale().getVisibleLogicalRange();
     if(range){
@@ -755,10 +756,11 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
       base: base
     });
     bigSr.setData(bigAgg.map((x, i) => ({
-      time: x.time, value: x.v,
+      time: x.time, value: Math.max(0, x.v),
       color: i === 0 || x.v >= bigAgg[i-1].v ? "#ef4444" : "#22c55e"
     })));
     bigSr.applyOptions({autoscaleInfoProvider: () => ({priceRange:{minValue: 0, maxValue: hi * 1.1}})});
+    c5.priceScale("right").applyOptions({scaleMargins:{top:0.1,bottom:0}});
     var bigSeries = bigAgg;
   } else {
     document.getElementById("lg5").innerHTML = '<span style="color:#64748b">大戶持股：無資料</span>';
@@ -790,8 +792,13 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
   }
   charts.push(c3);
 
+  let syncLock=false;
   const sync=(a,others)=>a.timeScale().subscribeVisibleLogicalRangeChange(r=>{
-    if(r)others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}})});
+    if(syncLock||!r)return;
+    syncLock=true;
+    others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}});
+    syncLock=false;
+  });
     sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);// 十字線同步：三張圖共用同一條垂直線
   const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:instSeries[0].s},{c:c3,s:s3[0].sr}];
   let crossLock=false;
@@ -808,7 +815,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
     });
   });
 
-  let updTimer=null;
+  let updTimer=null,lastHover=-1;
 
   function instLegend(i){
     if(i<0||!instAgg[i])return `<span style="color:#d64545">外資</span>　<span style="color:#5b9bd5">投信</span>`;
@@ -872,7 +879,7 @@ const c4=LightweightCharts.createChart(document.getElementById("c4"),{...opt,hei
 
   c1.timeScale().subscribeVisibleLogicalRangeChange(()=>{
     clearTimeout(updTimer);
-    updTimer=setTimeout(()=>updateAll(bars.length-1),80);
+    updTimer=setTimeout(()=>updateAll(lastHover<0?bars.length-1:lastHover),200);
   });
 
   document.getElementById("lg1").innerHTML=maLegend(mas,bars.length-1,bars);
