@@ -765,7 +765,7 @@ function draw(){
     }
 
     // 扣抵虛線與三角形
-       if (hoverIdx !== currentDedHover) {
+        if (hoverIdx !== currentDedHover) {
        currentDedHover = hoverIdx;
        dedSeries.forEach(({n,sr})=>{
          if(!maOn.has(n)) return;
@@ -799,22 +799,6 @@ function draw(){
       dedRowEl.innerHTML=html;
     }
 
-       if(dedRowEl){
-         const rowW=dedRowEl.clientWidth||1;
-         let html="";
-         dedSeries.forEach(({n,col})=>{
-           if(!maOn.has(n)) return;
-           const idx=hoverIdx-n;
-           if(idx>=0&&idx<bars.length){
-             const x=c1.timeScale().timeToCoordinate(bars[idx].time);
-             if(x!=null&&x>=0&&x<=rowW){
-               html+=`<div class="dedtri" style="left:${x}px;border-bottom:8px solid ${col}"></div>`;
-             }
-           }
-         });
-         dedRowEl.innerHTML=html;
-       }
-    }
   }
 
   charts.push(c1);
