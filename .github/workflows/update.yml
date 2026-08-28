@@ -2,7 +2,7 @@ name: 每日更新台股資料
 
 on:
   schedule:
-    - cron: '30 11 * * 1-5'
+    - cron: '0 11 * * 1-5'
     - cron: '0 2 * * 6'
   workflow_dispatch:
 
