@@ -1610,3 +1610,6 @@
 2026-08-31,8284,0,Dealer_self,0
 2026-08-31,8284,0,Foreign_Investor,2000
 2026-08-31,8284,0,Investment_Trust,0
+2026-09-01,8284,1000,Dealer_self,118
+2026-09-01,8284,2000,Foreign_Investor,0
+2026-09-01,8284,0,Investment_Trust,0
