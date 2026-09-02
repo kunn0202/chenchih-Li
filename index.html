@@ -74,6 +74,10 @@ th.stcol,td.stcol{width:30px;padding-left:9px;padding-right:0;text-align:center}
   font-size:16px;color:#3a4a63;cursor:pointer;border-radius:50%;user-select:none;transition:.12s}
 .star:hover{background:rgba(251,191,36,.15);color:var(--star)}
 .star.on{color:var(--star)}
+th.sortable{text-align:right;cursor:pointer;user-select:none;transition:.12s}
+th.sortable:hover{color:var(--text)}
+th.sortable.asc::after{content:"▲";font-size:8px;margin-left:4px}
+th.sortable.desc::after{content:"▼";font-size:8px;margin-left:4px}
 
 .ct{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
 .ct h2{font-size:18px}
@@ -170,7 +174,10 @@ th.stcol,td.stcol{width:30px;padding-left:9px;padding-right:0;text-align:center}
   </div>
   <div class="box" style="padding:0;overflow:hidden">
     <table>
-      <thead><tr><th class="stcol"></th><th>代碼/名稱</th><th style="text-align:right">股價</th><th style="text-align:right">RS</th><th style="text-align:right">均量</th></tr></thead>
+         <thead><tr><th class="stcol"></th><th>代碼/名稱</th>
+        <th class="sortable" id="th-close" onclick="sortBy('close')">股價</th>
+        <th class="sortable desc" id="th-rs_score" onclick="sortBy('rs_score')">RS</th>
+        <th class="sortable" id="th-vol20" onclick="sortBy('vol20')">均量</th></tr></thead>
       <tbody id="tb"><tr><td colspan="5" class="empty">載入中…</td></tr></tbody>
     </table>
   </div>
@@ -231,6 +238,12 @@ let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
 let savedRange=null;
+let sortKey="rs_score",sortDir="desc";
+function sortBy(k){
+  if(sortKey===k)sortDir=sortDir==="desc"?"asc":"desc";
+  else{sortKey=k;sortDir="desc"}
+  render();
+}
 
 /* ── 自選股：存在這台裝置的瀏覽器裡，每個人各自獨立 ── */
 let fav=new Set();
@@ -321,7 +334,14 @@ function render(){
       ? DATA.filter(s=>s.stock_id.toLowerCase().includes(kw)||(s.stock_name||"").toLowerCase().includes(kw))
       : DATA.filter(s=>[...sel].every(k=>pass(s,k)));
   }
-
+  shown=[...shown].sort((a,b)=>{
+    const x=Number(a[sortKey])||0, y=Number(b[sortKey])||0;
+    return sortDir==="desc"?y-x:x-y;
+  });
+  ["close","rs_score","vol20"].forEach(k=>{
+    const el=document.getElementById("th-"+k);
+    if(el)el.className="sortable"+(sortKey===k?" "+sortDir:"");
+  });
   document.getElementById("cnt").textContent=shown.length;
   const tb=document.getElementById("tb");
 
