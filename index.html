@@ -761,6 +761,10 @@ function draw(){
 
   function updateAll(hoverIdx){
     lastHover=hoverIdx;
+    if(hoverIdx<0){
+      const r=c1.timeScale().getVisibleLogicalRange();
+      hoverIdx=r?Math.min(bars.length-1,Math.round(r.to)):bars.length-1;
+    }
     
     // 波段高低點
     const range=c1.timeScale().getVisibleLogicalRange();
@@ -966,7 +970,7 @@ function draw(){
   c1.timeScale().subscribeVisibleLogicalRangeChange(r=>{
     if(r)savedRange=r;
     clearTimeout(updTimer);
-    updTimer=setTimeout(()=>updateAll(lastHover<0?bars.length-1:lastHover),200);
+      updTimer=setTimeout(()=>updateAll(-1),200);
   });
 
   document.getElementById("lg1").innerHTML=maLegend(mas.filter(m => maOn.has(m.n)),bars.length-1,bars);
