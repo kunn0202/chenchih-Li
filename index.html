@@ -238,6 +238,14 @@ let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
 let savedRange=null;
+let dedLock=false,dedLockIdx=-1;
+function toggleLock(){
+  dedLock=!dedLock;
+  const b=document.getElementById("lockBtn");
+  if(b){b.textContent=dedLock?"🔒":"🔓";b.classList.toggle("act",dedLock)}
+  if(!dedLock)dedLockIdx=-1;
+  if(window.refreshDed)window.refreshDed();
+}
 let sortKey="rs_score",sortDir="desc";
 function sortBy(k){
   if(sortKey===k)sortDir=sortDir==="desc"?"asc":"desc";
@@ -494,6 +502,7 @@ function renderChartTab(){
        <button onclick="setS('MACD')" class="${sub==="MACD"?"act":""}">MACD</button>
        <button onclick="setS('RSI')" class="${sub==="RSI"?"act":""}">RSI</button>
        <span class="sep"></span>
+       <button onclick="toggleLock()" id="lockBtn" title="鎖定扣抵位置">🔓</button>
        <button onclick="goToLatest&&goToLatest()" title="回到最新K棒">⇥</button>
       <button onclick="toggleFS()" class="fsbtn" title="全螢幕">${fs?"⤡":"⤢"}</button>
      </div>
@@ -729,7 +738,9 @@ function draw(){
     sr.setData(MA(closes,n).map((v,i)=>v==null?null:{time:bars[i].time,value:v}).filter(Boolean));
     return {n,col,sr};
   });
-
+window.refreshDed = () => {
+    updateAll(dedLock&&dedLockIdx>=0?dedLockIdx:bars.length-1);
+  };
   window.goToLatest = () => {
     const r = {from: Math.max(0, bars.length-120), to: bars.length};
     window.syncLock = true; 
@@ -760,6 +771,8 @@ function draw(){
   let currentDedHover = -1;
 
   function updateAll(hoverIdx){
+     if(dedLock&&dedLockIdx>=0)hoverIdx=dedLockIdx;
+    else if(dedLock)dedLockIdx=hoverIdx;
     lastHover=hoverIdx;
     if(hoverIdx<0){
       const r=c1.timeScale().getVisibleLogicalRange();
