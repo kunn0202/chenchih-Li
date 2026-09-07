@@ -1648,3 +1648,12 @@
 2026-08-31,3465,0,Dealer_self,1000
 2026-08-31,3465,0,Foreign_Investor,0
 2026-08-31,3465,0,Investment_Trust,0
+2026-09-02,3465,0,Dealer_self,0
+2026-09-02,3465,0,Foreign_Investor,1000
+2026-09-02,3465,0,Investment_Trust,0
+2026-09-03,3465,0,Dealer_self,0
+2026-09-03,3465,1000,Foreign_Investor,4000
+2026-09-03,3465,0,Investment_Trust,0
+2026-09-04,3465,0,Dealer_self,0
+2026-09-04,3465,2000,Foreign_Investor,1000
+2026-09-04,3465,0,Investment_Trust,0

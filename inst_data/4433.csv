@@ -1738,3 +1738,12 @@
 2026-09-01,4433,0,Dealer_self,0
 2026-09-01,4433,0,Foreign_Investor,3000
 2026-09-01,4433,0,Investment_Trust,0
+2026-09-02,4433,0,Dealer_self,0
+2026-09-02,4433,0,Foreign_Investor,1000
+2026-09-02,4433,0,Investment_Trust,0
+2026-09-03,4433,0,Dealer_self,509
+2026-09-03,4433,0,Foreign_Investor,6000
+2026-09-03,4433,0,Investment_Trust,0
+2026-09-04,4433,0,Dealer_self,0
+2026-09-04,4433,1000,Foreign_Investor,2000
+2026-09-04,4433,0,Investment_Trust,0
