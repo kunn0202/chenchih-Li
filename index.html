@@ -74,6 +74,20 @@ th.stcol,td.stcol{width:30px;padding-left:9px;padding-right:0;text-align:center}
   font-size:16px;color:#3a4a63;cursor:pointer;border-radius:50%;user-select:none;transition:.12s}
 .star:hover{background:rgba(251,191,36,.15);color:var(--star)}
 .star.on{color:var(--star)}
+#dailyBtn{background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1a1a1a;border:none;
+  border-radius:10px;padding:11px 14px;font-size:14px;font-weight:700;cursor:pointer;
+  width:100%;margin-bottom:12px}
+#dailyBtn:hover{filter:brightness(1.08)}
+#dailyBox{display:none;position:fixed;inset:0;z-index:300;background:rgba(5,10,20,.96);
+  overflow:auto;padding:56px 12px 20px}
+#dailyBox.show{display:block}
+#dailyBox img{max-width:100%;display:block;margin:0 auto;border-radius:10px}
+#dailyBar{position:fixed;top:0;left:0;right:0;height:48px;background:var(--panel);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 12px;z-index:301}
+#dailyBar select{background:var(--card);color:var(--text);border:1px solid var(--line);
+  border-radius:7px;padding:7px 10px;font-size:14px;outline:none}
+#dailyBar .x{margin-left:auto;background:var(--card);border:1px solid var(--line);
+  color:var(--text);border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer}
 th.sortable{text-align:right;cursor:pointer;user-select:none;transition:.12s}
 th.sortable:hover{color:var(--text)}
 th.sortable.asc::after{content:"▲";font-size:8px;margin-left:4px}
@@ -166,7 +180,14 @@ th.sortable.desc::after{content:"▼";font-size:8px;margin-left:4px}
     <input class="search" id="kw" placeholder="輸入代號或名稱搜尋…" oninput="render()">
     <button class="clr" id="clrBtn" onclick="clearKw()">×</button>
   </div>
-  
+    <button id="dailyBtn" onclick="openDaily()">📊 今日盤前分析</button>
+  <div id="dailyBox">
+    <div id="dailyBar">
+      <select id="dailySel" onchange="showDaily(this.value)"></select>
+      <button class="x" onclick="document.getElementById('dailyBox').classList.remove('show')">×</button>
+    </div>
+    <img id="dailyImg" alt="盤前分析">
+  </div>
   <div class="box" id="conds"></div>
   <div class="bar">
     <div>符合條件<br><b id="cnt">0</b> 檔</div>
@@ -239,6 +260,22 @@ let mainTab="chart";
 let fundData=null;
 let savedRange=null;
 let rawWeek=null;
+let dailyList=null;
+function openDaily(){
+  const box=document.getElementById("dailyBox");
+  box.classList.add("show");
+  if(dailyList){return}
+  fetch("daily/index.json?"+Date.now()).then(r=>r.json()).then(j=>{
+    dailyList=j.items||[];
+    const sel=document.getElementById("dailySel");
+    sel.innerHTML=dailyList.map(x=>`<option value="${x.file}">${x.date}</option>`).join("");
+    if(dailyList.length)showDaily(dailyList[0].file);
+    else document.getElementById("dailyImg").alt="尚無資料";
+  }).catch(()=>{document.getElementById("dailyImg").alt="載入失敗"});
+}
+function showDaily(f){
+  document.getElementById("dailyImg").src="daily/"+f+"?"+Date.now();
+}
 let dedLock=false,dedLockIdx=-1;
 function toggleLock(){
   dedLock=!dedLock;
