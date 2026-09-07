@@ -238,6 +238,7 @@ let DATA_DATE=null;
 let mainTab="chart";
 let fundData=null;
 let savedRange=null;
+let rawWeek=null;
 let dedLock=false,dedLockIdx=-1;
 function toggleLock(){
   dedLock=!dedLock;
@@ -378,6 +379,7 @@ function pick(id){
   mainTab="chart";
   fundData=null;
   savedRange=null;
+  rawWeek=null;
   document.getElementById("panel").classList.add("show");
   document.getElementById("detail").innerHTML='<div class="ph">載入中…</div>';
   fetch("chart/"+id+".json?"+Date.now())
@@ -397,6 +399,9 @@ function closePanel(){
   document.getElementById("panel").classList.remove("show");
 }
 function toBars(d){
+    if(d.d[0]&&d.d[0].length===10){
+    return d.d.map((t,i)=>({time:t,open:d.o[i],high:d.h[i],low:d.l[i],close:d.c[i],volume:d.v[i]}));
+  }
   const endY = DATA_DATE ? parseInt(DATA_DATE.slice(0,4)) : new Date().getFullYear();
   let py=null,yr=endY;
   const out=[];
@@ -460,8 +465,8 @@ function calcRSI(c,n=14){
 }
 
 function bakBars(){
-  if(period==="W")return toWeek(toBars(raw));
-  if(period==="M")return toMonth(toBars(raw));
+  if(period==="W")return rawWeek?toBars(rawWeek):toWeek(toBars(raw));
+  if(period==="M")return rawWeek?toMonth(toBars(rawWeek)):toMonth(toBars(raw));
   return toBars(raw);
 }
 
@@ -692,7 +697,19 @@ function buildMaList(){
     };
   });
 }
-function setP(p){period=p;savedRange=null;renderChartTab()}
+function setP(p){
+  period=p;savedRange=null;
+  if((p==="W"||p==="M")&&!rawWeek&&cur){
+    document.getElementById("tabBody").innerHTML='<div class="ph" style="padding:60px 20px">載入中…</div>';
+    const id=cur.stock_id;
+    fetch("chartw/"+id+".json?"+Date.now())
+      .then(r=>r.json())
+      .then(d=>{if(cur&&cur.stock_id!==id)return;rawWeek=d;renderChartTab()})
+      .catch(()=>{rawWeek=null;renderChartTab()});
+    return;
+  }
+  renderChartTab();
+}
 function setS(x){sub=x;renderChartTab()}
 function toggleFS(){fs=!fs;document.getElementById("wrap").classList.toggle("fs",fs);build()}
 

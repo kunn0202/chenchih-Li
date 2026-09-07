@@ -8,9 +8,11 @@ DATA_DIR = os.path.join(BASE_DIR, "stock_data")
 INST_DIR = os.path.join(BASE_DIR, "inst_data")
 TDCC_DIR = os.path.join(BASE_DIR, "tdcc_data")
 OUT_DIR = os.path.join(BASE_DIR, "chart")
+WEEK_DIR = os.path.join(BASE_DIR, "chartw")
 DAYS = 250
 
 os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(WEEK_DIR, exist_ok=True)
 files = glob.glob(os.path.join(DATA_DIR, "*.csv"))
 print("待處理:", len(files))
 
@@ -99,7 +101,27 @@ for f in files:
     if bg:
         out["big"] = bg
         out["sml"] = sm
-
+    # ── 產生週資料（供週K/月K 用，10年）──
+    dfw = pd.read_csv(f)
+    dfw = dfw.sort_values("date")
+    dfw = dfw[dfw["close"] > 0]
+    dfw["date"] = pd.to_datetime(dfw["date"])
+    dfw = dfw.set_index("date")
+    wk = dfw.resample("W-FRI").agg({
+        "open": "first", "max": "max", "min": "min",
+        "close": "last", "Trading_Volume": "sum"}).dropna()
+    if len(wk) > 20:
+        wdates = [d.strftime("%Y-%m-%d") for d in wk.index]
+        outw = {
+            "d": wdates,
+            "o": [round(float(x), 2) for x in wk["open"]],
+            "h": [round(float(x), 2) for x in wk["max"]],
+            "l": [round(float(x), 2) for x in wk["min"]],
+            "c": [round(float(x), 2) for x in wk["close"]],
+            "v": [int(x / 1000) for x in wk["Trading_Volume"]],
+        }
+        with open(os.path.join(WEEK_DIR, f"{sid}.json"), "w") as fp:
+            json.dump(outw, fp, separators=(",", ":"))
     with open(os.path.join(OUT_DIR, f"{sid}.json"), "w") as fp:
         json.dump(out, fp, separators=(",", ":"))
     done += 1

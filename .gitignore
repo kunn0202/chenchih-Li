@@ -10,3 +10,4 @@ check_missing.py
 test_otc.py
 token.txt
 diff.txt
+stock_data_backup/
