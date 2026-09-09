@@ -1991,3 +1991,6 @@
 2026-09-08,6160,0,Dealer_self,250
 2026-09-08,6160,0,Foreign_Investor,3000
 2026-09-08,6160,0,Investment_Trust,0
+2026-09-09,6160,0,Dealer_self,0
+2026-09-09,6160,1000,Foreign_Investor,2000
+2026-09-09,6160,0,Investment_Trust,0
