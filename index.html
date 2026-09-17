@@ -1063,7 +1063,16 @@ function maLegend(mas,i,bars){
       for(let j=0; j<m.n; j++) sum += bars[i-j].close;
       v = sum / m.n;
     }
-    return `<span style="color:${m.col}">MA${m.n} ${v==null?"-":v.toFixed(2)}</span>`;
+    // 扣抵方向：本根收盤 vs 扣抵值（即將被擠出均線的那根收盤）
+    let arrow = "";
+    const dedIdx = i - m.n + 1;
+    if(v != null && dedIdx >= 0 && dedIdx < bars.length){
+      const cur = bars[i].close, ded = bars[dedIdx].close;
+      if(cur > ded)      arrow = '<span style="color:#d64545">&#9650;</span>';
+      else if(cur < ded) arrow = '<span style="color:#2e9e5b">&#9660;</span>';
+      else               arrow = '<span style="color:#ffffff">&#9654;</span>';
+    }
+    return `<span style="color:${m.col}">MA${m.n} ${v==null?"-":v.toFixed(2)}</span>${arrow}`;
   }).join(" ");
 }
 
