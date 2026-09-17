@@ -832,7 +832,6 @@ window.refreshDed = () => {
     else if(dedLock)dedLockIdx=hoverIdx;
     lastHover=hoverIdx;
     if(hoverIdx<0){
-      if(hoverIdx<0){
       const r=c1.timeScale().getVisibleLogicalRange();
       hoverIdx=r?Math.min(bars.length-1,Math.round(r.to)):bars.length-1;
     }
@@ -864,9 +863,7 @@ window.refreshDed = () => {
        currentDedHover = hoverIdx;
        dedSeries.forEach(({n,sr})=>{
          if(!maOn.has(n)) return;
-            const idx=hoverIdx-n+1;
-        if(idx>=0&&idx<bars.length){
-          const price=bars[idx].close;
+         const idx=hoverIdx-n+1;
          if(idx>=0&&idx<bars.length){
            const price=bars[idx].close;
            sr.setData([
