@@ -557,6 +557,7 @@ function renderChartTab(){
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
   draw();
+  setTimeout(()=>{if(window.refreshDed)window.refreshDed()},80);
 }
 
 function renderFundTab(){
@@ -745,8 +746,10 @@ function setP(p){
       .catch(()=>{rawWeek=null;renderChartTab()});
     return;
   }
-  renderChartTab();
+   renderChartTab();
+  setP2Refresh();
 }
+function setP2Refresh(){setTimeout(()=>{if(window.refreshDed)window.refreshDed()},80)}
 function setS(x){sub=x;renderChartTab()}
 function toggleFS(){fs=!fs;document.getElementById("wrap").classList.toggle("fs",fs);build()}
 
@@ -829,6 +832,7 @@ window.refreshDed = () => {
     else if(dedLock)dedLockIdx=hoverIdx;
     lastHover=hoverIdx;
     if(hoverIdx<0){
+      if(hoverIdx<0){
       const r=c1.timeScale().getVisibleLogicalRange();
       hoverIdx=r?Math.min(bars.length-1,Math.round(r.to)):bars.length-1;
     }
@@ -860,7 +864,9 @@ window.refreshDed = () => {
        currentDedHover = hoverIdx;
        dedSeries.forEach(({n,sr})=>{
          if(!maOn.has(n)) return;
-         const idx=hoverIdx-n;
+            const idx=hoverIdx-n+1;
+        if(idx>=0&&idx<bars.length){
+          const price=bars[idx].close;
          if(idx>=0&&idx<bars.length){
            const price=bars[idx].close;
            sr.setData([
@@ -875,11 +881,11 @@ window.refreshDed = () => {
 
     // 三角形每次都要重算：拖曳縮放時像素位置會變
     if(dedRowEl){
-      const rowW=dedRowEl.clientWidth||1;
+      const rowW=dedRowEl.clientWidth||dedRowEl.parentElement?.clientWidth||c1.timeScale().width()||1;
       let html="";
       dedSeries.forEach(({n,col})=>{
         if(!maOn.has(n)) return;
-        const idx=hoverIdx-n;
+      const idx=hoverIdx-n+1;
         if(idx>=0&&idx<bars.length){
           const x=c1.timeScale().timeToCoordinate(bars[idx].time);
           if(x!=null&&x>=0&&x<=rowW){
