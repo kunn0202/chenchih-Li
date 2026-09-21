@@ -7,7 +7,6 @@ import json
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "stock_data")
 INST_DIR = os.path.join(BASE_DIR, "inst_data")
-SHARE_DIR = os.path.join(BASE_DIR, "share_data")
 TDCC_DIR = os.path.join(BASE_DIR, "tdcc_data")
 
 files = glob.glob(os.path.join(DATA_DIR, "*.csv"))
@@ -37,24 +36,6 @@ def get_inst_flags(sid):
     f_buy = bool(len(foreign) and (foreign["buy"].sum() - foreign["sell"].sum()) > 0)
     t_buy = bool(len(trust) and (trust["buy"].sum() - trust["sell"].sum()) > 0)
     return f_buy, t_buy
-
-def get_foreign_high(sid):
-    """外資持股比例是否為近一季(60個交易日)新高"""
-    path = os.path.join(SHARE_DIR, f"{sid}.csv")
-    if not os.path.exists(path):
-        return False
-    try:
-        df = pd.read_csv(path)
-    except Exception:
-        return False
-    if df.empty or "ForeignInvestmentSharesRatio" not in df.columns:
-        return False
-    df = df.sort_values("date")
-    ratio = df["ForeignInvestmentSharesRatio"].dropna()
-    if len(ratio) < 5:
-        return False
-    recent = ratio.tail(60)
-    return bool(ratio.iloc[-1] >= recent.max())
 
 def get_big_up(sid):
     """大戶(400張以上)持股比例是否連續兩週增加
@@ -138,7 +119,6 @@ for f in files:
               + 0.2 * ret(126, 189) + 0.2 * ret(189, 252))
 
     foreign_buy, trust_buy = get_inst_flags(sid)
-    foreign_high = get_foreign_high(sid)
     big_up = get_big_up(sid)
 
     results.append({
@@ -160,7 +140,6 @@ for f in files:
         "cross": cross,
         "foreign_buy": foreign_buy,
         "trust_buy": trust_buy,
-        "foreign_high": foreign_high,
         "big_up": big_up,
     })
 
@@ -182,7 +161,7 @@ print(f"已輸出 {json_path}  ({os.path.getsize(json_path)/1024:.0f} KB)")
 
 cols = ["c1", "c2", "c3", "c4", "d5", "d10", "d24", "d72",
         "over_month", "over_week", "cross",
-        "foreign_buy", "trust_buy", "foreign_high", "big_up"]
+        "foreign_buy", "trust_buy", "big_up"]
 print("\n各條件符合檔數:")
 for c in cols:
     print(f"  {c}: {res[c].sum()}")
