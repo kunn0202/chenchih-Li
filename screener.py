@@ -8,6 +8,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "stock_data")
 INST_DIR = os.path.join(BASE_DIR, "inst_data")
 SHARE_DIR = os.path.join(BASE_DIR, "share_data")
+TDCC_DIR = os.path.join(BASE_DIR, "tdcc_data")
 
 files = glob.glob(os.path.join(DATA_DIR, "*.csv"))
 print("讀取檔案數:", len(files))
@@ -54,6 +55,28 @@ def get_foreign_high(sid):
         return False
     recent = ratio.tail(60)
     return bool(ratio.iloc[-1] >= recent.max())
+
+def get_big_up(sid):
+    """大戶(400張以上)持股比例是否連續兩週增加
+
+    需要最近三筆週資料：最新 > 前一週 > 前兩週 才成立。
+    資料不足三筆一律回 False。
+    """
+    path = os.path.join(TDCC_DIR, f"{sid}.csv")
+    if not os.path.exists(path):
+        return False
+    try:
+        df = pd.read_csv(path)
+    except Exception:
+        return False
+    if df.empty or "big" not in df.columns or "date" not in df.columns:
+        return False
+    df = df.sort_values("date")
+    big = pd.to_numeric(df["big"], errors="coerce").dropna()
+    if len(big) < 3:
+        return False
+    w0, w1, w2 = big.iloc[-1], big.iloc[-2], big.iloc[-3]
+    return bool(w0 > w1 > w2)
 
 results = []
 
@@ -116,6 +139,7 @@ for f in files:
 
     foreign_buy, trust_buy = get_inst_flags(sid)
     foreign_high = get_foreign_high(sid)
+    big_up = get_big_up(sid)
 
     results.append({
         "stock_id": sid,
@@ -137,6 +161,7 @@ for f in files:
         "foreign_buy": foreign_buy,
         "trust_buy": trust_buy,
         "foreign_high": foreign_high,
+        "big_up": big_up,
     })
 
 res = pd.DataFrame(results).dropna(subset=["rs_raw"])
@@ -157,7 +182,7 @@ print(f"已輸出 {json_path}  ({os.path.getsize(json_path)/1024:.0f} KB)")
 
 cols = ["c1", "c2", "c3", "c4", "d5", "d10", "d24", "d72",
         "over_month", "over_week", "cross",
-        "foreign_buy", "trust_buy", "foreign_high"]
+        "foreign_buy", "trust_buy", "foreign_high", "big_up"]
 print("\n各條件符合檔數:")
 for c in cols:
     print(f"  {c}: {res[c].sum()}")
