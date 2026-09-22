@@ -1928,3 +1928,6 @@
 2026-09-21,6464,1000,Dealer_self,0
 2026-09-21,6464,0,Foreign_Investor,1000
 2026-09-21,6464,0,Investment_Trust,0
+2026-09-22,6464,0,Dealer_self,0
+2026-09-22,6464,1000,Foreign_Investor,9000
+2026-09-22,6464,0,Investment_Trust,0
