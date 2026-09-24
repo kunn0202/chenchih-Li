@@ -1,0 +1,26 @@
+name: 波段突破推播
+
+on:
+  workflow_dispatch:   # 由 cron-job.org 每個交易日 19:30 觸發；也可在 Actions 頁面手動執行
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 取得程式碼
+        uses: actions/checkout@v4
+
+      - name: 安裝 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安裝套件
+        run: pip install yfinance pandas requests
+
+      - name: 掃描並推播到 LINE
+        env:
+          LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+          TZ: Asia/Taipei
+        run: python swing_breakout.py
