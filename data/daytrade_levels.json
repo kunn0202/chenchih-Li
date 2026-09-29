@@ -1,0 +1,7776 @@
+{
+  "generated_at": "2026-09-24 11:10",
+  "trade_date": "2026-09-24",
+  "settings": {
+    "min_vol_lots": 1000,
+    "min_price": 10,
+    "max_dist_pct": 3.0,
+    "stop_pct": 1.5
+  },
+  "scanned": 502,
+  "stocks": [
+    {
+      "code": "6223",
+      "name": "旺矽",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 5620.0,
+      "vol_lots": 1068,
+      "trigger": {
+        "label": "昨高",
+        "price": 5625.0,
+        "stop": 5540.0,
+        "dist_pct": 0.09
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 5860.0,
+          "stop": 5770.0,
+          "dist_pct": 4.27
+        },
+        {
+          "label": "月高",
+          "price": 6815.0,
+          "stop": 6710.0,
+          "dist_pct": 21.26
+        }
+      ]
+    },
+    {
+      "code": "6505",
+      "name": "台塑化",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 87.3,
+      "vol_lots": 12810,
+      "trigger": {
+        "label": "週高",
+        "price": 87.4,
+        "stop": 86.0,
+        "dist_pct": 0.11
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 88.5,
+          "stop": 87.1,
+          "dist_pct": 1.37
+        }
+      ]
+    },
+    {
+      "code": "2101",
+      "name": "南港",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 30.05,
+      "vol_lots": 1212,
+      "trigger": {
+        "label": "昨高",
+        "price": 30.1,
+        "stop": 29.6,
+        "dist_pct": 0.17
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 30.9,
+          "stop": 30.4,
+          "dist_pct": 2.83
+        },
+        {
+          "label": "月高",
+          "price": 36.25,
+          "stop": 35.7,
+          "dist_pct": 20.63
+        }
+      ]
+    },
+    {
+      "code": "1227",
+      "name": "佳格",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 28.25,
+      "vol_lots": 1117,
+      "trigger": {
+        "label": "昨高",
+        "price": 28.3,
+        "stop": 27.85,
+        "dist_pct": 0.18
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 28.55,
+          "stop": 28.1,
+          "dist_pct": 1.06
+        },
+        {
+          "label": "月高",
+          "price": 29.5,
+          "stop": 29.05,
+          "dist_pct": 4.42
+        }
+      ]
+    },
+    {
+      "code": "1476",
+      "name": "儒鴻",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 281.0,
+      "vol_lots": 1132,
+      "trigger": {
+        "label": "昨高",
+        "price": 281.5,
+        "stop": 277.0,
+        "dist_pct": 0.18
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 291.0,
+          "stop": 286.5,
+          "dist_pct": 3.56
+        },
+        {
+          "label": "月高",
+          "price": 368.0,
+          "stop": 362.0,
+          "dist_pct": 30.96
+        }
+      ]
+    },
+    {
+      "code": "1101",
+      "name": "台泥",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 25.65,
+      "vol_lots": 130649,
+      "trigger": {
+        "label": "月高",
+        "price": 25.7,
+        "stop": 25.3,
+        "dist_pct": 0.19
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 26.1,
+          "stop": 25.7,
+          "dist_pct": 1.75
+        }
+      ]
+    },
+    {
+      "code": "2330",
+      "name": "台積電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 2500.0,
+      "vol_lots": 22818,
+      "trigger": {
+        "label": "昨高",
+        "price": 2505.0,
+        "stop": 2465.0,
+        "dist_pct": 0.2
+      },
+      "upper": []
+    },
+    {
+      "code": "6285",
+      "name": "啟碁",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 230.0,
+      "vol_lots": 2561,
+      "trigger": {
+        "label": "週高",
+        "price": 230.5,
+        "stop": 227.0,
+        "dist_pct": 0.22
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 238.0,
+          "stop": 234.0,
+          "dist_pct": 3.48
+        },
+        {
+          "label": "月高",
+          "price": 264.0,
+          "stop": 260.0,
+          "dist_pct": 14.78
+        }
+      ]
+    },
+    {
+      "code": "2474",
+      "name": "可成",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 209.0,
+      "vol_lots": 2433,
+      "trigger": {
+        "label": "昨高",
+        "price": 209.5,
+        "stop": 206.0,
+        "dist_pct": 0.24
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 210.0,
+          "stop": 206.5,
+          "dist_pct": 0.48
+        }
+      ]
+    },
+    {
+      "code": "2345",
+      "name": "智邦",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 1890.0,
+      "vol_lots": 4143,
+      "trigger": {
+        "label": "週高",
+        "price": 1895.0,
+        "stop": 1865.0,
+        "dist_pct": 0.26
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 1955.0,
+          "stop": 1925.0,
+          "dist_pct": 3.44
+        },
+        {
+          "label": "月高",
+          "price": 2595.0,
+          "stop": 2555.0,
+          "dist_pct": 37.3
+        }
+      ]
+    },
+    {
+      "code": "6214",
+      "name": "精誠",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 190.0,
+      "vol_lots": 2530,
+      "trigger": {
+        "label": "昨高",
+        "price": 190.5,
+        "stop": 187.5,
+        "dist_pct": 0.26
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 195.0,
+          "stop": 192.0,
+          "dist_pct": 2.63
+        }
+      ]
+    },
+    {
+      "code": "1216",
+      "name": "統一",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 75.4,
+      "vol_lots": 7666,
+      "trigger": {
+        "label": "週高",
+        "price": 75.6,
+        "stop": 74.4,
+        "dist_pct": 0.27
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 78.6,
+          "stop": 77.4,
+          "dist_pct": 4.24
+        }
+      ]
+    },
+    {
+      "code": "2889",
+      "name": "國票金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 16.8,
+      "vol_lots": 8081,
+      "trigger": {
+        "label": "昨高",
+        "price": 16.85,
+        "stop": 16.55,
+        "dist_pct": 0.3
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 17.5,
+          "stop": 17.2,
+          "dist_pct": 4.17
+        }
+      ]
+    },
+    {
+      "code": "4566",
+      "name": "時碩工業",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 67.6,
+      "vol_lots": 1488,
+      "trigger": {
+        "label": "昨高",
+        "price": 67.8,
+        "stop": 66.7,
+        "dist_pct": 0.3
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 80.0,
+          "stop": 78.8,
+          "dist_pct": 18.34
+        }
+      ]
+    },
+    {
+      "code": "2303",
+      "name": "聯電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 160.0,
+      "vol_lots": 124757,
+      "trigger": {
+        "label": "週高",
+        "price": 160.5,
+        "stop": 158.0,
+        "dist_pct": 0.31
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 163.0,
+          "stop": 160.5,
+          "dist_pct": 1.88
+        }
+      ]
+    },
+    {
+      "code": "2347",
+      "name": "聯強",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 94.5,
+      "vol_lots": 5073,
+      "trigger": {
+        "label": "昨高",
+        "price": 94.8,
+        "stop": 93.3,
+        "dist_pct": 0.32
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 98.3,
+          "stop": 96.8,
+          "dist_pct": 4.02
+        }
+      ]
+    },
+    {
+      "code": "2915",
+      "name": "潤泰全",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 60.1,
+      "vol_lots": 2251,
+      "trigger": {
+        "label": "昨高",
+        "price": 60.3,
+        "stop": 59.3,
+        "dist_pct": 0.33
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 62.5,
+          "stop": 61.5,
+          "dist_pct": 3.99
+        }
+      ]
+    },
+    {
+      "code": "9945",
+      "name": "潤泰新",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 29.55,
+      "vol_lots": 8610,
+      "trigger": {
+        "label": "週高",
+        "price": 29.65,
+        "stop": 29.2,
+        "dist_pct": 0.34
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 29.75,
+          "stop": 29.3,
+          "dist_pct": 0.68
+        },
+        {
+          "label": "月高",
+          "price": 30.85,
+          "stop": 30.35,
+          "dist_pct": 4.4
+        }
+      ]
+    },
+    {
+      "code": "8112",
+      "name": "至上",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 82.6,
+      "vol_lots": 3702,
+      "trigger": {
+        "label": "昨高",
+        "price": 82.9,
+        "stop": 81.6,
+        "dist_pct": 0.36
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 84.1,
+          "stop": 82.8,
+          "dist_pct": 1.82
+        },
+        {
+          "label": "月高",
+          "price": 101.5,
+          "stop": 99.9,
+          "dist_pct": 22.88
+        }
+      ]
+    },
+    {
+      "code": "2061",
+      "name": "風青",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 55.8,
+      "vol_lots": 1644,
+      "trigger": {
+        "label": "週高",
+        "price": 56.0,
+        "stop": 55.1,
+        "dist_pct": 0.36
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 56.7,
+          "stop": 55.8,
+          "dist_pct": 1.61
+        },
+        {
+          "label": "月高",
+          "price": 65.3,
+          "stop": 64.3,
+          "dist_pct": 17.03
+        }
+      ]
+    },
+    {
+      "code": "6122",
+      "name": "擎邦",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 55.2,
+      "vol_lots": 2198,
+      "trigger": {
+        "label": "昨高",
+        "price": 55.4,
+        "stop": 54.5,
+        "dist_pct": 0.36
+      },
+      "upper": []
+    },
+    {
+      "code": "2317",
+      "name": "鴻海",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 256.0,
+      "vol_lots": 35755,
+      "trigger": {
+        "label": "昨高",
+        "price": 257.0,
+        "stop": 253.0,
+        "dist_pct": 0.39
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 274.5,
+          "stop": 270.0,
+          "dist_pct": 7.23
+        }
+      ]
+    },
+    {
+      "code": "1609",
+      "name": "大亞",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 37.85,
+      "vol_lots": 2390,
+      "trigger": {
+        "label": "週高",
+        "price": 38.0,
+        "stop": 37.4,
+        "dist_pct": 0.4
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 38.25,
+          "stop": 37.65,
+          "dist_pct": 1.06
+        },
+        {
+          "label": "月高",
+          "price": 38.8,
+          "stop": 38.2,
+          "dist_pct": 2.51
+        }
+      ]
+    },
+    {
+      "code": "3221",
+      "name": "台嘉碩",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 50.1,
+      "vol_lots": 3135,
+      "trigger": {
+        "label": "昨高",
+        "price": 50.3,
+        "stop": 49.5,
+        "dist_pct": 0.4
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 52.0,
+          "stop": 51.2,
+          "dist_pct": 3.79
+        }
+      ]
+    },
+    {
+      "code": "1102",
+      "name": "亞泥",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 35.95,
+      "vol_lots": 11338,
+      "trigger": {
+        "label": "昨高",
+        "price": 36.1,
+        "stop": 35.55,
+        "dist_pct": 0.42
+      },
+      "upper": []
+    },
+    {
+      "code": "2851",
+      "name": "中再保",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 47.95,
+      "vol_lots": 2402,
+      "trigger": {
+        "label": "昨高",
+        "price": 48.15,
+        "stop": 47.4,
+        "dist_pct": 0.42
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 48.5,
+          "stop": 47.75,
+          "dist_pct": 1.15
+        }
+      ]
+    },
+    {
+      "code": "8021",
+      "name": "尖點",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 478.0,
+      "vol_lots": 2017,
+      "trigger": {
+        "label": "昨高",
+        "price": 480.0,
+        "stop": 472.5,
+        "dist_pct": 0.42
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 481.0,
+          "stop": 473.5,
+          "dist_pct": 0.63
+        }
+      ]
+    },
+    {
+      "code": "6244",
+      "name": "茂迪",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 23.6,
+      "vol_lots": 2555,
+      "trigger": {
+        "label": "週高",
+        "price": 23.7,
+        "stop": 23.3,
+        "dist_pct": 0.42
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 24.3,
+          "stop": 23.9,
+          "dist_pct": 2.97
+        },
+        {
+          "label": "月高",
+          "price": 27.05,
+          "stop": 26.6,
+          "dist_pct": 14.62
+        }
+      ]
+    },
+    {
+      "code": "2382",
+      "name": "廣達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 341.5,
+      "vol_lots": 9982,
+      "trigger": {
+        "label": "昨高",
+        "price": 343.0,
+        "stop": 337.5,
+        "dist_pct": 0.44
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 346.5,
+          "stop": 341.0,
+          "dist_pct": 1.46
+        }
+      ]
+    },
+    {
+      "code": "3702",
+      "name": "大聯大",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 114.0,
+      "vol_lots": 9400,
+      "trigger": {
+        "label": "週高",
+        "price": 114.5,
+        "stop": 112.5,
+        "dist_pct": 0.44
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 116.0,
+          "stop": 114.0,
+          "dist_pct": 1.75
+        },
+        {
+          "label": "月高",
+          "price": 130.5,
+          "stop": 128.5,
+          "dist_pct": 14.47
+        }
+      ]
+    },
+    {
+      "code": "2897",
+      "name": "王道銀行",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 11.1,
+      "vol_lots": 2012,
+      "trigger": {
+        "label": "昨高",
+        "price": 11.15,
+        "stop": 10.95,
+        "dist_pct": 0.45
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 11.35,
+          "stop": 11.15,
+          "dist_pct": 2.25
+        }
+      ]
+    },
+    {
+      "code": "2323",
+      "name": "中環",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 10.8,
+      "vol_lots": 4137,
+      "trigger": {
+        "label": "週高",
+        "price": 10.85,
+        "stop": 10.65,
+        "dist_pct": 0.46
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 10.9,
+          "stop": 10.7,
+          "dist_pct": 0.93
+        },
+        {
+          "label": "月高",
+          "price": 11.95,
+          "stop": 11.75,
+          "dist_pct": 10.65
+        }
+      ]
+    },
+    {
+      "code": "5871",
+      "name": "中租-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 108.0,
+      "vol_lots": 11043,
+      "trigger": {
+        "label": "昨高",
+        "price": 108.5,
+        "stop": 106.5,
+        "dist_pct": 0.46
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 114.0,
+          "stop": 112.0,
+          "dist_pct": 5.56
+        },
+        {
+          "label": "月高",
+          "price": 117.5,
+          "stop": 115.5,
+          "dist_pct": 8.8
+        }
+      ]
+    },
+    {
+      "code": "5351",
+      "name": "鈺創",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 109.5,
+      "vol_lots": 6749,
+      "trigger": {
+        "label": "昨高",
+        "price": 110.0,
+        "stop": 108.0,
+        "dist_pct": 0.46
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 114.0,
+          "stop": 112.0,
+          "dist_pct": 4.11
+        },
+        {
+          "label": "月高",
+          "price": 141.0,
+          "stop": 138.5,
+          "dist_pct": 28.77
+        }
+      ]
+    },
+    {
+      "code": "2349",
+      "name": "錸德",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 10.35,
+      "vol_lots": 1018,
+      "trigger": {
+        "label": "昨高",
+        "price": 10.4,
+        "stop": 10.2,
+        "dist_pct": 0.48
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 10.5,
+          "stop": 10.3,
+          "dist_pct": 1.45
+        },
+        {
+          "label": "月高",
+          "price": 12.15,
+          "stop": 11.95,
+          "dist_pct": 17.39
+        }
+      ]
+    },
+    {
+      "code": "6278",
+      "name": "台表科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 209.0,
+      "vol_lots": 19014,
+      "trigger": {
+        "label": "月高",
+        "price": 210.0,
+        "stop": 206.5,
+        "dist_pct": 0.48
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 218.0,
+          "stop": 214.5,
+          "dist_pct": 4.31
+        }
+      ]
+    },
+    {
+      "code": "1229",
+      "name": "聯華",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 40.0,
+      "vol_lots": 1587,
+      "trigger": {
+        "label": "昨高",
+        "price": 40.2,
+        "stop": 39.55,
+        "dist_pct": 0.5
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 40.85,
+          "stop": 40.2,
+          "dist_pct": 2.12
+        },
+        {
+          "label": "月高",
+          "price": 42.5,
+          "stop": 41.85,
+          "dist_pct": 6.25
+        }
+      ]
+    },
+    {
+      "code": "3498",
+      "name": "陽程",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 199.0,
+      "vol_lots": 2121,
+      "trigger": {
+        "label": "週高",
+        "price": 200.0,
+        "stop": 197.0,
+        "dist_pct": 0.5
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 208.0,
+          "stop": 204.5,
+          "dist_pct": 4.52
+        },
+        {
+          "label": "昨高",
+          "price": 209.5,
+          "stop": 206.0,
+          "dist_pct": 5.28
+        }
+      ]
+    },
+    {
+      "code": "2208",
+      "name": "台船",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 19.6,
+      "vol_lots": 4445,
+      "trigger": {
+        "label": "昨高",
+        "price": 19.7,
+        "stop": 19.4,
+        "dist_pct": 0.51
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 20.95,
+          "stop": 20.6,
+          "dist_pct": 6.89
+        }
+      ]
+    },
+    {
+      "code": "2002",
+      "name": "中鋼",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 18.65,
+      "vol_lots": 25707,
+      "trigger": {
+        "label": "昨高",
+        "price": 18.75,
+        "stop": 18.45,
+        "dist_pct": 0.54
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 18.95,
+          "stop": 18.65,
+          "dist_pct": 1.61
+        },
+        {
+          "label": "月高",
+          "price": 19.9,
+          "stop": 19.6,
+          "dist_pct": 6.7
+        }
+      ]
+    },
+    {
+      "code": "4743",
+      "name": "合一",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 45.15,
+      "vol_lots": 1051,
+      "trigger": {
+        "label": "昨高",
+        "price": 45.4,
+        "stop": 44.7,
+        "dist_pct": 0.55
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 51.1,
+          "stop": 50.3,
+          "dist_pct": 13.18
+        }
+      ]
+    },
+    {
+      "code": "2395",
+      "name": "研華",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 701.0,
+      "vol_lots": 1934,
+      "trigger": {
+        "label": "週高",
+        "price": 705.0,
+        "stop": 694.0,
+        "dist_pct": 0.57
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 709.0,
+          "stop": 698.0,
+          "dist_pct": 1.14
+        },
+        {
+          "label": "昨高",
+          "price": 721.0,
+          "stop": 710.0,
+          "dist_pct": 2.85
+        }
+      ]
+    },
+    {
+      "code": "2254",
+      "name": "巨鎧精密-創",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 86.6,
+      "vol_lots": 3079,
+      "trigger": {
+        "label": "昨高",
+        "price": 87.1,
+        "stop": 85.7,
+        "dist_pct": 0.58
+      },
+      "upper": []
+    },
+    {
+      "code": "2481",
+      "name": "強茂",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 173.0,
+      "vol_lots": 39482,
+      "trigger": {
+        "label": "週高",
+        "price": 174.0,
+        "stop": 171.0,
+        "dist_pct": 0.58
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 181.0,
+          "stop": 178.0,
+          "dist_pct": 4.62
+        }
+      ]
+    },
+    {
+      "code": "5608",
+      "name": "四維航",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 17.2,
+      "vol_lots": 1641,
+      "trigger": {
+        "label": "昨高",
+        "price": 17.3,
+        "stop": 17.0,
+        "dist_pct": 0.58
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 19.5,
+          "stop": 19.2,
+          "dist_pct": 13.37
+        }
+      ]
+    },
+    {
+      "code": "5347",
+      "name": "世界",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 173.0,
+      "vol_lots": 12955,
+      "trigger": {
+        "label": "週高",
+        "price": 174.0,
+        "stop": 171.0,
+        "dist_pct": 0.58
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 176.5,
+          "stop": 173.5,
+          "dist_pct": 2.02
+        }
+      ]
+    },
+    {
+      "code": "2633",
+      "name": "台灣高鐵",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 25.6,
+      "vol_lots": 3045,
+      "trigger": {
+        "label": "昨高",
+        "price": 25.75,
+        "stop": 25.35,
+        "dist_pct": 0.59
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 26.1,
+          "stop": 25.7,
+          "dist_pct": 1.95
+        },
+        {
+          "label": "月高",
+          "price": 26.45,
+          "stop": 26.05,
+          "dist_pct": 3.32
+        }
+      ]
+    },
+    {
+      "code": "2014",
+      "name": "中鴻",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 16.65,
+      "vol_lots": 1928,
+      "trigger": {
+        "label": "昨高",
+        "price": 16.75,
+        "stop": 16.45,
+        "dist_pct": 0.6
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 18.1,
+          "stop": 17.8,
+          "dist_pct": 8.71
+        }
+      ]
+    },
+    {
+      "code": "2367",
+      "name": "燿華",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.7,
+      "vol_lots": 2188,
+      "trigger": {
+        "label": "週高",
+        "price": 41.95,
+        "stop": 41.3,
+        "dist_pct": 0.6
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 42.75,
+          "stop": 42.1,
+          "dist_pct": 2.52
+        },
+        {
+          "label": "月高",
+          "price": 46.6,
+          "stop": 45.9,
+          "dist_pct": 11.75
+        }
+      ]
+    },
+    {
+      "code": "9904",
+      "name": "寶成",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 24.9,
+      "vol_lots": 10885,
+      "trigger": {
+        "label": "昨高",
+        "price": 25.05,
+        "stop": 24.65,
+        "dist_pct": 0.6
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 25.6,
+          "stop": 25.2,
+          "dist_pct": 2.81
+        }
+      ]
+    },
+    {
+      "code": "4533",
+      "name": "協易機",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 25.15,
+      "vol_lots": 1098,
+      "trigger": {
+        "label": "週高",
+        "price": 25.3,
+        "stop": 24.9,
+        "dist_pct": 0.6
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 29.45,
+          "stop": 29.0,
+          "dist_pct": 17.1
+        }
+      ]
+    },
+    {
+      "code": "1773",
+      "name": "勝一",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 165.0,
+      "vol_lots": 1034,
+      "trigger": {
+        "label": "月高",
+        "price": 166.0,
+        "stop": 163.5,
+        "dist_pct": 0.61
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 167.5,
+          "stop": 164.5,
+          "dist_pct": 1.52
+        }
+      ]
+    },
+    {
+      "code": "2369",
+      "name": "菱生",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 31.65,
+      "vol_lots": 9660,
+      "trigger": {
+        "label": "週高",
+        "price": 31.85,
+        "stop": 31.35,
+        "dist_pct": 0.63
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 32.6,
+          "stop": 32.1,
+          "dist_pct": 3.0
+        },
+        {
+          "label": "月高",
+          "price": 34.85,
+          "stop": 34.3,
+          "dist_pct": 10.11
+        }
+      ]
+    },
+    {
+      "code": "6901",
+      "name": "鑽石投資",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 15.75,
+      "vol_lots": 1535,
+      "trigger": {
+        "label": "昨高",
+        "price": 15.85,
+        "stop": 15.6,
+        "dist_pct": 0.63
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 18.7,
+          "stop": 18.4,
+          "dist_pct": 18.73
+        }
+      ]
+    },
+    {
+      "code": "2439",
+      "name": "美律",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 78.0,
+      "vol_lots": 1021,
+      "trigger": {
+        "label": "昨高",
+        "price": 78.5,
+        "stop": 77.3,
+        "dist_pct": 0.64
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 79.3,
+          "stop": 78.1,
+          "dist_pct": 1.67
+        },
+        {
+          "label": "月高",
+          "price": 82.6,
+          "stop": 81.3,
+          "dist_pct": 5.9
+        }
+      ]
+    },
+    {
+      "code": "2495",
+      "name": "普安",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 38.85,
+      "vol_lots": 1001,
+      "trigger": {
+        "label": "週高",
+        "price": 39.1,
+        "stop": 38.5,
+        "dist_pct": 0.64
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 39.2,
+          "stop": 38.6,
+          "dist_pct": 0.9
+        },
+        {
+          "label": "月高",
+          "price": 40.95,
+          "stop": 40.3,
+          "dist_pct": 5.41
+        }
+      ]
+    },
+    {
+      "code": "3491",
+      "name": "昇達科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 1565.0,
+      "vol_lots": 1989,
+      "trigger": {
+        "label": "昨高",
+        "price": 1575.0,
+        "stop": 1550.0,
+        "dist_pct": 0.64
+      },
+      "upper": []
+    },
+    {
+      "code": "6176",
+      "name": "瑞儀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 92.8,
+      "vol_lots": 1468,
+      "trigger": {
+        "label": "昨高",
+        "price": 93.4,
+        "stop": 91.9,
+        "dist_pct": 0.65
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 96.1,
+          "stop": 94.6,
+          "dist_pct": 3.56
+        },
+        {
+          "label": "月高",
+          "price": 116.8,
+          "stop": 115.0,
+          "dist_pct": 25.86
+        }
+      ]
+    },
+    {
+      "code": "9958",
+      "name": "世紀鋼",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 91.9,
+      "vol_lots": 1038,
+      "trigger": {
+        "label": "昨高",
+        "price": 92.5,
+        "stop": 91.1,
+        "dist_pct": 0.65
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 94.0,
+          "stop": 92.5,
+          "dist_pct": 2.29
+        },
+        {
+          "label": "月高",
+          "price": 116.5,
+          "stop": 114.5,
+          "dist_pct": 26.77
+        }
+      ]
+    },
+    {
+      "code": "2105",
+      "name": "正新",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 30.1,
+      "vol_lots": 2743,
+      "trigger": {
+        "label": "昨高",
+        "price": 30.3,
+        "stop": 29.8,
+        "dist_pct": 0.66
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 30.4,
+          "stop": 29.9,
+          "dist_pct": 1.0
+        },
+        {
+          "label": "月高",
+          "price": 32.35,
+          "stop": 31.85,
+          "dist_pct": 7.48
+        }
+      ]
+    },
+    {
+      "code": "2376",
+      "name": "技嘉",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 365.0,
+      "vol_lots": 3929,
+      "trigger": {
+        "label": "週高",
+        "price": 367.5,
+        "stop": 361.5,
+        "dist_pct": 0.68
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 370.0,
+          "stop": 364.0,
+          "dist_pct": 1.37
+        },
+        {
+          "label": "月高",
+          "price": 402.0,
+          "stop": 395.5,
+          "dist_pct": 10.14
+        }
+      ]
+    },
+    {
+      "code": "3047",
+      "name": "訊舟",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 14.7,
+      "vol_lots": 1113,
+      "trigger": {
+        "label": "月高",
+        "price": 14.8,
+        "stop": 14.55,
+        "dist_pct": 0.68
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 14.9,
+          "stop": 14.65,
+          "dist_pct": 1.36
+        }
+      ]
+    },
+    {
+      "code": "2912",
+      "name": "統一超",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 213.0,
+      "vol_lots": 2277,
+      "trigger": {
+        "label": "昨高",
+        "price": 214.5,
+        "stop": 211.0,
+        "dist_pct": 0.7
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 217.5,
+          "stop": 214.0,
+          "dist_pct": 2.11
+        },
+        {
+          "label": "月高",
+          "price": 225.5,
+          "stop": 222.0,
+          "dist_pct": 5.87
+        }
+      ]
+    },
+    {
+      "code": "3014",
+      "name": "聯陽",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 143.0,
+      "vol_lots": 4801,
+      "trigger": {
+        "label": "昨高",
+        "price": 144.0,
+        "stop": 141.5,
+        "dist_pct": 0.7
+      },
+      "upper": []
+    },
+    {
+      "code": "6869",
+      "name": "雲豹能源",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 71.0,
+      "vol_lots": 1115,
+      "trigger": {
+        "label": "月高",
+        "price": 71.5,
+        "stop": 70.4,
+        "dist_pct": 0.7
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 73.6,
+          "stop": 72.4,
+          "dist_pct": 3.66
+        }
+      ]
+    },
+    {
+      "code": "6531",
+      "name": "愛普*",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 987.0,
+      "vol_lots": 3925,
+      "trigger": {
+        "label": "週高",
+        "price": 994.0,
+        "stop": 979.0,
+        "dist_pct": 0.71
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 999.0,
+          "stop": 984.0,
+          "dist_pct": 1.22
+        },
+        {
+          "label": "月高",
+          "price": 1010.0,
+          "stop": 994.0,
+          "dist_pct": 2.33
+        }
+      ]
+    },
+    {
+      "code": "8054",
+      "name": "安國",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 84.5,
+      "vol_lots": 1007,
+      "trigger": {
+        "label": "週高",
+        "price": 85.1,
+        "stop": 83.8,
+        "dist_pct": 0.71
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 87.5,
+          "stop": 86.1,
+          "dist_pct": 3.55
+        },
+        {
+          "label": "昨高",
+          "price": 87.9,
+          "stop": 86.5,
+          "dist_pct": 4.02
+        }
+      ]
+    },
+    {
+      "code": "1722",
+      "name": "台肥",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.75,
+      "vol_lots": 2718,
+      "trigger": {
+        "label": "昨高",
+        "price": 42.05,
+        "stop": 41.4,
+        "dist_pct": 0.72
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 42.85,
+          "stop": 42.2,
+          "dist_pct": 2.63
+        },
+        {
+          "label": "月高",
+          "price": 46.75,
+          "stop": 46.0,
+          "dist_pct": 11.98
+        }
+      ]
+    },
+    {
+      "code": "2355",
+      "name": "敬鵬",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.6,
+      "vol_lots": 1214,
+      "trigger": {
+        "label": "週高",
+        "price": 41.9,
+        "stop": 41.25,
+        "dist_pct": 0.72
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 42.25,
+          "stop": 41.6,
+          "dist_pct": 1.56
+        },
+        {
+          "label": "月高",
+          "price": 45.5,
+          "stop": 44.8,
+          "dist_pct": 9.38
+        }
+      ]
+    },
+    {
+      "code": "2610",
+      "name": "華航",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 20.45,
+      "vol_lots": 34416,
+      "trigger": {
+        "label": "昨高",
+        "price": 20.6,
+        "stop": 20.25,
+        "dist_pct": 0.73
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 22.85,
+          "stop": 22.5,
+          "dist_pct": 11.74
+        }
+      ]
+    },
+    {
+      "code": "3044",
+      "name": "健鼎",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 543.0,
+      "vol_lots": 2957,
+      "trigger": {
+        "label": "昨高",
+        "price": 547.0,
+        "stop": 538.0,
+        "dist_pct": 0.74
+      },
+      "upper": []
+    },
+    {
+      "code": "2027",
+      "name": "大成鋼",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 46.6,
+      "vol_lots": 7729,
+      "trigger": {
+        "label": "昨高",
+        "price": 46.95,
+        "stop": 46.2,
+        "dist_pct": 0.75
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 47.65,
+          "stop": 46.9,
+          "dist_pct": 2.25
+        },
+        {
+          "label": "月高",
+          "price": 52.3,
+          "stop": 51.5,
+          "dist_pct": 12.23
+        }
+      ]
+    },
+    {
+      "code": "3339",
+      "name": "泰谷",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 46.95,
+      "vol_lots": 2073,
+      "trigger": {
+        "label": "月高",
+        "price": 47.3,
+        "stop": 46.55,
+        "dist_pct": 0.75
+      },
+      "upper": []
+    },
+    {
+      "code": "2354",
+      "name": "鴻準",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 65.9,
+      "vol_lots": 6468,
+      "trigger": {
+        "label": "昨高",
+        "price": 66.4,
+        "stop": 65.4,
+        "dist_pct": 0.76
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 69.0,
+          "stop": 67.9,
+          "dist_pct": 4.7
+        }
+      ]
+    },
+    {
+      "code": "8438",
+      "name": "昶昕",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 78.0,
+      "vol_lots": 1526,
+      "trigger": {
+        "label": "昨高",
+        "price": 78.6,
+        "stop": 77.4,
+        "dist_pct": 0.77
+      },
+      "upper": []
+    },
+    {
+      "code": "5289",
+      "name": "宜鼎",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 1305.0,
+      "vol_lots": 2056,
+      "trigger": {
+        "label": "週高",
+        "price": 1315.0,
+        "stop": 1295.0,
+        "dist_pct": 0.77
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 1375.0,
+          "stop": 1350.0,
+          "dist_pct": 5.36
+        },
+        {
+          "label": "月高",
+          "price": 1647.18,
+          "stop": 1620.0,
+          "dist_pct": 26.22
+        }
+      ]
+    },
+    {
+      "code": "2812",
+      "name": "台中銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 19.15,
+      "vol_lots": 10749,
+      "trigger": {
+        "label": "昨高",
+        "price": 19.3,
+        "stop": 19.0,
+        "dist_pct": 0.78
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 19.4,
+          "stop": 19.1,
+          "dist_pct": 1.31
+        },
+        {
+          "label": "週高",
+          "price": 19.55,
+          "stop": 19.25,
+          "dist_pct": 2.09
+        }
+      ]
+    },
+    {
+      "code": "8422",
+      "name": "可寧衛*",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 25.65,
+      "vol_lots": 2412,
+      "trigger": {
+        "label": "昨高",
+        "price": 25.85,
+        "stop": 25.45,
+        "dist_pct": 0.78
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 26.55,
+          "stop": 26.15,
+          "dist_pct": 3.51
+        },
+        {
+          "label": "月高",
+          "price": 27.6,
+          "stop": 27.15,
+          "dist_pct": 7.6
+        }
+      ]
+    },
+    {
+      "code": "6234",
+      "name": "高僑",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 38.2,
+      "vol_lots": 1333,
+      "trigger": {
+        "label": "週高/月高",
+        "price": 38.5,
+        "stop": 37.9,
+        "dist_pct": 0.79
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 40.0,
+          "stop": 39.4,
+          "dist_pct": 4.71
+        }
+      ]
+    },
+    {
+      "code": "1708",
+      "name": "東鹼",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 50.1,
+      "vol_lots": 1156,
+      "trigger": {
+        "label": "昨高",
+        "price": 50.5,
+        "stop": 49.7,
+        "dist_pct": 0.8
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 51.5,
+          "stop": 50.7,
+          "dist_pct": 2.79
+        },
+        {
+          "label": "月高",
+          "price": 52.8,
+          "stop": 52.0,
+          "dist_pct": 5.39
+        }
+      ]
+    },
+    {
+      "code": "2241",
+      "name": "艾姆勒",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 43.65,
+      "vol_lots": 6674,
+      "trigger": {
+        "label": "昨高",
+        "price": 44.0,
+        "stop": 43.3,
+        "dist_pct": 0.8
+      },
+      "upper": []
+    },
+    {
+      "code": "2905",
+      "name": "三商",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 18.65,
+      "vol_lots": 1431,
+      "trigger": {
+        "label": "昨高",
+        "price": 18.8,
+        "stop": 18.5,
+        "dist_pct": 0.8
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 19.0,
+          "stop": 18.7,
+          "dist_pct": 1.88
+        }
+      ]
+    },
+    {
+      "code": "2887",
+      "name": "台新新光金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 42.95,
+      "vol_lots": 38944,
+      "trigger": {
+        "label": "昨高",
+        "price": 43.3,
+        "stop": 42.65,
+        "dist_pct": 0.81
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 44.8,
+          "stop": 44.1,
+          "dist_pct": 4.31
+        }
+      ]
+    },
+    {
+      "code": "3693",
+      "name": "營邦",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 732.0,
+      "vol_lots": 2429,
+      "trigger": {
+        "label": "昨高",
+        "price": 738.0,
+        "stop": 726.0,
+        "dist_pct": 0.82
+      },
+      "upper": []
+    },
+    {
+      "code": "5388",
+      "name": "中磊",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 72.6,
+      "vol_lots": 1078,
+      "trigger": {
+        "label": "昨高",
+        "price": 73.2,
+        "stop": 72.1,
+        "dist_pct": 0.83
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 74.6,
+          "stop": 73.4,
+          "dist_pct": 2.75
+        },
+        {
+          "label": "月高",
+          "price": 95.0,
+          "stop": 93.5,
+          "dist_pct": 30.85
+        }
+      ]
+    },
+    {
+      "code": "2201",
+      "name": "裕隆",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 29.25,
+      "vol_lots": 2258,
+      "trigger": {
+        "label": "昨高",
+        "price": 29.5,
+        "stop": 29.05,
+        "dist_pct": 0.85
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 29.9,
+          "stop": 29.45,
+          "dist_pct": 2.22
+        },
+        {
+          "label": "週高",
+          "price": 30.75,
+          "stop": 30.25,
+          "dist_pct": 5.13
+        }
+      ]
+    },
+    {
+      "code": "3005",
+      "name": "神基",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 117.5,
+      "vol_lots": 1665,
+      "trigger": {
+        "label": "昨高",
+        "price": 118.5,
+        "stop": 116.5,
+        "dist_pct": 0.85
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 119.0,
+          "stop": 117.0,
+          "dist_pct": 1.28
+        },
+        {
+          "label": "月高",
+          "price": 125.0,
+          "stop": 123.0,
+          "dist_pct": 6.38
+        }
+      ]
+    },
+    {
+      "code": "9910",
+      "name": "豐泰",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 70.0,
+      "vol_lots": 1710,
+      "trigger": {
+        "label": "昨高",
+        "price": 70.6,
+        "stop": 69.5,
+        "dist_pct": 0.86
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 73.2,
+          "stop": 72.1,
+          "dist_pct": 4.57
+        }
+      ]
+    },
+    {
+      "code": "1504",
+      "name": "東元",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 68.6,
+      "vol_lots": 2821,
+      "trigger": {
+        "label": "昨高",
+        "price": 69.2,
+        "stop": 68.1,
+        "dist_pct": 0.87
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 72.3,
+          "stop": 71.2,
+          "dist_pct": 5.39
+        },
+        {
+          "label": "月高",
+          "price": 75.5,
+          "stop": 74.3,
+          "dist_pct": 10.06
+        }
+      ]
+    },
+    {
+      "code": "2468",
+      "name": "華經",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 45.45,
+      "vol_lots": 1701,
+      "trigger": {
+        "label": "週高",
+        "price": 45.85,
+        "stop": 45.15,
+        "dist_pct": 0.88
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 47.25,
+          "stop": 46.5,
+          "dist_pct": 3.96
+        }
+      ]
+    },
+    {
+      "code": "2892",
+      "name": "第一金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 39.85,
+      "vol_lots": 18149,
+      "trigger": {
+        "label": "昨高",
+        "price": 40.2,
+        "stop": 39.55,
+        "dist_pct": 0.88
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 40.95,
+          "stop": 40.3,
+          "dist_pct": 2.76
+        }
+      ]
+    },
+    {
+      "code": "4960",
+      "name": "誠美材",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 22.75,
+      "vol_lots": 5690,
+      "trigger": {
+        "label": "月高",
+        "price": 22.95,
+        "stop": 22.6,
+        "dist_pct": 0.88
+      },
+      "upper": [
+        {
+          "label": "昨高/週高",
+          "price": 23.85,
+          "stop": 23.45,
+          "dist_pct": 4.84
+        }
+      ]
+    },
+    {
+      "code": "2009",
+      "name": "第一銅",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 39.35,
+      "vol_lots": 2770,
+      "trigger": {
+        "label": "週高",
+        "price": 39.7,
+        "stop": 39.1,
+        "dist_pct": 0.89
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 41.1,
+          "stop": 40.45,
+          "dist_pct": 4.45
+        },
+        {
+          "label": "月高",
+          "price": 44.2,
+          "stop": 43.5,
+          "dist_pct": 12.33
+        }
+      ]
+    },
+    {
+      "code": "2313",
+      "name": "華通",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 224.0,
+      "vol_lots": 9758,
+      "trigger": {
+        "label": "昨高",
+        "price": 226.0,
+        "stop": 222.5,
+        "dist_pct": 0.89
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 235.0,
+          "stop": 231.0,
+          "dist_pct": 4.91
+        },
+        {
+          "label": "月高",
+          "price": 260.0,
+          "stop": 256.0,
+          "dist_pct": 16.07
+        }
+      ]
+    },
+    {
+      "code": "2882",
+      "name": "國泰金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 111.5,
+      "vol_lots": 17347,
+      "trigger": {
+        "label": "昨高",
+        "price": 112.5,
+        "stop": 110.5,
+        "dist_pct": 0.9
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 114.0,
+          "stop": 112.0,
+          "dist_pct": 2.24
+        }
+      ]
+    },
+    {
+      "code": "9914",
+      "name": "美利達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 66.4,
+      "vol_lots": 1636,
+      "trigger": {
+        "label": "昨高",
+        "price": 67.0,
+        "stop": 65.9,
+        "dist_pct": 0.9
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 69.3,
+          "stop": 68.2,
+          "dist_pct": 4.37
+        },
+        {
+          "label": "月高",
+          "price": 96.8,
+          "stop": 95.3,
+          "dist_pct": 45.78
+        }
+      ]
+    },
+    {
+      "code": "2606",
+      "name": "裕民",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 76.7,
+      "vol_lots": 1711,
+      "trigger": {
+        "label": "昨高",
+        "price": 77.4,
+        "stop": 76.2,
+        "dist_pct": 0.91
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 77.5,
+          "stop": 76.3,
+          "dist_pct": 1.04
+        },
+        {
+          "label": "月高",
+          "price": 79.5,
+          "stop": 78.3,
+          "dist_pct": 3.65
+        }
+      ]
+    },
+    {
+      "code": "3090",
+      "name": "日電貿",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 165.0,
+      "vol_lots": 2119,
+      "trigger": {
+        "label": "週高",
+        "price": 166.5,
+        "stop": 164.0,
+        "dist_pct": 0.91
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 170.0,
+          "stop": 167.0,
+          "dist_pct": 3.03
+        },
+        {
+          "label": "月高",
+          "price": 187.0,
+          "stop": 184.0,
+          "dist_pct": 13.33
+        }
+      ]
+    },
+    {
+      "code": "3059",
+      "name": "華晶科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 37.95,
+      "vol_lots": 1078,
+      "trigger": {
+        "label": "昨高",
+        "price": 38.3,
+        "stop": 37.7,
+        "dist_pct": 0.92
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 38.55,
+          "stop": 37.95,
+          "dist_pct": 1.58
+        },
+        {
+          "label": "月高",
+          "price": 41.8,
+          "stop": 41.15,
+          "dist_pct": 10.14
+        }
+      ]
+    },
+    {
+      "code": "4915",
+      "name": "致伸",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 64.4,
+      "vol_lots": 1848,
+      "trigger": {
+        "label": "昨高",
+        "price": 65.0,
+        "stop": 64.0,
+        "dist_pct": 0.93
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 65.3,
+          "stop": 64.3,
+          "dist_pct": 1.4
+        },
+        {
+          "label": "週高",
+          "price": 66.5,
+          "stop": 65.5,
+          "dist_pct": 3.26
+        }
+      ]
+    },
+    {
+      "code": "2357",
+      "name": "華碩",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 958.0,
+      "vol_lots": 1349,
+      "trigger": {
+        "label": "週高",
+        "price": 967.0,
+        "stop": 952.0,
+        "dist_pct": 0.94
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 1025.0,
+          "stop": 1005.0,
+          "dist_pct": 6.99
+        }
+      ]
+    },
+    {
+      "code": "2353",
+      "name": "宏碁",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 31.55,
+      "vol_lots": 12084,
+      "trigger": {
+        "label": "昨高",
+        "price": 31.85,
+        "stop": 31.35,
+        "dist_pct": 0.95
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 32.8,
+          "stop": 32.3,
+          "dist_pct": 3.96
+        },
+        {
+          "label": "月高",
+          "price": 33.2,
+          "stop": 32.7,
+          "dist_pct": 5.23
+        }
+      ]
+    },
+    {
+      "code": "3013",
+      "name": "晟銘電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 84.3,
+      "vol_lots": 1064,
+      "trigger": {
+        "label": "週高",
+        "price": 85.1,
+        "stop": 83.8,
+        "dist_pct": 0.95
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 86.6,
+          "stop": 85.3,
+          "dist_pct": 2.73
+        },
+        {
+          "label": "月高",
+          "price": 90.0,
+          "stop": 88.6,
+          "dist_pct": 6.76
+        }
+      ]
+    },
+    {
+      "code": "4904",
+      "name": "遠傳",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 105.5,
+      "vol_lots": 3733,
+      "trigger": {
+        "label": "昨高",
+        "price": 106.5,
+        "stop": 104.5,
+        "dist_pct": 0.95
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 107.5,
+          "stop": 105.5,
+          "dist_pct": 1.9
+        }
+      ]
+    },
+    {
+      "code": "1529",
+      "name": "樂事綠能",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 15.7,
+      "vol_lots": 1001,
+      "trigger": {
+        "label": "週高",
+        "price": 15.85,
+        "stop": 15.6,
+        "dist_pct": 0.96
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 16.35,
+          "stop": 16.1,
+          "dist_pct": 4.14
+        },
+        {
+          "label": "月高",
+          "price": 18.15,
+          "stop": 17.85,
+          "dist_pct": 15.61
+        }
+      ]
+    },
+    {
+      "code": "2385",
+      "name": "群光",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 104.0,
+      "vol_lots": 1863,
+      "trigger": {
+        "label": "昨高",
+        "price": 105.0,
+        "stop": 103.0,
+        "dist_pct": 0.96
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 107.0,
+          "stop": 105.0,
+          "dist_pct": 2.88
+        },
+        {
+          "label": "月高",
+          "price": 110.5,
+          "stop": 108.5,
+          "dist_pct": 6.25
+        }
+      ]
+    },
+    {
+      "code": "2881",
+      "name": "富邦金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 153.0,
+      "vol_lots": 14876,
+      "trigger": {
+        "label": "週高",
+        "price": 154.5,
+        "stop": 152.0,
+        "dist_pct": 0.98
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 155.5,
+          "stop": 153.0,
+          "dist_pct": 1.63
+        }
+      ]
+    },
+    {
+      "code": "6672",
+      "name": "騰輝電子-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 307.0,
+      "vol_lots": 3277,
+      "trigger": {
+        "label": "昨高",
+        "price": 310.0,
+        "stop": 305.0,
+        "dist_pct": 0.98
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 315.0,
+          "stop": 310.0,
+          "dist_pct": 2.61
+        }
+      ]
+    },
+    {
+      "code": "1909",
+      "name": "榮成",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 10.1,
+      "vol_lots": 1358,
+      "trigger": {
+        "label": "昨高",
+        "price": 10.2,
+        "stop": 10.0,
+        "dist_pct": 0.99
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 10.4,
+          "stop": 10.2,
+          "dist_pct": 2.97
+        },
+        {
+          "label": "月高",
+          "price": 11.5,
+          "stop": 11.3,
+          "dist_pct": 13.86
+        }
+      ]
+    },
+    {
+      "code": "6116",
+      "name": "彩晶",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 15.0,
+      "vol_lots": 81652,
+      "trigger": {
+        "label": "月高",
+        "price": 15.15,
+        "stop": 14.9,
+        "dist_pct": 1.0
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 15.6,
+          "stop": 15.35,
+          "dist_pct": 4.0
+        }
+      ]
+    },
+    {
+      "code": "4540",
+      "name": "全球傳動",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 59.6,
+      "vol_lots": 1006,
+      "trigger": {
+        "label": "昨高",
+        "price": 60.2,
+        "stop": 59.2,
+        "dist_pct": 1.01
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 60.9,
+          "stop": 59.9,
+          "dist_pct": 2.18
+        },
+        {
+          "label": "月高",
+          "price": 65.3,
+          "stop": 64.3,
+          "dist_pct": 9.56
+        }
+      ]
+    },
+    {
+      "code": "5536",
+      "name": "聖暉*",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 893.0,
+      "vol_lots": 1349,
+      "trigger": {
+        "label": "昨高",
+        "price": 902.0,
+        "stop": 888.0,
+        "dist_pct": 1.01
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 1125.0,
+          "stop": 1105.0,
+          "dist_pct": 25.98
+        }
+      ]
+    },
+    {
+      "code": "8358",
+      "name": "金居",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 497.0,
+      "vol_lots": 2050,
+      "trigger": {
+        "label": "昨高",
+        "price": 502.0,
+        "stop": 494.0,
+        "dist_pct": 1.01
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 530.0,
+          "stop": 522.0,
+          "dist_pct": 6.64
+        },
+        {
+          "label": "月高",
+          "price": 549.0,
+          "stop": 540.0,
+          "dist_pct": 10.46
+        }
+      ]
+    },
+    {
+      "code": "2464",
+      "name": "盟立",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 195.0,
+      "vol_lots": 18569,
+      "trigger": {
+        "label": "週高",
+        "price": 197.0,
+        "stop": 194.0,
+        "dist_pct": 1.03
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 200.5,
+          "stop": 197.0,
+          "dist_pct": 2.82
+        },
+        {
+          "label": "月高",
+          "price": 216.5,
+          "stop": 213.0,
+          "dist_pct": 11.03
+        }
+      ]
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 243.0,
+      "vol_lots": 5801,
+      "trigger": {
+        "label": "週高",
+        "price": 245.5,
+        "stop": 241.5,
+        "dist_pct": 1.03
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 256.5,
+          "stop": 252.5,
+          "dist_pct": 5.56
+        }
+      ]
+    },
+    {
+      "code": "1409",
+      "name": "新纖",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 24.1,
+      "vol_lots": 5542,
+      "trigger": {
+        "label": "昨高",
+        "price": 24.35,
+        "stop": 23.95,
+        "dist_pct": 1.04
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 25.15,
+          "stop": 24.75,
+          "dist_pct": 4.36
+        },
+        {
+          "label": "月高",
+          "price": 25.65,
+          "stop": 25.25,
+          "dist_pct": 6.43
+        }
+      ]
+    },
+    {
+      "code": "2308",
+      "name": "台達電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 1900.0,
+      "vol_lots": 9734,
+      "trigger": {
+        "label": "昨高",
+        "price": 1920.0,
+        "stop": 1890.0,
+        "dist_pct": 1.05
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 2005.0,
+          "stop": 1970.0,
+          "dist_pct": 5.53
+        }
+      ]
+    },
+    {
+      "code": "4923",
+      "name": "力士",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 66.7,
+      "vol_lots": 3516,
+      "trigger": {
+        "label": "昨高",
+        "price": 67.4,
+        "stop": 66.3,
+        "dist_pct": 1.05
+      },
+      "upper": []
+    },
+    {
+      "code": "4542",
+      "name": "科嶠",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 331.5,
+      "vol_lots": 2996,
+      "trigger": {
+        "label": "昨高",
+        "price": 335.0,
+        "stop": 329.5,
+        "dist_pct": 1.06
+      },
+      "upper": []
+    },
+    {
+      "code": "6617",
+      "name": "共信-KY",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 142.0,
+      "vol_lots": 1097,
+      "trigger": {
+        "label": "昨高",
+        "price": 143.5,
+        "stop": 141.0,
+        "dist_pct": 1.06
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 149.0,
+          "stop": 146.5,
+          "dist_pct": 4.93
+        }
+      ]
+    },
+    {
+      "code": "1309",
+      "name": "台達化",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 13.85,
+      "vol_lots": 1214,
+      "trigger": {
+        "label": "昨高",
+        "price": 14.0,
+        "stop": 13.75,
+        "dist_pct": 1.08
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 14.3,
+          "stop": 14.05,
+          "dist_pct": 3.25
+        }
+      ]
+    },
+    {
+      "code": "1402",
+      "name": "遠東新",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 27.9,
+      "vol_lots": 5463,
+      "trigger": {
+        "label": "昨高",
+        "price": 28.2,
+        "stop": 27.75,
+        "dist_pct": 1.08
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 28.45,
+          "stop": 28.0,
+          "dist_pct": 1.97
+        },
+        {
+          "label": "月高",
+          "price": 30.65,
+          "stop": 30.15,
+          "dist_pct": 9.86
+        }
+      ]
+    },
+    {
+      "code": "2324",
+      "name": "仁寶",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 36.8,
+      "vol_lots": 23535,
+      "trigger": {
+        "label": "昨高",
+        "price": 37.2,
+        "stop": 36.6,
+        "dist_pct": 1.09
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 38.45,
+          "stop": 37.85,
+          "dist_pct": 4.48
+        },
+        {
+          "label": "月高",
+          "price": 44.95,
+          "stop": 44.25,
+          "dist_pct": 22.15
+        }
+      ]
+    },
+    {
+      "code": "6271",
+      "name": "同欣電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 228.5,
+      "vol_lots": 1750,
+      "trigger": {
+        "label": "昨高",
+        "price": 231.0,
+        "stop": 227.5,
+        "dist_pct": 1.09
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 234.0,
+          "stop": 230.0,
+          "dist_pct": 2.41
+        }
+      ]
+    },
+    {
+      "code": "2484",
+      "name": "希華",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 72.9,
+      "vol_lots": 18374,
+      "trigger": {
+        "label": "週高",
+        "price": 73.7,
+        "stop": 72.5,
+        "dist_pct": 1.1
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 75.0,
+          "stop": 73.8,
+          "dist_pct": 2.88
+        },
+        {
+          "label": "月高",
+          "price": 81.0,
+          "stop": 79.7,
+          "dist_pct": 11.11
+        }
+      ]
+    },
+    {
+      "code": "2884",
+      "name": "玉山金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 45.6,
+      "vol_lots": 25178,
+      "trigger": {
+        "label": "昨高",
+        "price": 46.1,
+        "stop": 45.4,
+        "dist_pct": 1.1
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 47.35,
+          "stop": 46.6,
+          "dist_pct": 3.84
+        }
+      ]
+    },
+    {
+      "code": "3231",
+      "name": "緯創",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 180.0,
+      "vol_lots": 23773,
+      "trigger": {
+        "label": "昨高",
+        "price": 182.0,
+        "stop": 179.0,
+        "dist_pct": 1.11
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 190.5,
+          "stop": 187.5,
+          "dist_pct": 5.83
+        },
+        {
+          "label": "月高",
+          "price": 206.0,
+          "stop": 202.5,
+          "dist_pct": 14.44
+        }
+      ]
+    },
+    {
+      "code": "6213",
+      "name": "聯茂",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 541.0,
+      "vol_lots": 11528,
+      "trigger": {
+        "label": "昨高",
+        "price": 547.0,
+        "stop": 538.0,
+        "dist_pct": 1.11
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 555.0,
+          "stop": 546.0,
+          "dist_pct": 2.59
+        },
+        {
+          "label": "月高",
+          "price": 599.0,
+          "stop": 590.0,
+          "dist_pct": 10.72
+        }
+      ]
+    },
+    {
+      "code": "4919",
+      "name": "新唐",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 134.0,
+      "vol_lots": 43703,
+      "trigger": {
+        "label": "月高",
+        "price": 135.5,
+        "stop": 133.0,
+        "dist_pct": 1.12
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 144.0,
+          "stop": 141.5,
+          "dist_pct": 7.46
+        }
+      ]
+    },
+    {
+      "code": "1319",
+      "name": "東陽",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 78.8,
+      "vol_lots": 1042,
+      "trigger": {
+        "label": "昨高",
+        "price": 79.7,
+        "stop": 78.5,
+        "dist_pct": 1.14
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 80.5,
+          "stop": 79.2,
+          "dist_pct": 2.16
+        },
+        {
+          "label": "月高",
+          "price": 86.0,
+          "stop": 84.7,
+          "dist_pct": 9.14
+        }
+      ]
+    },
+    {
+      "code": "6547",
+      "name": "高端疫苗",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 60.8,
+      "vol_lots": 2960,
+      "trigger": {
+        "label": "昨高",
+        "price": 61.5,
+        "stop": 60.5,
+        "dist_pct": 1.15
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 61.7,
+          "stop": 60.7,
+          "dist_pct": 1.48
+        },
+        {
+          "label": "月高",
+          "price": 67.9,
+          "stop": 66.8,
+          "dist_pct": 11.68
+        }
+      ]
+    },
+    {
+      "code": "2006",
+      "name": "東和鋼鐵",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 85.8,
+      "vol_lots": 1864,
+      "trigger": {
+        "label": "昨高",
+        "price": 86.8,
+        "stop": 85.4,
+        "dist_pct": 1.17
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 89.0,
+          "stop": 87.6,
+          "dist_pct": 3.73
+        },
+        {
+          "label": "月高",
+          "price": 89.2,
+          "stop": 87.8,
+          "dist_pct": 3.96
+        }
+      ]
+    },
+    {
+      "code": "5285",
+      "name": "界霖",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 92.2,
+      "vol_lots": 1526,
+      "trigger": {
+        "label": "週高",
+        "price": 93.3,
+        "stop": 91.9,
+        "dist_pct": 1.19
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 95.0,
+          "stop": 93.5,
+          "dist_pct": 3.04
+        }
+      ]
+    },
+    {
+      "code": "6202",
+      "name": "盛群",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 59.0,
+      "vol_lots": 2091,
+      "trigger": {
+        "label": "昨高",
+        "price": 59.7,
+        "stop": 58.8,
+        "dist_pct": 1.19
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 66.3,
+          "stop": 65.3,
+          "dist_pct": 12.37
+        }
+      ]
+    },
+    {
+      "code": "1710",
+      "name": "東聯",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 16.7,
+      "vol_lots": 8187,
+      "trigger": {
+        "label": "週高",
+        "price": 16.9,
+        "stop": 16.6,
+        "dist_pct": 1.2
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 16.95,
+          "stop": 16.65,
+          "dist_pct": 1.5
+        }
+      ]
+    },
+    {
+      "code": "1513",
+      "name": "中興電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 165.5,
+      "vol_lots": 1419,
+      "trigger": {
+        "label": "昨高/週高",
+        "price": 167.5,
+        "stop": 164.5,
+        "dist_pct": 1.21
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 177.0,
+          "stop": 174.0,
+          "dist_pct": 6.95
+        }
+      ]
+    },
+    {
+      "code": "3481",
+      "name": "群創",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 49.6,
+      "vol_lots": 219243,
+      "trigger": {
+        "label": "週高",
+        "price": 50.2,
+        "stop": 49.4,
+        "dist_pct": 1.21
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 51.8,
+          "stop": 51.0,
+          "dist_pct": 4.44
+        },
+        {
+          "label": "月高",
+          "price": 52.3,
+          "stop": 51.5,
+          "dist_pct": 5.44
+        }
+      ]
+    },
+    {
+      "code": "6191",
+      "name": "精成科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 82.8,
+      "vol_lots": 1164,
+      "trigger": {
+        "label": "週高",
+        "price": 83.8,
+        "stop": 82.5,
+        "dist_pct": 1.21
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 84.3,
+          "stop": 83.0,
+          "dist_pct": 1.81
+        },
+        {
+          "label": "月高",
+          "price": 89.0,
+          "stop": 87.6,
+          "dist_pct": 7.49
+        }
+      ]
+    },
+    {
+      "code": "3163",
+      "name": "波若威",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 663.0,
+      "vol_lots": 1340,
+      "trigger": {
+        "label": "昨高",
+        "price": 671.0,
+        "stop": 660.0,
+        "dist_pct": 1.21
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 682.0,
+          "stop": 671.0,
+          "dist_pct": 2.87
+        },
+        {
+          "label": "月高",
+          "price": 814.0,
+          "stop": 801.0,
+          "dist_pct": 22.78
+        }
+      ]
+    },
+    {
+      "code": "2301",
+      "name": "光寶科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 283.5,
+      "vol_lots": 10587,
+      "trigger": {
+        "label": "昨高",
+        "price": 287.0,
+        "stop": 282.5,
+        "dist_pct": 1.23
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 288.5,
+          "stop": 284.0,
+          "dist_pct": 1.76
+        },
+        {
+          "label": "月高",
+          "price": 322.0,
+          "stop": 317.0,
+          "dist_pct": 13.58
+        }
+      ]
+    },
+    {
+      "code": "2836",
+      "name": "高雄銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 12.15,
+      "vol_lots": 1338,
+      "trigger": {
+        "label": "昨高",
+        "price": 12.3,
+        "stop": 12.1,
+        "dist_pct": 1.23
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 12.6,
+          "stop": 12.4,
+          "dist_pct": 3.7
+        }
+      ]
+    },
+    {
+      "code": "6770",
+      "name": "力積電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 73.1,
+      "vol_lots": 118631,
+      "trigger": {
+        "label": "昨高/週高",
+        "price": 74.0,
+        "stop": 72.8,
+        "dist_pct": 1.23
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 81.8,
+          "stop": 80.5,
+          "dist_pct": 11.9
+        }
+      ]
+    },
+    {
+      "code": "8046",
+      "name": "南電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 1210.0,
+      "vol_lots": 17567,
+      "trigger": {
+        "label": "昨高",
+        "price": 1225.0,
+        "stop": 1205.0,
+        "dist_pct": 1.24
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 1380.0,
+          "stop": 1355.0,
+          "dist_pct": 14.05
+        }
+      ]
+    },
+    {
+      "code": "1531",
+      "name": "高林股",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 11.85,
+      "vol_lots": 1091,
+      "trigger": {
+        "label": "昨高",
+        "price": 12.0,
+        "stop": 11.8,
+        "dist_pct": 1.27
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 13.7,
+          "stop": 13.45,
+          "dist_pct": 15.61
+        }
+      ]
+    },
+    {
+      "code": "2493",
+      "name": "揚博",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 197.0,
+      "vol_lots": 3002,
+      "trigger": {
+        "label": "昨高",
+        "price": 199.5,
+        "stop": 196.5,
+        "dist_pct": 1.27
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 206.5,
+          "stop": 203.0,
+          "dist_pct": 4.82
+        },
+        {
+          "label": "月高",
+          "price": 248.5,
+          "stop": 244.5,
+          "dist_pct": 26.14
+        }
+      ]
+    },
+    {
+      "code": "5904",
+      "name": "寶雅*",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 70.8,
+      "vol_lots": 4787,
+      "trigger": {
+        "label": "昨高",
+        "price": 71.7,
+        "stop": 70.6,
+        "dist_pct": 1.27
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 73.9,
+          "stop": 72.7,
+          "dist_pct": 4.38
+        },
+        {
+          "label": "月高",
+          "price": 92.3,
+          "stop": 90.9,
+          "dist_pct": 30.37
+        }
+      ]
+    },
+    {
+      "code": "6282",
+      "name": "康舒",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 43.0,
+      "vol_lots": 6342,
+      "trigger": {
+        "label": "週高",
+        "price": 43.55,
+        "stop": 42.85,
+        "dist_pct": 1.28
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 44.2,
+          "stop": 43.5,
+          "dist_pct": 2.79
+        },
+        {
+          "label": "月高",
+          "price": 50.7,
+          "stop": 49.9,
+          "dist_pct": 17.91
+        }
+      ]
+    },
+    {
+      "code": "6510",
+      "name": "精測",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 3475.0,
+      "vol_lots": 1620,
+      "trigger": {
+        "label": "週高",
+        "price": 3520.0,
+        "stop": 3465.0,
+        "dist_pct": 1.29
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 3740.0,
+          "stop": 3680.0,
+          "dist_pct": 7.63
+        }
+      ]
+    },
+    {
+      "code": "5876",
+      "name": "上海商銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 49.25,
+      "vol_lots": 5067,
+      "trigger": {
+        "label": "昨高",
+        "price": 49.9,
+        "stop": 49.15,
+        "dist_pct": 1.32
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 50.0,
+          "stop": 49.25,
+          "dist_pct": 1.52
+        }
+      ]
+    },
+    {
+      "code": "2374",
+      "name": "佳能",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 66.1,
+      "vol_lots": 1404,
+      "trigger": {
+        "label": "昨高",
+        "price": 67.0,
+        "stop": 65.9,
+        "dist_pct": 1.36
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 67.7,
+          "stop": 66.6,
+          "dist_pct": 2.42
+        },
+        {
+          "label": "月高",
+          "price": 73.0,
+          "stop": 71.9,
+          "dist_pct": 10.44
+        }
+      ]
+    },
+    {
+      "code": "3529",
+      "name": "力旺",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 3305.0,
+      "vol_lots": 3389,
+      "trigger": {
+        "label": "昨高",
+        "price": 3350.0,
+        "stop": 3295.0,
+        "dist_pct": 1.36
+      },
+      "upper": []
+    },
+    {
+      "code": "3551",
+      "name": "世禾",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 183.5,
+      "vol_lots": 1313,
+      "trigger": {
+        "label": "昨高",
+        "price": 186.0,
+        "stop": 183.0,
+        "dist_pct": 1.36
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 188.5,
+          "stop": 185.5,
+          "dist_pct": 2.72
+        }
+      ]
+    },
+    {
+      "code": "5425",
+      "name": "台半",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 95.7,
+      "vol_lots": 21317,
+      "trigger": {
+        "label": "昨高",
+        "price": 97.0,
+        "stop": 95.5,
+        "dist_pct": 1.36
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 104.5,
+          "stop": 102.5,
+          "dist_pct": 9.2
+        }
+      ]
+    },
+    {
+      "code": "8926",
+      "name": "台汽電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 58.4,
+      "vol_lots": 1477,
+      "trigger": {
+        "label": "昨高",
+        "price": 59.2,
+        "stop": 58.3,
+        "dist_pct": 1.37
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 59.8,
+          "stop": 58.9,
+          "dist_pct": 2.4
+        },
+        {
+          "label": "月高",
+          "price": 64.3,
+          "stop": 63.3,
+          "dist_pct": 10.1
+        }
+      ]
+    },
+    {
+      "code": "6005",
+      "name": "群益證",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 32.55,
+      "vol_lots": 6495,
+      "trigger": {
+        "label": "昨高",
+        "price": 33.0,
+        "stop": 32.5,
+        "dist_pct": 1.38
+      },
+      "upper": []
+    },
+    {
+      "code": "2548",
+      "name": "華固",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 93.4,
+      "vol_lots": 1152,
+      "trigger": {
+        "label": "昨高",
+        "price": 94.7,
+        "stop": 93.2,
+        "dist_pct": 1.39
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 98.6,
+          "stop": 97.1,
+          "dist_pct": 5.57
+        },
+        {
+          "label": "月高",
+          "price": 99.3,
+          "stop": 97.8,
+          "dist_pct": 6.32
+        }
+      ]
+    },
+    {
+      "code": "6949",
+      "name": "沛爾生醫*-創",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 50.3,
+      "vol_lots": 2871,
+      "trigger": {
+        "label": "昨高",
+        "price": 51.0,
+        "stop": 50.2,
+        "dist_pct": 1.39
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 58.5,
+          "stop": 57.6,
+          "dist_pct": 16.3
+        },
+        {
+          "label": "月高",
+          "price": 1490.0,
+          "stop": 1465.0,
+          "dist_pct": 2862.23
+        }
+      ]
+    },
+    {
+      "code": "3706",
+      "name": "神達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 78.6,
+      "vol_lots": 5866,
+      "trigger": {
+        "label": "昨高",
+        "price": 79.7,
+        "stop": 78.5,
+        "dist_pct": 1.4
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 81.5,
+          "stop": 80.2,
+          "dist_pct": 3.69
+        },
+        {
+          "label": "月高",
+          "price": 85.45,
+          "stop": 84.1,
+          "dist_pct": 8.72
+        }
+      ]
+    },
+    {
+      "code": "6015",
+      "name": "宏遠證",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 17.85,
+      "vol_lots": 2361,
+      "trigger": {
+        "label": "昨高",
+        "price": 18.1,
+        "stop": 17.8,
+        "dist_pct": 1.4
+      },
+      "upper": []
+    },
+    {
+      "code": "1308",
+      "name": "亞聚",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 14.2,
+      "vol_lots": 1055,
+      "trigger": {
+        "label": "昨高",
+        "price": 14.4,
+        "stop": 14.15,
+        "dist_pct": 1.41
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 14.45,
+          "stop": 14.2,
+          "dist_pct": 1.76
+        },
+        {
+          "label": "月高",
+          "price": 14.5,
+          "stop": 14.25,
+          "dist_pct": 2.11
+        }
+      ]
+    },
+    {
+      "code": "3031",
+      "name": "佰鴻",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 28.3,
+      "vol_lots": 3343,
+      "trigger": {
+        "label": "週高",
+        "price": 28.7,
+        "stop": 28.25,
+        "dist_pct": 1.41
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 29.3,
+          "stop": 28.85,
+          "dist_pct": 3.53
+        }
+      ]
+    },
+    {
+      "code": "3576",
+      "name": "聯合再生",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 17.75,
+      "vol_lots": 11348,
+      "trigger": {
+        "label": "昨高",
+        "price": 18.0,
+        "stop": 17.7,
+        "dist_pct": 1.41
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 18.4,
+          "stop": 18.1,
+          "dist_pct": 3.66
+        }
+      ]
+    },
+    {
+      "code": "2501",
+      "name": "國建",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 21.2,
+      "vol_lots": 2991,
+      "trigger": {
+        "label": "昨高",
+        "price": 21.5,
+        "stop": 21.15,
+        "dist_pct": 1.42
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 22.85,
+          "stop": 22.5,
+          "dist_pct": 7.78
+        },
+        {
+          "label": "月高",
+          "price": 23.5,
+          "stop": 23.1,
+          "dist_pct": 10.85
+        }
+      ]
+    },
+    {
+      "code": "2845",
+      "name": "遠東銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 13.35,
+      "vol_lots": 6735,
+      "trigger": {
+        "label": "月高",
+        "price": 13.54,
+        "stop": 13.3,
+        "dist_pct": 1.42
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 13.55,
+          "stop": 13.3,
+          "dist_pct": 1.5
+        },
+        {
+          "label": "週高",
+          "price": 13.85,
+          "stop": 13.6,
+          "dist_pct": 3.75
+        }
+      ]
+    },
+    {
+      "code": "2103",
+      "name": "台橡",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 27.9,
+      "vol_lots": 4459,
+      "trigger": {
+        "label": "昨高",
+        "price": 28.3,
+        "stop": 27.85,
+        "dist_pct": 1.43
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 28.45,
+          "stop": 28.0,
+          "dist_pct": 1.97
+        },
+        {
+          "label": "月高",
+          "price": 28.95,
+          "stop": 28.5,
+          "dist_pct": 3.76
+        }
+      ]
+    },
+    {
+      "code": "2890",
+      "name": "永豐金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 45.05,
+      "vol_lots": 20245,
+      "trigger": {
+        "label": "昨高",
+        "price": 45.7,
+        "stop": 45.0,
+        "dist_pct": 1.44
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 46.3,
+          "stop": 45.6,
+          "dist_pct": 2.77
+        }
+      ]
+    },
+    {
+      "code": "4916",
+      "name": "事欣科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 104.5,
+      "vol_lots": 2918,
+      "trigger": {
+        "label": "昨高",
+        "price": 106.0,
+        "stop": 104.0,
+        "dist_pct": 1.44
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 107.5,
+          "stop": 105.5,
+          "dist_pct": 2.87
+        },
+        {
+          "label": "月高",
+          "price": 111.0,
+          "stop": 109.0,
+          "dist_pct": 6.22
+        }
+      ]
+    },
+    {
+      "code": "3167",
+      "name": "大量",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 890.0,
+      "vol_lots": 6390,
+      "trigger": {
+        "label": "昨高",
+        "price": 903.0,
+        "stop": 889.0,
+        "dist_pct": 1.46
+      },
+      "upper": []
+    },
+    {
+      "code": "1810",
+      "name": "和成",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 23.85,
+      "vol_lots": 1182,
+      "trigger": {
+        "label": "昨高",
+        "price": 24.2,
+        "stop": 23.8,
+        "dist_pct": 1.47
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 24.4,
+          "stop": 24.0,
+          "dist_pct": 2.31
+        },
+        {
+          "label": "月高",
+          "price": 29.0,
+          "stop": 28.55,
+          "dist_pct": 21.59
+        }
+      ]
+    },
+    {
+      "code": "6190",
+      "name": "萬泰科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 68.1,
+      "vol_lots": 1184,
+      "trigger": {
+        "label": "昨高",
+        "price": 69.1,
+        "stop": 68.0,
+        "dist_pct": 1.47
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 69.8,
+          "stop": 68.7,
+          "dist_pct": 2.5
+        },
+        {
+          "label": "月高",
+          "price": 71.4,
+          "stop": 70.3,
+          "dist_pct": 4.85
+        }
+      ]
+    },
+    {
+      "code": "2605",
+      "name": "新興",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 37.05,
+      "vol_lots": 6735,
+      "trigger": {
+        "label": "週高",
+        "price": 37.6,
+        "stop": 37.0,
+        "dist_pct": 1.48
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 37.65,
+          "stop": 37.05,
+          "dist_pct": 1.62
+        },
+        {
+          "label": "月高",
+          "price": 39.2,
+          "stop": 38.6,
+          "dist_pct": 5.8
+        }
+      ]
+    },
+    {
+      "code": "3019",
+      "name": "亞光",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 135.0,
+      "vol_lots": 2496,
+      "trigger": {
+        "label": "昨高",
+        "price": 137.0,
+        "stop": 134.5,
+        "dist_pct": 1.48
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 139.0,
+          "stop": 136.5,
+          "dist_pct": 2.96
+        },
+        {
+          "label": "月高",
+          "price": 145.0,
+          "stop": 142.5,
+          "dist_pct": 7.41
+        }
+      ]
+    },
+    {
+      "code": "5880",
+      "name": "合庫金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 26.75,
+      "vol_lots": 17504,
+      "trigger": {
+        "label": "昨高",
+        "price": 27.15,
+        "stop": 26.7,
+        "dist_pct": 1.5
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 27.6,
+          "stop": 27.15,
+          "dist_pct": 3.18
+        }
+      ]
+    },
+    {
+      "code": "1440",
+      "name": "南紡",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 13.25,
+      "vol_lots": 1615,
+      "trigger": {
+        "label": "昨高",
+        "price": 13.45,
+        "stop": 13.2,
+        "dist_pct": 1.51
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 13.55,
+          "stop": 13.3,
+          "dist_pct": 2.26
+        },
+        {
+          "label": "月高",
+          "price": 14.35,
+          "stop": 14.1,
+          "dist_pct": 8.3
+        }
+      ]
+    },
+    {
+      "code": "8070",
+      "name": "長華*",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 49.55,
+      "vol_lots": 1029,
+      "trigger": {
+        "label": "昨高",
+        "price": 50.3,
+        "stop": 49.5,
+        "dist_pct": 1.51
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 50.7,
+          "stop": 49.9,
+          "dist_pct": 2.32
+        },
+        {
+          "label": "月高",
+          "price": 54.5,
+          "stop": 53.6,
+          "dist_pct": 9.99
+        }
+      ]
+    },
+    {
+      "code": "1905",
+      "name": "華紙",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 13.1,
+      "vol_lots": 1352,
+      "trigger": {
+        "label": "昨高",
+        "price": 13.3,
+        "stop": 13.1,
+        "dist_pct": 1.53
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 13.5,
+          "stop": 13.25,
+          "dist_pct": 3.05
+        },
+        {
+          "label": "月高",
+          "price": 14.0,
+          "stop": 13.75,
+          "dist_pct": 6.87
+        }
+      ]
+    },
+    {
+      "code": "1608",
+      "name": "華榮",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 35.75,
+      "vol_lots": 1888,
+      "trigger": {
+        "label": "昨高",
+        "price": 36.3,
+        "stop": 35.75,
+        "dist_pct": 1.54
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 36.4,
+          "stop": 35.85,
+          "dist_pct": 1.82
+        },
+        {
+          "label": "月高",
+          "price": 39.2,
+          "stop": 38.6,
+          "dist_pct": 9.65
+        }
+      ]
+    },
+    {
+      "code": "3673",
+      "name": "TPK-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 64.8,
+      "vol_lots": 4048,
+      "trigger": {
+        "label": "週高",
+        "price": 65.8,
+        "stop": 64.8,
+        "dist_pct": 1.54
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 67.5,
+          "stop": 66.4,
+          "dist_pct": 4.17
+        },
+        {
+          "label": "月高",
+          "price": 69.5,
+          "stop": 68.4,
+          "dist_pct": 7.25
+        }
+      ]
+    },
+    {
+      "code": "2458",
+      "name": "義隆",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 129.0,
+      "vol_lots": 1320,
+      "trigger": {
+        "label": "昨高",
+        "price": 131.0,
+        "stop": 129.0,
+        "dist_pct": 1.55
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 132.5,
+          "stop": 130.5,
+          "dist_pct": 2.71
+        },
+        {
+          "label": "月高",
+          "price": 162.5,
+          "stop": 160.0,
+          "dist_pct": 25.97
+        }
+      ]
+    },
+    {
+      "code": "6026",
+      "name": "福邦證",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 15.95,
+      "vol_lots": 1784,
+      "trigger": {
+        "label": "昨高",
+        "price": 16.2,
+        "stop": 15.95,
+        "dist_pct": 1.57
+      },
+      "upper": []
+    },
+    {
+      "code": "1809",
+      "name": "中釉",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.25,
+      "vol_lots": 6807,
+      "trigger": {
+        "label": "昨高",
+        "price": 41.9,
+        "stop": 41.25,
+        "dist_pct": 1.58
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 43.95,
+          "stop": 43.25,
+          "dist_pct": 6.55
+        }
+      ]
+    },
+    {
+      "code": "1815",
+      "name": "富喬",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 120.0,
+      "vol_lots": 32612,
+      "trigger": {
+        "label": "月高",
+        "price": 121.9,
+        "stop": 120.0,
+        "dist_pct": 1.58
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 124.5,
+          "stop": 122.5,
+          "dist_pct": 3.75
+        },
+        {
+          "label": "週高",
+          "price": 127.0,
+          "stop": 125.0,
+          "dist_pct": 5.83
+        }
+      ]
+    },
+    {
+      "code": "2034",
+      "name": "允強",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 22.0,
+      "vol_lots": 3451,
+      "trigger": {
+        "label": "昨高",
+        "price": 22.35,
+        "stop": 22.0,
+        "dist_pct": 1.59
+      },
+      "upper": []
+    },
+    {
+      "code": "3715",
+      "name": "定穎投控",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 125.5,
+      "vol_lots": 8890,
+      "trigger": {
+        "label": "昨高",
+        "price": 127.5,
+        "stop": 125.5,
+        "dist_pct": 1.59
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 129.0,
+          "stop": 127.0,
+          "dist_pct": 2.79
+        }
+      ]
+    },
+    {
+      "code": "2891",
+      "name": "中信金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 68.9,
+      "vol_lots": 20611,
+      "trigger": {
+        "label": "昨高",
+        "price": 70.0,
+        "stop": 68.9,
+        "dist_pct": 1.6
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 72.0,
+          "stop": 70.9,
+          "dist_pct": 4.5
+        }
+      ]
+    },
+    {
+      "code": "2504",
+      "name": "國產",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 31.1,
+      "vol_lots": 1727,
+      "trigger": {
+        "label": "週高",
+        "price": 31.6,
+        "stop": 31.1,
+        "dist_pct": 1.61
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 32.55,
+          "stop": 32.05,
+          "dist_pct": 4.66
+        }
+      ]
+    },
+    {
+      "code": "8215",
+      "name": "明基材",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 27.85,
+      "vol_lots": 2097,
+      "trigger": {
+        "label": "週高",
+        "price": 28.3,
+        "stop": 27.85,
+        "dist_pct": 1.62
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 28.8,
+          "stop": 28.35,
+          "dist_pct": 3.41
+        }
+      ]
+    },
+    {
+      "code": "5864",
+      "name": "致和證",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 37.1,
+      "vol_lots": 2296,
+      "trigger": {
+        "label": "昨高",
+        "price": 37.7,
+        "stop": 37.1,
+        "dist_pct": 1.62
+      },
+      "upper": []
+    },
+    {
+      "code": "8068",
+      "name": "全達",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 18.5,
+      "vol_lots": 1689,
+      "trigger": {
+        "label": "月高",
+        "price": 18.8,
+        "stop": 18.5,
+        "dist_pct": 1.62
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 18.95,
+          "stop": 18.65,
+          "dist_pct": 2.43
+        }
+      ]
+    },
+    {
+      "code": "1304",
+      "name": "台聚",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 12.25,
+      "vol_lots": 1439,
+      "trigger": {
+        "label": "昨高",
+        "price": 12.45,
+        "stop": 12.25,
+        "dist_pct": 1.63
+      },
+      "upper": [
+        {
+          "label": "週高/月高",
+          "price": 12.65,
+          "stop": 12.45,
+          "dist_pct": 3.27
+        }
+      ]
+    },
+    {
+      "code": "6196",
+      "name": "帆宣",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 549.0,
+      "vol_lots": 1774,
+      "trigger": {
+        "label": "昨高",
+        "price": 558.0,
+        "stop": 549.0,
+        "dist_pct": 1.64
+      },
+      "upper": []
+    },
+    {
+      "code": "1313",
+      "name": "聯成",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 12.15,
+      "vol_lots": 2036,
+      "trigger": {
+        "label": "月高",
+        "price": 12.35,
+        "stop": 12.15,
+        "dist_pct": 1.65
+      },
+      "upper": [
+        {
+          "label": "昨高/週高",
+          "price": 12.4,
+          "stop": 12.2,
+          "dist_pct": 2.06
+        }
+      ]
+    },
+    {
+      "code": "2838",
+      "name": "聯邦銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 21.2,
+      "vol_lots": 1599,
+      "trigger": {
+        "label": "昨高",
+        "price": 21.55,
+        "stop": 21.2,
+        "dist_pct": 1.65
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 21.9,
+          "stop": 21.55,
+          "dist_pct": 3.3
+        }
+      ]
+    },
+    {
+      "code": "6669",
+      "name": "緯穎",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 2105.0,
+      "vol_lots": 2904,
+      "trigger": {
+        "label": "昨高",
+        "price": 2140.0,
+        "stop": 2105.0,
+        "dist_pct": 1.66
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 2345.0,
+          "stop": 2305.0,
+          "dist_pct": 11.4
+        },
+        {
+          "label": "月高",
+          "price": 2467.48,
+          "stop": 2430.0,
+          "dist_pct": 17.22
+        }
+      ]
+    },
+    {
+      "code": "8261",
+      "name": "富鼎",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 180.5,
+      "vol_lots": 3534,
+      "trigger": {
+        "label": "昨高",
+        "price": 183.5,
+        "stop": 180.5,
+        "dist_pct": 1.66
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 210.5,
+          "stop": 207.0,
+          "dist_pct": 16.62
+        }
+      ]
+    },
+    {
+      "code": "2515",
+      "name": "中工",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 11.95,
+      "vol_lots": 6074,
+      "trigger": {
+        "label": "昨高",
+        "price": 12.15,
+        "stop": 11.95,
+        "dist_pct": 1.67
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 12.4,
+          "stop": 12.2,
+          "dist_pct": 3.77
+        },
+        {
+          "label": "週高",
+          "price": 12.5,
+          "stop": 12.3,
+          "dist_pct": 4.6
+        }
+      ]
+    },
+    {
+      "code": "3033",
+      "name": "威健",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.6,
+      "vol_lots": 3229,
+      "trigger": {
+        "label": "週高",
+        "price": 42.3,
+        "stop": 41.65,
+        "dist_pct": 1.68
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 42.8,
+          "stop": 42.15,
+          "dist_pct": 2.88
+        },
+        {
+          "label": "月高",
+          "price": 52.8,
+          "stop": 52.0,
+          "dist_pct": 26.92
+        }
+      ]
+    },
+    {
+      "code": "8210",
+      "name": "勤誠",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 892.0,
+      "vol_lots": 1254,
+      "trigger": {
+        "label": "週高",
+        "price": 907.0,
+        "stop": 893.0,
+        "dist_pct": 1.68
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 912.0,
+          "stop": 898.0,
+          "dist_pct": 2.24
+        },
+        {
+          "label": "月高",
+          "price": 1265.0,
+          "stop": 1245.0,
+          "dist_pct": 41.82
+        }
+      ]
+    },
+    {
+      "code": "4931",
+      "name": "新盛力",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 238.5,
+      "vol_lots": 1522,
+      "trigger": {
+        "label": "昨高",
+        "price": 242.5,
+        "stop": 238.5,
+        "dist_pct": 1.68
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 243.0,
+          "stop": 239.0,
+          "dist_pct": 1.89
+        },
+        {
+          "label": "月高",
+          "price": 288.0,
+          "stop": 283.5,
+          "dist_pct": 20.75
+        }
+      ]
+    },
+    {
+      "code": "1717",
+      "name": "長興",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 71.1,
+      "vol_lots": 4971,
+      "trigger": {
+        "label": "昨高",
+        "price": 72.3,
+        "stop": 71.2,
+        "dist_pct": 1.69
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 72.5,
+          "stop": 71.4,
+          "dist_pct": 1.97
+        },
+        {
+          "label": "月高",
+          "price": 84.5,
+          "stop": 83.2,
+          "dist_pct": 18.85
+        }
+      ]
+    },
+    {
+      "code": "6446",
+      "name": "藥華藥",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 1175.0,
+      "vol_lots": 2241,
+      "trigger": {
+        "label": "昨高",
+        "price": 1195.0,
+        "stop": 1175.0,
+        "dist_pct": 1.7
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 1280.0,
+          "stop": 1260.0,
+          "dist_pct": 8.94
+        },
+        {
+          "label": "月高",
+          "price": 1645.0,
+          "stop": 1620.0,
+          "dist_pct": 40.0
+        }
+      ]
+    },
+    {
+      "code": "3260",
+      "name": "威剛",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 383.0,
+      "vol_lots": 3408,
+      "trigger": {
+        "label": "昨高",
+        "price": 389.5,
+        "stop": 383.5,
+        "dist_pct": 1.7
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 405.5,
+          "stop": 399.0,
+          "dist_pct": 5.87
+        },
+        {
+          "label": "月高",
+          "price": 459.5,
+          "stop": 452.5,
+          "dist_pct": 19.97
+        }
+      ]
+    },
+    {
+      "code": "2352",
+      "name": "佳世達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 29.0,
+      "vol_lots": 3003,
+      "trigger": {
+        "label": "週高",
+        "price": 29.5,
+        "stop": 29.05,
+        "dist_pct": 1.72
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 29.7,
+          "stop": 29.25,
+          "dist_pct": 2.41
+        },
+        {
+          "label": "月高",
+          "price": 30.15,
+          "stop": 29.65,
+          "dist_pct": 3.97
+        }
+      ]
+    },
+    {
+      "code": "2885",
+      "name": "元大金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 69.6,
+      "vol_lots": 17814,
+      "trigger": {
+        "label": "週高",
+        "price": 70.8,
+        "stop": 69.7,
+        "dist_pct": 1.72
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 71.3,
+          "stop": 70.2,
+          "dist_pct": 2.44
+        }
+      ]
+    },
+    {
+      "code": "6182",
+      "name": "合晶",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 115.5,
+      "vol_lots": 117147,
+      "trigger": {
+        "label": "週高",
+        "price": 117.5,
+        "stop": 115.5,
+        "dist_pct": 1.73
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 125.0,
+          "stop": 123.0,
+          "dist_pct": 8.23
+        },
+        {
+          "label": "月高",
+          "price": 131.0,
+          "stop": 129.0,
+          "dist_pct": 13.42
+        }
+      ]
+    },
+    {
+      "code": "2880",
+      "name": "華南金",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 45.8,
+      "vol_lots": 12822,
+      "trigger": {
+        "label": "昨高",
+        "price": 46.6,
+        "stop": 45.9,
+        "dist_pct": 1.75
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 48.3,
+          "stop": 47.55,
+          "dist_pct": 5.46
+        }
+      ]
+    },
+    {
+      "code": "8271",
+      "name": "宇瞻",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 200.5,
+      "vol_lots": 1098,
+      "trigger": {
+        "label": "昨高",
+        "price": 204.0,
+        "stop": 200.5,
+        "dist_pct": 1.75
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 214.5,
+          "stop": 211.0,
+          "dist_pct": 6.98
+        },
+        {
+          "label": "月高",
+          "price": 249.5,
+          "stop": 245.5,
+          "dist_pct": 24.44
+        }
+      ]
+    },
+    {
+      "code": "2634",
+      "name": "漢翔",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 62.5,
+      "vol_lots": 4930,
+      "trigger": {
+        "label": "昨高",
+        "price": 63.6,
+        "stop": 62.6,
+        "dist_pct": 1.76
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 65.3,
+          "stop": 64.3,
+          "dist_pct": 4.48
+        },
+        {
+          "label": "月高",
+          "price": 76.5,
+          "stop": 75.3,
+          "dist_pct": 22.4
+        }
+      ]
+    },
+    {
+      "code": "6153",
+      "name": "嘉聯益",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 17.05,
+      "vol_lots": 2156,
+      "trigger": {
+        "label": "昨高",
+        "price": 17.35,
+        "stop": 17.05,
+        "dist_pct": 1.76
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 17.55,
+          "stop": 17.25,
+          "dist_pct": 2.93
+        },
+        {
+          "label": "月高",
+          "price": 18.4,
+          "stop": 18.1,
+          "dist_pct": 7.92
+        }
+      ]
+    },
+    {
+      "code": "3042",
+      "name": "晶技",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 198.0,
+      "vol_lots": 33267,
+      "trigger": {
+        "label": "昨高",
+        "price": 201.5,
+        "stop": 198.0,
+        "dist_pct": 1.77
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 202.0,
+          "stop": 198.5,
+          "dist_pct": 2.02
+        }
+      ]
+    },
+    {
+      "code": "3189",
+      "name": "景碩",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 906.0,
+      "vol_lots": 29744,
+      "trigger": {
+        "label": "昨高",
+        "price": 922.0,
+        "stop": 908.0,
+        "dist_pct": 1.77
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 960.0,
+          "stop": 945.0,
+          "dist_pct": 5.96
+        }
+      ]
+    },
+    {
+      "code": "2392",
+      "name": "正崴",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 42.15,
+      "vol_lots": 2255,
+      "trigger": {
+        "label": "週高",
+        "price": 42.9,
+        "stop": 42.25,
+        "dist_pct": 1.78
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 43.1,
+          "stop": 42.45,
+          "dist_pct": 2.25
+        },
+        {
+          "label": "月高",
+          "price": 48.6,
+          "stop": 47.85,
+          "dist_pct": 15.3
+        }
+      ]
+    },
+    {
+      "code": "6693",
+      "name": "廣閎科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 197.0,
+      "vol_lots": 2978,
+      "trigger": {
+        "label": "月高",
+        "price": 200.5,
+        "stop": 197.0,
+        "dist_pct": 1.78
+      },
+      "upper": []
+    },
+    {
+      "code": "2383",
+      "name": "台光電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 5020.0,
+      "vol_lots": 2451,
+      "trigger": {
+        "label": "昨高",
+        "price": 5110.0,
+        "stop": 5030.0,
+        "dist_pct": 1.79
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 5395.0,
+          "stop": 5310.0,
+          "dist_pct": 7.47
+        },
+        {
+          "label": "月高",
+          "price": 6470.0,
+          "stop": 6370.0,
+          "dist_pct": 28.88
+        }
+      ]
+    },
+    {
+      "code": "6443",
+      "name": "元晶",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 27.7,
+      "vol_lots": 10047,
+      "trigger": {
+        "label": "昨高",
+        "price": 28.2,
+        "stop": 27.75,
+        "dist_pct": 1.81
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 28.8,
+          "stop": 28.35,
+          "dist_pct": 3.97
+        }
+      ]
+    },
+    {
+      "code": "6870",
+      "name": "騰雲",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 328.5,
+      "vol_lots": 1140,
+      "trigger": {
+        "label": "週高",
+        "price": 334.5,
+        "stop": 329.0,
+        "dist_pct": 1.83
+      },
+      "upper": []
+    },
+    {
+      "code": "1721",
+      "name": "國慶科技",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 24.4,
+      "vol_lots": 1263,
+      "trigger": {
+        "label": "昨高",
+        "price": 24.85,
+        "stop": 24.45,
+        "dist_pct": 1.84
+      },
+      "upper": []
+    },
+    {
+      "code": "3443",
+      "name": "創意",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 8385.0,
+      "vol_lots": 2108,
+      "trigger": {
+        "label": "昨高",
+        "price": 8540.0,
+        "stop": 8410.0,
+        "dist_pct": 1.85
+      },
+      "upper": []
+    },
+    {
+      "code": "6016",
+      "name": "康和證",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 23.8,
+      "vol_lots": 5026,
+      "trigger": {
+        "label": "昨高",
+        "price": 24.25,
+        "stop": 23.85,
+        "dist_pct": 1.89
+      },
+      "upper": []
+    },
+    {
+      "code": "3149",
+      "name": "正達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 63.2,
+      "vol_lots": 3691,
+      "trigger": {
+        "label": "週高",
+        "price": 64.4,
+        "stop": 63.4,
+        "dist_pct": 1.9
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 65.8,
+          "stop": 64.8,
+          "dist_pct": 4.11
+        },
+        {
+          "label": "月高",
+          "price": 72.0,
+          "stop": 70.9,
+          "dist_pct": 13.92
+        }
+      ]
+    },
+    {
+      "code": "6139",
+      "name": "亞翔",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 736.0,
+      "vol_lots": 3750,
+      "trigger": {
+        "label": "昨高",
+        "price": 750.0,
+        "stop": 738.0,
+        "dist_pct": 1.9
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 840.0,
+          "stop": 827.0,
+          "dist_pct": 14.13
+        }
+      ]
+    },
+    {
+      "code": "6962",
+      "name": "奕力-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 31.55,
+      "vol_lots": 1161,
+      "trigger": {
+        "label": "昨高",
+        "price": 32.15,
+        "stop": 31.65,
+        "dist_pct": 1.9
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 34.75,
+          "stop": 34.2,
+          "dist_pct": 10.14
+        }
+      ]
+    },
+    {
+      "code": "6620",
+      "name": "漢達",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 130.0,
+      "vol_lots": 2875,
+      "trigger": {
+        "label": "昨高",
+        "price": 132.5,
+        "stop": 130.5,
+        "dist_pct": 1.92
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 155.0,
+          "stop": 152.5,
+          "dist_pct": 19.23
+        }
+      ]
+    },
+    {
+      "code": "3714",
+      "name": "富采",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 67.5,
+      "vol_lots": 12388,
+      "trigger": {
+        "label": "週高",
+        "price": 68.8,
+        "stop": 67.7,
+        "dist_pct": 1.93
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 69.4,
+          "stop": 68.3,
+          "dist_pct": 2.81
+        }
+      ]
+    },
+    {
+      "code": "2408",
+      "name": "南亞科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 515.0,
+      "vol_lots": 62507,
+      "trigger": {
+        "label": "週高",
+        "price": 525.0,
+        "stop": 517.0,
+        "dist_pct": 1.94
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 526.0,
+          "stop": 518.0,
+          "dist_pct": 2.14
+        },
+        {
+          "label": "月高",
+          "price": 569.0,
+          "stop": 560.0,
+          "dist_pct": 10.49
+        }
+      ]
+    },
+    {
+      "code": "3032",
+      "name": "偉訓",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 82.0,
+      "vol_lots": 1734,
+      "trigger": {
+        "label": "昨高",
+        "price": 83.6,
+        "stop": 82.3,
+        "dist_pct": 1.95
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 88.1,
+          "stop": 86.7,
+          "dist_pct": 7.44
+        }
+      ]
+    },
+    {
+      "code": "2834",
+      "name": "臺企銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 17.9,
+      "vol_lots": 37735,
+      "trigger": {
+        "label": "昨高",
+        "price": 18.25,
+        "stop": 17.95,
+        "dist_pct": 1.96
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 18.8,
+          "stop": 18.5,
+          "dist_pct": 5.03
+        }
+      ]
+    },
+    {
+      "code": "2801",
+      "name": "彰銀",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 27.85,
+      "vol_lots": 32125,
+      "trigger": {
+        "label": "昨高",
+        "price": 28.4,
+        "stop": 27.95,
+        "dist_pct": 1.97
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 29.75,
+          "stop": 29.3,
+          "dist_pct": 6.82
+        }
+      ]
+    },
+    {
+      "code": "6112",
+      "name": "邁達特",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 48.2,
+      "vol_lots": 1104,
+      "trigger": {
+        "label": "昨高",
+        "price": 49.15,
+        "stop": 48.4,
+        "dist_pct": 1.97
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 53.1,
+          "stop": 52.3,
+          "dist_pct": 10.17
+        }
+      ]
+    },
+    {
+      "code": "3312",
+      "name": "弘憶股",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 50.5,
+      "vol_lots": 3331,
+      "trigger": {
+        "label": "週高",
+        "price": 51.5,
+        "stop": 50.7,
+        "dist_pct": 1.98
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 53.3,
+          "stop": 52.5,
+          "dist_pct": 5.54
+        },
+        {
+          "label": "月高",
+          "price": 57.7,
+          "stop": 56.8,
+          "dist_pct": 14.26
+        }
+      ]
+    },
+    {
+      "code": "5439",
+      "name": "高技",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 253.0,
+      "vol_lots": 1280,
+      "trigger": {
+        "label": "昨高",
+        "price": 258.0,
+        "stop": 254.0,
+        "dist_pct": 1.98
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 279.5,
+          "stop": 275.0,
+          "dist_pct": 10.47
+        }
+      ]
+    },
+    {
+      "code": "6742",
+      "name": "澤米",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 55.2,
+      "vol_lots": 3936,
+      "trigger": {
+        "label": "週高",
+        "price": 56.3,
+        "stop": 55.4,
+        "dist_pct": 1.99
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 57.8,
+          "stop": 56.9,
+          "dist_pct": 4.71
+        }
+      ]
+    },
+    {
+      "code": "2609",
+      "name": "陽明",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 59.9,
+      "vol_lots": 27683,
+      "trigger": {
+        "label": "昨高",
+        "price": 61.1,
+        "stop": 60.1,
+        "dist_pct": 2.0
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 63.1,
+          "stop": 62.1,
+          "dist_pct": 5.34
+        },
+        {
+          "label": "月高",
+          "price": 67.3,
+          "stop": 66.2,
+          "dist_pct": 12.35
+        }
+      ]
+    },
+    {
+      "code": "4958",
+      "name": "臻鼎-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 473.0,
+      "vol_lots": 39517,
+      "trigger": {
+        "label": "昨高",
+        "price": 482.5,
+        "stop": 475.0,
+        "dist_pct": 2.01
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 504.0,
+          "stop": 496.0,
+          "dist_pct": 6.55
+        },
+        {
+          "label": "月高",
+          "price": 522.0,
+          "stop": 514.0,
+          "dist_pct": 10.36
+        }
+      ]
+    },
+    {
+      "code": "3105",
+      "name": "穩懋",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 497.0,
+      "vol_lots": 27447,
+      "trigger": {
+        "label": "週高",
+        "price": 507.0,
+        "stop": 499.0,
+        "dist_pct": 2.01
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 518.0,
+          "stop": 510.0,
+          "dist_pct": 4.23
+        }
+      ]
+    },
+    {
+      "code": "4967",
+      "name": "十銓",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 272.0,
+      "vol_lots": 1216,
+      "trigger": {
+        "label": "昨高",
+        "price": 277.5,
+        "stop": 273.0,
+        "dist_pct": 2.02
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 278.0,
+          "stop": 273.5,
+          "dist_pct": 2.21
+        },
+        {
+          "label": "月高",
+          "price": 291.5,
+          "stop": 287.0,
+          "dist_pct": 7.17
+        }
+      ]
+    },
+    {
+      "code": "6257",
+      "name": "矽格",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 247.0,
+      "vol_lots": 15500,
+      "trigger": {
+        "label": "昨高",
+        "price": 252.0,
+        "stop": 248.0,
+        "dist_pct": 2.02
+      },
+      "upper": []
+    },
+    {
+      "code": "3045",
+      "name": "台灣大",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 123.0,
+      "vol_lots": 6841,
+      "trigger": {
+        "label": "週高",
+        "price": 125.5,
+        "stop": 123.5,
+        "dist_pct": 2.03
+      },
+      "upper": []
+    },
+    {
+      "code": "2498",
+      "name": "宏達電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 41.65,
+      "vol_lots": 24654,
+      "trigger": {
+        "label": "月高",
+        "price": 42.5,
+        "stop": 41.85,
+        "dist_pct": 2.04
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 44.0,
+          "stop": 43.3,
+          "dist_pct": 5.64
+        }
+      ]
+    },
+    {
+      "code": "6177",
+      "name": "達麗",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 46.5,
+      "vol_lots": 1269,
+      "trigger": {
+        "label": "昨高",
+        "price": 47.45,
+        "stop": 46.7,
+        "dist_pct": 2.04
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 49.5,
+          "stop": 48.75,
+          "dist_pct": 6.45
+        },
+        {
+          "label": "週高",
+          "price": 50.4,
+          "stop": 49.6,
+          "dist_pct": 8.39
+        }
+      ]
+    },
+    {
+      "code": "8932",
+      "name": "智通*",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 93.2,
+      "vol_lots": 1070,
+      "trigger": {
+        "label": "昨高",
+        "price": 95.1,
+        "stop": 93.6,
+        "dist_pct": 2.04
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 99.4,
+          "stop": 97.9,
+          "dist_pct": 6.65
+        }
+      ]
+    },
+    {
+      "code": "6186",
+      "name": "新潤",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 29.2,
+      "vol_lots": 1064,
+      "trigger": {
+        "label": "昨高",
+        "price": 29.8,
+        "stop": 29.35,
+        "dist_pct": 2.05
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 31.3,
+          "stop": 30.8,
+          "dist_pct": 7.19
+        },
+        {
+          "label": "月高",
+          "price": 42.5,
+          "stop": 41.85,
+          "dist_pct": 45.55
+        }
+      ]
+    },
+    {
+      "code": "3236",
+      "name": "千如",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 43.7,
+      "vol_lots": 1108,
+      "trigger": {
+        "label": "昨高",
+        "price": 44.6,
+        "stop": 43.9,
+        "dist_pct": 2.06
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 44.7,
+          "stop": 44.0,
+          "dist_pct": 2.29
+        },
+        {
+          "label": "月高",
+          "price": 49.0,
+          "stop": 48.25,
+          "dist_pct": 12.13
+        }
+      ]
+    },
+    {
+      "code": "6187",
+      "name": "萬潤",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 1205.0,
+      "vol_lots": 1493,
+      "trigger": {
+        "label": "昨高",
+        "price": 1230.0,
+        "stop": 1210.0,
+        "dist_pct": 2.07
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 1270.0,
+          "stop": 1250.0,
+          "dist_pct": 5.39
+        },
+        {
+          "label": "月高",
+          "price": 1455.0,
+          "stop": 1430.0,
+          "dist_pct": 20.75
+        }
+      ]
+    },
+    {
+      "code": "8033",
+      "name": "雷虎",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 168.5,
+      "vol_lots": 1446,
+      "trigger": {
+        "label": "昨高",
+        "price": 172.0,
+        "stop": 169.0,
+        "dist_pct": 2.08
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 177.5,
+          "stop": 174.5,
+          "dist_pct": 5.34
+        },
+        {
+          "label": "月高",
+          "price": 213.5,
+          "stop": 210.0,
+          "dist_pct": 26.71
+        }
+      ]
+    },
+    {
+      "code": "8040",
+      "name": "九暘",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 91.1,
+      "vol_lots": 7076,
+      "trigger": {
+        "label": "昨高",
+        "price": 93.0,
+        "stop": 91.6,
+        "dist_pct": 2.09
+      },
+      "upper": []
+    },
+    {
+      "code": "2329",
+      "name": "華泰",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 44.35,
+      "vol_lots": 4444,
+      "trigger": {
+        "label": "昨高",
+        "price": 45.3,
+        "stop": 44.6,
+        "dist_pct": 2.14
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 46.2,
+          "stop": 45.5,
+          "dist_pct": 4.17
+        }
+      ]
+    },
+    {
+      "code": "2486",
+      "name": "一詮",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 232.0,
+      "vol_lots": 2001,
+      "trigger": {
+        "label": "昨高",
+        "price": 237.0,
+        "stop": 233.0,
+        "dist_pct": 2.16
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 238.5,
+          "stop": 234.5,
+          "dist_pct": 2.8
+        },
+        {
+          "label": "月高",
+          "price": 267.5,
+          "stop": 263.0,
+          "dist_pct": 15.3
+        }
+      ]
+    },
+    {
+      "code": "3543",
+      "name": "州巧",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 46.0,
+      "vol_lots": 1242,
+      "trigger": {
+        "label": "昨高",
+        "price": 47.0,
+        "stop": 46.25,
+        "dist_pct": 2.17
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 55.3,
+          "stop": 54.4,
+          "dist_pct": 20.22
+        }
+      ]
+    },
+    {
+      "code": "1605",
+      "name": "華新",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 36.65,
+      "vol_lots": 11375,
+      "trigger": {
+        "label": "昨高",
+        "price": 37.45,
+        "stop": 36.85,
+        "dist_pct": 2.18
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 37.55,
+          "stop": 36.95,
+          "dist_pct": 2.46
+        },
+        {
+          "label": "月高",
+          "price": 41.0,
+          "stop": 40.35,
+          "dist_pct": 11.87
+        }
+      ]
+    },
+    {
+      "code": "3324",
+      "name": "雙鴻",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 1595.0,
+      "vol_lots": 4107,
+      "trigger": {
+        "label": "昨高",
+        "price": 1630.0,
+        "stop": 1605.0,
+        "dist_pct": 2.19
+      },
+      "upper": []
+    },
+    {
+      "code": "6834",
+      "name": "天二科技",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 113.5,
+      "vol_lots": 5501,
+      "trigger": {
+        "label": "月高",
+        "price": 116.0,
+        "stop": 114.0,
+        "dist_pct": 2.2
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 116.5,
+          "stop": 114.5,
+          "dist_pct": 2.64
+        }
+      ]
+    },
+    {
+      "code": "2332",
+      "name": "友訊",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 20.4,
+      "vol_lots": 12406,
+      "trigger": {
+        "label": "昨高",
+        "price": 20.85,
+        "stop": 20.5,
+        "dist_pct": 2.21
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 24.95,
+          "stop": 24.55,
+          "dist_pct": 22.3
+        }
+      ]
+    },
+    {
+      "code": "3630",
+      "name": "新鉅科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 27.05,
+      "vol_lots": 1636,
+      "trigger": {
+        "label": "月高",
+        "price": 27.65,
+        "stop": 27.2,
+        "dist_pct": 2.22
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 27.95,
+          "stop": 27.5,
+          "dist_pct": 3.33
+        }
+      ]
+    },
+    {
+      "code": "8431",
+      "name": "匯鑽科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 63.2,
+      "vol_lots": 1100,
+      "trigger": {
+        "label": "昨高",
+        "price": 64.6,
+        "stop": 63.6,
+        "dist_pct": 2.22
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 68.0,
+          "stop": 66.9,
+          "dist_pct": 7.59
+        }
+      ]
+    },
+    {
+      "code": "3661",
+      "name": "世芯-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 3760.0,
+      "vol_lots": 1783,
+      "trigger": {
+        "label": "昨高",
+        "price": 3845.0,
+        "stop": 3785.0,
+        "dist_pct": 2.26
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 4530.0,
+          "stop": 4460.0,
+          "dist_pct": 20.48
+        }
+      ]
+    },
+    {
+      "code": "8064",
+      "name": "東捷",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 133.0,
+      "vol_lots": 4548,
+      "trigger": {
+        "label": "週高",
+        "price": 136.0,
+        "stop": 133.5,
+        "dist_pct": 2.26
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 137.5,
+          "stop": 135.0,
+          "dist_pct": 3.38
+        }
+      ]
+    },
+    {
+      "code": "3376",
+      "name": "新日興",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 176.5,
+      "vol_lots": 1911,
+      "trigger": {
+        "label": "昨高",
+        "price": 180.5,
+        "stop": 177.5,
+        "dist_pct": 2.27
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 187.0,
+          "stop": 184.0,
+          "dist_pct": 5.95
+        },
+        {
+          "label": "月高",
+          "price": 222.0,
+          "stop": 218.5,
+          "dist_pct": 25.78
+        }
+      ]
+    },
+    {
+      "code": "2542",
+      "name": "興富發",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 39.55,
+      "vol_lots": 47140,
+      "trigger": {
+        "label": "昨高",
+        "price": 40.45,
+        "stop": 39.8,
+        "dist_pct": 2.28
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 48.9,
+          "stop": 48.15,
+          "dist_pct": 23.64
+        },
+        {
+          "label": "月高",
+          "price": 49.0,
+          "stop": 48.25,
+          "dist_pct": 23.89
+        }
+      ]
+    },
+    {
+      "code": "3550",
+      "name": "聯穎",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 23.8,
+      "vol_lots": 1003,
+      "trigger": {
+        "label": "昨高",
+        "price": 24.35,
+        "stop": 23.95,
+        "dist_pct": 2.31
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 24.75,
+          "stop": 24.35,
+          "dist_pct": 3.99
+        },
+        {
+          "label": "月高",
+          "price": 25.3,
+          "stop": 24.9,
+          "dist_pct": 6.3
+        }
+      ]
+    },
+    {
+      "code": "2377",
+      "name": "微星",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 151.0,
+      "vol_lots": 6135,
+      "trigger": {
+        "label": "昨高",
+        "price": 154.5,
+        "stop": 152.0,
+        "dist_pct": 2.32
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 157.0,
+          "stop": 154.5,
+          "dist_pct": 3.97
+        },
+        {
+          "label": "月高",
+          "price": 173.5,
+          "stop": 170.5,
+          "dist_pct": 14.9
+        }
+      ]
+    },
+    {
+      "code": "2359",
+      "name": "所羅門",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 128.0,
+      "vol_lots": 1694,
+      "trigger": {
+        "label": "昨高",
+        "price": 131.0,
+        "stop": 129.0,
+        "dist_pct": 2.34
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 135.0,
+          "stop": 132.5,
+          "dist_pct": 5.47
+        },
+        {
+          "label": "月高",
+          "price": 183.0,
+          "stop": 180.0,
+          "dist_pct": 42.97
+        }
+      ]
+    },
+    {
+      "code": "1718",
+      "name": "中纖",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 10.6,
+      "vol_lots": 6181,
+      "trigger": {
+        "label": "昨高",
+        "price": 10.85,
+        "stop": 10.65,
+        "dist_pct": 2.36
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 11.05,
+          "stop": 10.85,
+          "dist_pct": 4.25
+        },
+        {
+          "label": "月高",
+          "price": 11.45,
+          "stop": 11.25,
+          "dist_pct": 8.02
+        }
+      ]
+    },
+    {
+      "code": "2302",
+      "name": "麗正",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 45.75,
+      "vol_lots": 13188,
+      "trigger": {
+        "label": "昨高",
+        "price": 46.85,
+        "stop": 46.1,
+        "dist_pct": 2.4
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 47.85,
+          "stop": 47.1,
+          "dist_pct": 4.59
+        }
+      ]
+    },
+    {
+      "code": "2419",
+      "name": "仲琦",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 29.0,
+      "vol_lots": 1737,
+      "trigger": {
+        "label": "昨高",
+        "price": 29.7,
+        "stop": 29.25,
+        "dist_pct": 2.41
+      },
+      "upper": []
+    },
+    {
+      "code": "4768",
+      "name": "晶呈科技",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 329.0,
+      "vol_lots": 1037,
+      "trigger": {
+        "label": "昨高",
+        "price": 337.0,
+        "stop": 331.5,
+        "dist_pct": 2.43
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 348.0,
+          "stop": 342.5,
+          "dist_pct": 5.78
+        }
+      ]
+    },
+    {
+      "code": "4147",
+      "name": "中裕",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 64.9,
+      "vol_lots": 1717,
+      "trigger": {
+        "label": "昨高",
+        "price": 66.5,
+        "stop": 65.5,
+        "dist_pct": 2.47
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 69.8,
+          "stop": 68.7,
+          "dist_pct": 7.55
+        }
+      ]
+    },
+    {
+      "code": "3704",
+      "name": "合勤控",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 40.3,
+      "vol_lots": 1884,
+      "trigger": {
+        "label": "昨高",
+        "price": 41.3,
+        "stop": 40.65,
+        "dist_pct": 2.48
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 42.4,
+          "stop": 41.75,
+          "dist_pct": 5.21
+        },
+        {
+          "label": "月高",
+          "price": 50.4,
+          "stop": 49.6,
+          "dist_pct": 25.06
+        }
+      ]
+    },
+    {
+      "code": "5328",
+      "name": "華容",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 52.2,
+      "vol_lots": 2271,
+      "trigger": {
+        "label": "昨高",
+        "price": 53.5,
+        "stop": 52.6,
+        "dist_pct": 2.49
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 55.6,
+          "stop": 54.7,
+          "dist_pct": 6.51
+        },
+        {
+          "label": "月高",
+          "price": 73.0,
+          "stop": 71.9,
+          "dist_pct": 39.85
+        }
+      ]
+    },
+    {
+      "code": "2379",
+      "name": "瑞昱",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 761.0,
+      "vol_lots": 4887,
+      "trigger": {
+        "label": "月高",
+        "price": 780.0,
+        "stop": 768.0,
+        "dist_pct": 2.5
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 794.0,
+          "stop": 782.0,
+          "dist_pct": 4.34
+        }
+      ]
+    },
+    {
+      "code": "2316",
+      "name": "楠梓電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 159.0,
+      "vol_lots": 1269,
+      "trigger": {
+        "label": "昨高/週高",
+        "price": 163.0,
+        "stop": 160.5,
+        "dist_pct": 2.52
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 179.0,
+          "stop": 176.0,
+          "dist_pct": 12.58
+        }
+      ]
+    },
+    {
+      "code": "1528",
+      "name": "恩德",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 25.65,
+      "vol_lots": 7327,
+      "trigger": {
+        "label": "週高",
+        "price": 26.3,
+        "stop": 25.9,
+        "dist_pct": 2.53
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 26.4,
+          "stop": 26.0,
+          "dist_pct": 2.92
+        }
+      ]
+    },
+    {
+      "code": "2455",
+      "name": "全新",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 552.0,
+      "vol_lots": 3311,
+      "trigger": {
+        "label": "週高",
+        "price": 566.0,
+        "stop": 557.0,
+        "dist_pct": 2.54
+      },
+      "upper": []
+    },
+    {
+      "code": "5340",
+      "name": "建榮",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 82.0,
+      "vol_lots": 1327,
+      "trigger": {
+        "label": "昨高",
+        "price": 84.1,
+        "stop": 82.8,
+        "dist_pct": 2.56
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 87.0,
+          "stop": 85.6,
+          "dist_pct": 6.1
+        },
+        {
+          "label": "月高",
+          "price": 87.8,
+          "stop": 86.4,
+          "dist_pct": 7.07
+        }
+      ]
+    },
+    {
+      "code": "2393",
+      "name": "億光",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 62.2,
+      "vol_lots": 1595,
+      "trigger": {
+        "label": "昨高",
+        "price": 63.8,
+        "stop": 62.8,
+        "dist_pct": 2.57
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 64.4,
+          "stop": 63.4,
+          "dist_pct": 3.54
+        },
+        {
+          "label": "月高",
+          "price": 67.1,
+          "stop": 66.0,
+          "dist_pct": 7.88
+        }
+      ]
+    },
+    {
+      "code": "2371",
+      "name": "大同",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 29.0,
+      "vol_lots": 9456,
+      "trigger": {
+        "label": "昨高",
+        "price": 29.75,
+        "stop": 29.3,
+        "dist_pct": 2.59
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 29.85,
+          "stop": 29.4,
+          "dist_pct": 2.93
+        },
+        {
+          "label": "月高",
+          "price": 29.9,
+          "stop": 29.45,
+          "dist_pct": 3.1
+        }
+      ]
+    },
+    {
+      "code": "3711",
+      "name": "日月光投控",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 693.0,
+      "vol_lots": 15368,
+      "trigger": {
+        "label": "昨高",
+        "price": 711.0,
+        "stop": 700.0,
+        "dist_pct": 2.6
+      },
+      "upper": []
+    },
+    {
+      "code": "2312",
+      "name": "金寶",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 30.6,
+      "vol_lots": 5951,
+      "trigger": {
+        "label": "昨高",
+        "price": 31.4,
+        "stop": 30.9,
+        "dist_pct": 2.61
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 31.7,
+          "stop": 31.2,
+          "dist_pct": 3.59
+        },
+        {
+          "label": "月高",
+          "price": 34.5,
+          "stop": 33.95,
+          "dist_pct": 12.75
+        }
+      ]
+    },
+    {
+      "code": "2344",
+      "name": "華邦電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 172.5,
+      "vol_lots": 70594,
+      "trigger": {
+        "label": "昨高",
+        "price": 177.0,
+        "stop": 174.0,
+        "dist_pct": 2.61
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 180.0,
+          "stop": 177.0,
+          "dist_pct": 4.35
+        },
+        {
+          "label": "月高",
+          "price": 193.0,
+          "stop": 190.0,
+          "dist_pct": 11.88
+        }
+      ]
+    },
+    {
+      "code": "2356",
+      "name": "英業達",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 61.0,
+      "vol_lots": 14244,
+      "trigger": {
+        "label": "昨高",
+        "price": 62.6,
+        "stop": 61.6,
+        "dist_pct": 2.62
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 62.7,
+          "stop": 61.7,
+          "dist_pct": 2.79
+        },
+        {
+          "label": "月高",
+          "price": 73.5,
+          "stop": 72.3,
+          "dist_pct": 20.49
+        }
+      ]
+    },
+    {
+      "code": "6207",
+      "name": "雷科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 114.0,
+      "vol_lots": 2696,
+      "trigger": {
+        "label": "昨高/月高",
+        "price": 117.0,
+        "stop": 115.0,
+        "dist_pct": 2.63
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 117.5,
+          "stop": 115.5,
+          "dist_pct": 3.07
+        }
+      ]
+    },
+    {
+      "code": "7717",
+      "name": "萊德光電-KY",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 608.0,
+      "vol_lots": 1589,
+      "trigger": {
+        "label": "週高",
+        "price": 624.0,
+        "stop": 614.0,
+        "dist_pct": 2.63
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 631.0,
+          "stop": 621.0,
+          "dist_pct": 3.78
+        }
+      ]
+    },
+    {
+      "code": "6885",
+      "name": "全福生技",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 30.25,
+      "vol_lots": 1898,
+      "trigger": {
+        "label": "昨高",
+        "price": 31.05,
+        "stop": 30.55,
+        "dist_pct": 2.64
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 31.6,
+          "stop": 31.1,
+          "dist_pct": 4.46
+        }
+      ]
+    },
+    {
+      "code": "3234",
+      "name": "光環",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 170.0,
+      "vol_lots": 1466,
+      "trigger": {
+        "label": "昨高",
+        "price": 174.5,
+        "stop": 171.5,
+        "dist_pct": 2.65
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 186.0,
+          "stop": 183.0,
+          "dist_pct": 9.41
+        },
+        {
+          "label": "週高",
+          "price": 194.0,
+          "stop": 191.0,
+          "dist_pct": 14.12
+        }
+      ]
+    },
+    {
+      "code": "6152",
+      "name": "百一",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 15.05,
+      "vol_lots": 1096,
+      "trigger": {
+        "label": "昨高",
+        "price": 15.45,
+        "stop": 15.2,
+        "dist_pct": 2.66
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 15.5,
+          "stop": 15.25,
+          "dist_pct": 2.99
+        },
+        {
+          "label": "月高",
+          "price": 16.5,
+          "stop": 16.25,
+          "dist_pct": 9.63
+        }
+      ]
+    },
+    {
+      "code": "4989",
+      "name": "榮科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 59.9,
+      "vol_lots": 1823,
+      "trigger": {
+        "label": "昨高",
+        "price": 61.5,
+        "stop": 60.5,
+        "dist_pct": 2.67
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 62.5,
+          "stop": 61.5,
+          "dist_pct": 4.34
+        },
+        {
+          "label": "月高",
+          "price": 72.6,
+          "stop": 71.5,
+          "dist_pct": 21.2
+        }
+      ]
+    },
+    {
+      "code": "8105",
+      "name": "凌巨",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 14.9,
+      "vol_lots": 1429,
+      "trigger": {
+        "label": "昨高",
+        "price": 15.3,
+        "stop": 15.05,
+        "dist_pct": 2.68
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 17.45,
+          "stop": 17.15,
+          "dist_pct": 17.11
+        }
+      ]
+    },
+    {
+      "code": "6415",
+      "name": "矽力*-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 426.0,
+      "vol_lots": 1554,
+      "trigger": {
+        "label": "週高",
+        "price": 437.5,
+        "stop": 430.5,
+        "dist_pct": 2.7
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 440.0,
+          "stop": 433.0,
+          "dist_pct": 3.29
+        },
+        {
+          "label": "月高",
+          "price": 511.0,
+          "stop": 503.0,
+          "dist_pct": 19.95
+        }
+      ]
+    },
+    {
+      "code": "8028",
+      "name": "昇陽半導體",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 258.0,
+      "vol_lots": 5523,
+      "trigger": {
+        "label": "昨高",
+        "price": 265.0,
+        "stop": 261.0,
+        "dist_pct": 2.71
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 286.0,
+          "stop": 281.5,
+          "dist_pct": 10.85
+        }
+      ]
+    },
+    {
+      "code": "2436",
+      "name": "偉詮電",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 69.6,
+      "vol_lots": 4087,
+      "trigger": {
+        "label": "昨高",
+        "price": 71.5,
+        "stop": 70.4,
+        "dist_pct": 2.73
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 72.9,
+          "stop": 71.8,
+          "dist_pct": 4.74
+        }
+      ]
+    },
+    {
+      "code": "6290",
+      "name": "良維",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 274.0,
+      "vol_lots": 2282,
+      "trigger": {
+        "label": "昨高",
+        "price": 281.5,
+        "stop": 277.0,
+        "dist_pct": 2.74
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 288.0,
+          "stop": 283.5,
+          "dist_pct": 5.11
+        }
+      ]
+    },
+    {
+      "code": "1326",
+      "name": "台化",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 65.4,
+      "vol_lots": 15805,
+      "trigger": {
+        "label": "昨高",
+        "price": 67.2,
+        "stop": 66.1,
+        "dist_pct": 2.75
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 68.3,
+          "stop": 67.2,
+          "dist_pct": 4.43
+        },
+        {
+          "label": "週高",
+          "price": 70.5,
+          "stop": 69.4,
+          "dist_pct": 7.8
+        }
+      ]
+    },
+    {
+      "code": "4551",
+      "name": "智伸科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 163.5,
+      "vol_lots": 1282,
+      "trigger": {
+        "label": "昨高",
+        "price": 168.0,
+        "stop": 165.0,
+        "dist_pct": 2.75
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 182.0,
+          "stop": 179.0,
+          "dist_pct": 11.31
+        }
+      ]
+    },
+    {
+      "code": "8086",
+      "name": "宏捷科",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 109.0,
+      "vol_lots": 1420,
+      "trigger": {
+        "label": "昨高",
+        "price": 112.0,
+        "stop": 110.0,
+        "dist_pct": 2.75
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 112.5,
+          "stop": 110.5,
+          "dist_pct": 3.21
+        },
+        {
+          "label": "月高",
+          "price": 129.5,
+          "stop": 127.5,
+          "dist_pct": 18.81
+        }
+      ]
+    },
+    {
+      "code": "2399",
+      "name": "映泰",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 47.1,
+      "vol_lots": 2273,
+      "trigger": {
+        "label": "昨高",
+        "price": 48.4,
+        "stop": 47.65,
+        "dist_pct": 2.76
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 49.5,
+          "stop": 48.75,
+          "dist_pct": 5.1
+        },
+        {
+          "label": "週高",
+          "price": 50.8,
+          "stop": 50.0,
+          "dist_pct": 7.86
+        }
+      ]
+    },
+    {
+      "code": "3211",
+      "name": "順達",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 380.0,
+      "vol_lots": 1828,
+      "trigger": {
+        "label": "昨高",
+        "price": 390.5,
+        "stop": 384.5,
+        "dist_pct": 2.76
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 419.0,
+          "stop": 412.5,
+          "dist_pct": 10.26
+        }
+      ]
+    },
+    {
+      "code": "6603",
+      "name": "富強鑫",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 27.2,
+      "vol_lots": 1492,
+      "trigger": {
+        "label": "昨高",
+        "price": 27.95,
+        "stop": 27.5,
+        "dist_pct": 2.76
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 30.0,
+          "stop": 29.55,
+          "dist_pct": 10.29
+        },
+        {
+          "label": "月高",
+          "price": 30.5,
+          "stop": 30.0,
+          "dist_pct": 12.13
+        }
+      ]
+    },
+    {
+      "code": "8131",
+      "name": "福懋科",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 61.4,
+      "vol_lots": 2123,
+      "trigger": {
+        "label": "昨高",
+        "price": 63.1,
+        "stop": 62.1,
+        "dist_pct": 2.77
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 69.5,
+          "stop": 68.4,
+          "dist_pct": 13.19
+        }
+      ]
+    },
+    {
+      "code": "8069",
+      "name": "元太",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 144.0,
+      "vol_lots": 5797,
+      "trigger": {
+        "label": "昨高",
+        "price": 148.0,
+        "stop": 145.5,
+        "dist_pct": 2.78
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 151.0,
+          "stop": 148.5,
+          "dist_pct": 4.86
+        },
+        {
+          "label": "月高",
+          "price": 208.5,
+          "stop": 205.0,
+          "dist_pct": 44.79
+        }
+      ]
+    },
+    {
+      "code": "3563",
+      "name": "牧德",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 753.0,
+      "vol_lots": 2274,
+      "trigger": {
+        "label": "昨高",
+        "price": 774.0,
+        "stop": 762.0,
+        "dist_pct": 2.79
+      },
+      "upper": []
+    },
+    {
+      "code": "2485",
+      "name": "兆赫",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 39.25,
+      "vol_lots": 1555,
+      "trigger": {
+        "label": "昨高",
+        "price": 40.35,
+        "stop": 39.7,
+        "dist_pct": 2.8
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 41.3,
+          "stop": 40.65,
+          "dist_pct": 5.22
+        },
+        {
+          "label": "月高",
+          "price": 45.65,
+          "stop": 44.95,
+          "dist_pct": 16.31
+        }
+      ]
+    },
+    {
+      "code": "6127",
+      "name": "九豪",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 47.95,
+      "vol_lots": 1228,
+      "trigger": {
+        "label": "昨高",
+        "price": 49.3,
+        "stop": 48.55,
+        "dist_pct": 2.82
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 49.7,
+          "stop": 48.95,
+          "dist_pct": 3.65
+        },
+        {
+          "label": "月高",
+          "price": 55.9,
+          "stop": 55.0,
+          "dist_pct": 16.58
+        }
+      ]
+    },
+    {
+      "code": "6488",
+      "name": "環球晶",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 950.0,
+      "vol_lots": 28715,
+      "trigger": {
+        "label": "週高",
+        "price": 977.0,
+        "stop": 962.0,
+        "dist_pct": 2.84
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 1005.0,
+          "stop": 989.0,
+          "dist_pct": 5.79
+        },
+        {
+          "label": "月高",
+          "price": 1120.0,
+          "stop": 1100.0,
+          "dist_pct": 17.89
+        }
+      ]
+    },
+    {
+      "code": "6530",
+      "name": "創威",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 98.7,
+      "vol_lots": 1648,
+      "trigger": {
+        "label": "昨高",
+        "price": 101.5,
+        "stop": 99.9,
+        "dist_pct": 2.84
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 103.0,
+          "stop": 101.0,
+          "dist_pct": 4.36
+        }
+      ]
+    },
+    {
+      "code": "1301",
+      "name": "台塑",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 63.1,
+      "vol_lots": 19144,
+      "trigger": {
+        "label": "昨高",
+        "price": 64.9,
+        "stop": 63.9,
+        "dist_pct": 2.85
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 65.6,
+          "stop": 64.6,
+          "dist_pct": 3.96
+        },
+        {
+          "label": "月高",
+          "price": 66.2,
+          "stop": 65.2,
+          "dist_pct": 4.91
+        }
+      ]
+    },
+    {
+      "code": "1714",
+      "name": "和桐",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 15.8,
+      "vol_lots": 5403,
+      "trigger": {
+        "label": "昨高/週高",
+        "price": 16.25,
+        "stop": 16.0,
+        "dist_pct": 2.85
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 17.55,
+          "stop": 17.25,
+          "dist_pct": 11.08
+        }
+      ]
+    },
+    {
+      "code": "6179",
+      "name": "亞通",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 35.1,
+      "vol_lots": 6285,
+      "trigger": {
+        "label": "昨高",
+        "price": 36.1,
+        "stop": 35.55,
+        "dist_pct": 2.85
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 41.9,
+          "stop": 41.25,
+          "dist_pct": 19.37
+        }
+      ]
+    },
+    {
+      "code": "6265",
+      "name": "方土昶",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 47.2,
+      "vol_lots": 1099,
+      "trigger": {
+        "label": "昨高",
+        "price": 48.55,
+        "stop": 47.8,
+        "dist_pct": 2.86
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 49.7,
+          "stop": 48.95,
+          "dist_pct": 5.3
+        },
+        {
+          "label": "月高",
+          "price": 68.7,
+          "stop": 67.6,
+          "dist_pct": 45.55
+        }
+      ]
+    },
+    {
+      "code": "4714",
+      "name": "永捷",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 12.05,
+      "vol_lots": 1988,
+      "trigger": {
+        "label": "昨高/月高",
+        "price": 12.4,
+        "stop": 12.2,
+        "dist_pct": 2.9
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 12.45,
+          "stop": 12.25,
+          "dist_pct": 3.32
+        }
+      ]
+    },
+    {
+      "code": "2401",
+      "name": "凌陽",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 25.7,
+      "vol_lots": 1862,
+      "trigger": {
+        "label": "昨高",
+        "price": 26.45,
+        "stop": 26.05,
+        "dist_pct": 2.92
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 28.7,
+          "stop": 28.25,
+          "dist_pct": 11.67
+        }
+      ]
+    },
+    {
+      "code": "2478",
+      "name": "大毅",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 119.5,
+      "vol_lots": 1447,
+      "trigger": {
+        "label": "昨高",
+        "price": 123.0,
+        "stop": 121.0,
+        "dist_pct": 2.93
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 124.0,
+          "stop": 122.0,
+          "dist_pct": 3.77
+        },
+        {
+          "label": "月高",
+          "price": 141.0,
+          "stop": 138.5,
+          "dist_pct": 17.99
+        }
+      ]
+    },
+    {
+      "code": "6456",
+      "name": "GIS-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 78.6,
+      "vol_lots": 26940,
+      "trigger": {
+        "label": "昨高",
+        "price": 80.9,
+        "stop": 79.6,
+        "dist_pct": 2.93
+      },
+      "upper": []
+    },
+    {
+      "code": "2337",
+      "name": "旺宏",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 119.0,
+      "vol_lots": 27563,
+      "trigger": {
+        "label": "週高",
+        "price": 122.5,
+        "stop": 120.5,
+        "dist_pct": 2.94
+      },
+      "upper": [
+        {
+          "label": "昨高",
+          "price": 123.5,
+          "stop": 121.5,
+          "dist_pct": 3.78
+        },
+        {
+          "label": "月高",
+          "price": 144.5,
+          "stop": 142.0,
+          "dist_pct": 21.43
+        }
+      ]
+    },
+    {
+      "code": "3034",
+      "name": "聯詠",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 545.0,
+      "vol_lots": 2840,
+      "trigger": {
+        "label": "昨高/週高",
+        "price": 561.0,
+        "stop": 552.0,
+        "dist_pct": 2.94
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 572.0,
+          "stop": 563.0,
+          "dist_pct": 4.95
+        }
+      ]
+    },
+    {
+      "code": "2855",
+      "name": "統一證",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 57.7,
+      "vol_lots": 5736,
+      "trigger": {
+        "label": "昨高",
+        "price": 59.4,
+        "stop": 58.5,
+        "dist_pct": 2.95
+      },
+      "upper": []
+    },
+    {
+      "code": "3029",
+      "name": "零壹",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 118.5,
+      "vol_lots": 1552,
+      "trigger": {
+        "label": "昨高",
+        "price": 122.0,
+        "stop": 120.0,
+        "dist_pct": 2.95
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 126.0,
+          "stop": 124.0,
+          "dist_pct": 6.33
+        }
+      ]
+    },
+    {
+      "code": "3374",
+      "name": "精材",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 472.0,
+      "vol_lots": 17905,
+      "trigger": {
+        "label": "昨高",
+        "price": 486.0,
+        "stop": 478.5,
+        "dist_pct": 2.97
+      },
+      "upper": []
+    },
+    {
+      "code": "8096",
+      "name": "擎亞",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 83.9,
+      "vol_lots": 3153,
+      "trigger": {
+        "label": "昨高",
+        "price": 86.4,
+        "stop": 85.1,
+        "dist_pct": 2.98
+      },
+      "upper": [
+        {
+          "label": "週高",
+          "price": 91.0,
+          "stop": 89.6,
+          "dist_pct": 8.46
+        },
+        {
+          "label": "月高",
+          "price": 141.0,
+          "stop": 138.5,
+          "dist_pct": 68.06
+        }
+      ]
+    },
+    {
+      "code": "4977",
+      "name": "眾達-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 166.5,
+      "vol_lots": 1549,
+      "trigger": {
+        "label": "昨高",
+        "price": 171.5,
+        "stop": 168.5,
+        "dist_pct": 3.0
+      },
+      "upper": [
+        {
+          "label": "月高",
+          "price": 176.1,
+          "stop": 173.0,
+          "dist_pct": 5.77
+        },
+        {
+          "label": "週高",
+          "price": 180.5,
+          "stop": 177.5,
+          "dist_pct": 8.41
+        }
+      ]
+    },
+    {
+      "code": "6933",
+      "name": "AMAX-KY",
+      "market": "上市",
+      "last_date": "2026-09-23",
+      "prev_close": 350.0,
+      "vol_lots": 1319,
+      "trigger": {
+        "label": "週高",
+        "price": 360.5,
+        "stop": 355.0,
+        "dist_pct": 3.0
+      },
+      "upper": []
+    },
+    {
+      "code": "1569",
+      "name": "濱川",
+      "market": "上櫃",
+      "last_date": "2026-09-23",
+      "prev_close": 63.3,
+      "vol_lots": 4444,
+      "trigger": {
+        "label": "昨高",
+        "price": 65.2,
+        "stop": 64.2,
+        "dist_pct": 3.0
+      },
+      "upper": []
+    }
+  ],
+  "missing": [
+    "2413",
+    "2444",
+    "2451",
+    "2454",
+    "2465",
+    "2472",
+    "2491",
+    "2618",
+    "2646",
+    "2820",
+    "2883",
+    "2886",
+    "2913",
+    "3035",
+    "3036",
+    "3062",
+    "3229",
+    "3605",
+    "4927",
+    "4938",
+    "4956",
+    "6269",
+    "6442",
+    "6902",
+    "8110",
+    "8996",
+    "1785",
+    "2221",
+    "3265",
+    "3552",
+    "3615",
+    "3675",
+    "3691",
+    "3718",
+    "4416",
+    "4707",
+    "4951",
+    "6199",
+    "6218",
+    "6274",
+    "7792",
+    "8111"
+  ]
+}

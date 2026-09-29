@@ -1,0 +1,701 @@
+{
+  "generated_at": "2026-09-24 14:42",
+  "market_date": "2026-09-23",
+  "settings": {
+    "min_vol_lots": 1000,
+    "min_price": 10,
+    "only_first_day": false
+  },
+  "scanned": 502,
+  "stocks": [
+    {
+      "code": "1727",
+      "name": "中華化",
+      "market": "上市",
+      "close": 116.5,
+      "chg_pct": 9.91,
+      "vol_lots": 21402,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 106.0
+        },
+        {
+          "kind": "週",
+          "level": 109.5
+        }
+      ],
+      "stop": 103.0,
+      "risk_pct": 11.59
+    },
+    {
+      "code": "6196",
+      "name": "帆宣",
+      "market": "上市",
+      "close": 549.0,
+      "chg_pct": 2.62,
+      "vol_lots": 1774,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 541.0
+        },
+        {
+          "kind": "週",
+          "level": 541.0
+        }
+      ],
+      "stop": 534.0,
+      "risk_pct": 2.73
+    },
+    {
+      "code": "3653",
+      "name": "健策",
+      "market": "上市",
+      "close": 6410.0,
+      "chg_pct": 9.95,
+      "vol_lots": 1526,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 6045.0
+        },
+        {
+          "kind": "週",
+          "level": 5920.0
+        }
+      ],
+      "stop": 5930.0,
+      "risk_pct": 7.49
+    },
+    {
+      "code": "6589",
+      "name": "台康生技",
+      "market": "上市",
+      "close": 53.9,
+      "chg_pct": 3.85,
+      "vol_lots": 1185,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 53.0
+        },
+        {
+          "kind": "週",
+          "level": 52.7
+        }
+      ],
+      "stop": 51.2,
+      "risk_pct": 5.01
+    },
+    {
+      "code": "6456",
+      "name": "GIS-KY",
+      "market": "上市",
+      "close": 78.6,
+      "chg_pct": 6.79,
+      "vol_lots": 26940,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 77.5
+        }
+      ],
+      "stop": 76.5,
+      "risk_pct": 2.67
+    },
+    {
+      "code": "2342",
+      "name": "茂矽",
+      "market": "上市",
+      "close": 46.35,
+      "chg_pct": 9.96,
+      "vol_lots": 11050,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 43.95
+        }
+      ],
+      "stop": 42.45,
+      "risk_pct": 8.41
+    },
+    {
+      "code": "2404",
+      "name": "漢唐",
+      "market": "上市",
+      "close": 1250.0,
+      "chg_pct": 9.65,
+      "vol_lots": 5163,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 1180.0
+        }
+      ],
+      "stop": 1140.0,
+      "risk_pct": 8.8
+    },
+    {
+      "code": "6205",
+      "name": "詮欣",
+      "market": "上市",
+      "close": 72.0,
+      "chg_pct": 9.92,
+      "vol_lots": 4231,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 71.1
+        }
+      ],
+      "stop": 66.1,
+      "risk_pct": 8.19
+    },
+    {
+      "code": "3563",
+      "name": "牧德",
+      "market": "上市",
+      "close": 753.0,
+      "chg_pct": 5.91,
+      "vol_lots": 2274,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 730.0
+        }
+      ],
+      "stop": 715.0,
+      "risk_pct": 5.05
+    },
+    {
+      "code": "1617",
+      "name": "榮星",
+      "market": "上市",
+      "close": 20.15,
+      "chg_pct": 2.81,
+      "vol_lots": 1959,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 19.8
+        }
+      ],
+      "stop": 19.2,
+      "risk_pct": 4.71
+    },
+    {
+      "code": "3294",
+      "name": "英濟",
+      "market": "上櫃",
+      "close": 33.7,
+      "chg_pct": 9.95,
+      "vol_lots": 1286,
+      "signals": [
+        {
+          "kind": "月",
+          "level": 32.65
+        }
+      ],
+      "stop": 32.0,
+      "risk_pct": 5.04
+    },
+    {
+      "code": "1101",
+      "name": "台泥",
+      "market": "上市",
+      "close": 25.65,
+      "chg_pct": 4.48,
+      "vol_lots": 130649,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 24.6
+        }
+      ],
+      "stop": 24.65,
+      "risk_pct": 3.9
+    },
+    {
+      "code": "2317",
+      "name": "鴻海",
+      "market": "上市",
+      "close": 256.0,
+      "chg_pct": 1.19,
+      "vol_lots": 35755,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 253.5
+        }
+      ],
+      "stop": 255.0,
+      "risk_pct": 0.39
+    },
+    {
+      "code": "3042",
+      "name": "晶技",
+      "market": "上市",
+      "close": 198.0,
+      "chg_pct": 7.9,
+      "vol_lots": 33267,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 190.5
+        }
+      ],
+      "stop": 179.0,
+      "risk_pct": 9.6
+    },
+    {
+      "code": "2498",
+      "name": "宏達電",
+      "market": "上市",
+      "close": 41.65,
+      "chg_pct": 3.87,
+      "vol_lots": 24654,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 40.5
+        }
+      ],
+      "stop": 41.4,
+      "risk_pct": 0.6
+    },
+    {
+      "code": "2104",
+      "name": "國際中橡",
+      "market": "上市",
+      "close": 11.65,
+      "chg_pct": 9.91,
+      "vol_lots": 21035,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 10.85
+        }
+      ],
+      "stop": 10.65,
+      "risk_pct": 8.58
+    },
+    {
+      "code": "2368",
+      "name": "金像電",
+      "market": "上市",
+      "close": 1140.0,
+      "chg_pct": 9.62,
+      "vol_lots": 14174,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 1085.0
+        }
+      ],
+      "stop": 1030.0,
+      "risk_pct": 9.65
+    },
+    {
+      "code": "2302",
+      "name": "麗正",
+      "market": "上市",
+      "close": 45.75,
+      "chg_pct": 4.69,
+      "vol_lots": 13188,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 45.55
+        }
+      ],
+      "stop": 43.95,
+      "risk_pct": 3.93
+    },
+    {
+      "code": "2347",
+      "name": "聯強",
+      "market": "上市",
+      "close": 94.5,
+      "chg_pct": 5.12,
+      "vol_lots": 5073,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 90.8
+        }
+      ],
+      "stop": 90.4,
+      "risk_pct": 4.34
+    },
+    {
+      "code": "2208",
+      "name": "台船",
+      "market": "上市",
+      "close": 19.6,
+      "chg_pct": 1.82,
+      "vol_lots": 4445,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 19.25
+        }
+      ],
+      "stop": 19.3,
+      "risk_pct": 1.53
+    },
+    {
+      "code": "6139",
+      "name": "亞翔",
+      "market": "上市",
+      "close": 736.0,
+      "chg_pct": 2.94,
+      "vol_lots": 3750,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 734.0
+        }
+      ],
+      "stop": 720.0,
+      "risk_pct": 2.17
+    },
+    {
+      "code": "8261",
+      "name": "富鼎",
+      "market": "上市",
+      "close": 180.5,
+      "chg_pct": 2.27,
+      "vol_lots": 3534,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 177.0
+        }
+      ],
+      "stop": 175.0,
+      "risk_pct": 3.05
+    },
+    {
+      "code": "3675",
+      "name": "德微",
+      "market": "上櫃",
+      "close": 332.0,
+      "chg_pct": 9.93,
+      "vol_lots": 3336,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 309.5
+        }
+      ],
+      "stop": 307.5,
+      "risk_pct": 7.38
+    },
+    {
+      "code": "6141",
+      "name": "柏承",
+      "market": "上市",
+      "close": 51.8,
+      "chg_pct": 1.97,
+      "vol_lots": 3180,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 51.4
+        }
+      ],
+      "stop": 51.0,
+      "risk_pct": 1.54
+    },
+    {
+      "code": "6426",
+      "name": "統新",
+      "market": "上市",
+      "close": 391.5,
+      "chg_pct": 9.97,
+      "vol_lots": 3159,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 385.0
+        }
+      ],
+      "stop": 357.0,
+      "risk_pct": 8.81
+    },
+    {
+      "code": "6693",
+      "name": "廣閎科",
+      "market": "上櫃",
+      "close": 197.0,
+      "chg_pct": 9.75,
+      "vol_lots": 2978,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 189.0
+        }
+      ],
+      "stop": 180.0,
+      "risk_pct": 8.63
+    },
+    {
+      "code": "3017",
+      "name": "奇鋐",
+      "market": "上市",
+      "close": 3470.0,
+      "chg_pct": 2.36,
+      "vol_lots": 2649,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 3450.0
+        }
+      ],
+      "stop": 3410.0,
+      "risk_pct": 1.73
+    },
+    {
+      "code": "8182",
+      "name": "加高",
+      "market": "上櫃",
+      "close": 40.45,
+      "chg_pct": 1.89,
+      "vol_lots": 2580,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 40.2
+        }
+      ],
+      "stop": 39.3,
+      "risk_pct": 2.84
+    },
+    {
+      "code": "7799",
+      "name": "禾榮科",
+      "market": "上市",
+      "close": 531.0,
+      "chg_pct": 4.53,
+      "vol_lots": 2546,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 524.0
+        }
+      ],
+      "stop": 508.0,
+      "risk_pct": 4.33
+    },
+    {
+      "code": "3693",
+      "name": "營邦",
+      "market": "上櫃",
+      "close": 732.0,
+      "chg_pct": 4.57,
+      "vol_lots": 2429,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 725.0
+        }
+      ],
+      "stop": 705.0,
+      "risk_pct": 3.69
+    },
+    {
+      "code": "2915",
+      "name": "潤泰全",
+      "market": "上市",
+      "close": 60.1,
+      "chg_pct": 1.35,
+      "vol_lots": 2251,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 59.5
+        }
+      ],
+      "stop": 59.3,
+      "risk_pct": 1.33
+    },
+    {
+      "code": "9910",
+      "name": "豐泰",
+      "market": "上市",
+      "close": 70.0,
+      "chg_pct": 2.04,
+      "vol_lots": 1710,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 69.3
+        }
+      ],
+      "stop": 68.9,
+      "risk_pct": 1.57
+    },
+    {
+      "code": "3630",
+      "name": "新鉅科",
+      "market": "上櫃",
+      "close": 27.05,
+      "chg_pct": 4.04,
+      "vol_lots": 1636,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 26.9
+        }
+      ],
+      "stop": 26.05,
+      "risk_pct": 3.7
+    },
+    {
+      "code": "6901",
+      "name": "鑽石投資",
+      "market": "上市",
+      "close": 15.75,
+      "chg_pct": 2.61,
+      "vol_lots": 1535,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 15.5
+        }
+      ],
+      "stop": 15.35,
+      "risk_pct": 2.54
+    },
+    {
+      "code": "5536",
+      "name": "聖暉*",
+      "market": "上櫃",
+      "close": 893.0,
+      "chg_pct": 0.56,
+      "vol_lots": 1349,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 888.0
+        }
+      ],
+      "stop": 883.0,
+      "risk_pct": 1.12
+    },
+    {
+      "code": "3552",
+      "name": "同致",
+      "market": "上櫃",
+      "close": 43.05,
+      "chg_pct": 9.96,
+      "vol_lots": 1289,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 42.1
+        }
+      ],
+      "stop": 39.55,
+      "risk_pct": 8.13
+    },
+    {
+      "code": "4551",
+      "name": "智伸科",
+      "market": "上市",
+      "close": 163.5,
+      "chg_pct": 4.14,
+      "vol_lots": 1282,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 161.0
+        }
+      ],
+      "stop": 159.0,
+      "risk_pct": 2.75
+    },
+    {
+      "code": "6221",
+      "name": "晉泰",
+      "market": "上櫃",
+      "close": 31.6,
+      "chg_pct": 3.44,
+      "vol_lots": 1194,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 31.5
+        }
+      ],
+      "stop": 30.45,
+      "risk_pct": 3.64
+    },
+    {
+      "code": "6869",
+      "name": "雲豹能源",
+      "market": "上市",
+      "close": 71.0,
+      "chg_pct": 2.16,
+      "vol_lots": 1115,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 70.9
+        }
+      ],
+      "stop": 70.4,
+      "risk_pct": 0.85
+    },
+    {
+      "code": "4743",
+      "name": "合一",
+      "market": "上櫃",
+      "close": 45.15,
+      "chg_pct": 1.69,
+      "vol_lots": 1051,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 44.95
+        }
+      ],
+      "stop": 44.55,
+      "risk_pct": 1.33
+    },
+    {
+      "code": "4768",
+      "name": "晶呈科技",
+      "market": "上櫃",
+      "close": 329.0,
+      "chg_pct": 5.62,
+      "vol_lots": 1037,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 324.0
+        }
+      ],
+      "stop": 311.0,
+      "risk_pct": 5.47
+    },
+    {
+      "code": "1773",
+      "name": "勝一",
+      "market": "上市",
+      "close": 165.0,
+      "chg_pct": 1.85,
+      "vol_lots": 1034,
+      "signals": [
+        {
+          "kind": "週",
+          "level": 164.0
+        }
+      ],
+      "stop": 164.0,
+      "risk_pct": 0.61
+    }
+  ],
+  "missing": []
+}
