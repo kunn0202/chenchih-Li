@@ -23,7 +23,10 @@ import yfinance as yf
 MIN_VOL_LOTS = 1000      # 當日成交量下限（張）
 MIN_PRICE = 10           # 股價下限（元）
 ONLY_FIRST_DAY = False   # True = 只認週一 / 月初第一個交易日的突破
-MAX_PUSH = 40            # 最多推播幾檔
+MAX_PUSH = 15            # 最多推播幾檔（10~15 檔）
+STOP_PCTS = (3, 5)       # 停損百分比，以突破日收盤價計算
+MIN_VOL_RATIO = 1.5      # 量能倍數下限：今日量 / 前20日均量
+MAX_CHG_PCT = 6.0        # 當日漲幅上限（%）；超過視為已追高，不推播
 EXCLUDE_ETF = True       # 排除 0 開頭的 ETF
 CHUNK = 100              # yfinance 每批下載檔數
 OUTPUT_JSON = "data/swing_breakout.json"
@@ -168,7 +171,8 @@ def download_history(cands):
                 continue
             if not all(col in sub for col in ("High", "Low", "Close")):
                 continue
-            sub = sub[["High", "Low", "Close"]].dropna()
+            cols = ["High", "Low", "Close"] + (["Volume"] if "Volume" in sub else [])
+            sub = sub[cols].dropna()
             if sub.empty:
                 continue
             idx = pd.to_datetime(sub.index)
@@ -188,7 +192,10 @@ def merge_latest(hist, c):
         return hist
     ts = pd.Timestamp(d)
     hist = hist[hist.index != ts]
-    row = pd.DataFrame({"High": [c["high"]], "Low": [c["low"]], "Close": [c["close"]]}, index=[ts])
+    data = {"High": [c["high"]], "Low": [c["low"]], "Close": [c["close"]]}
+    if "Volume" in hist.columns:
+        data["Volume"] = [c["vol_lots"] * 1000]
+    row = pd.DataFrame(data, index=[ts])
     return pd.concat([hist, row]).sort_index()
 
 
@@ -225,6 +232,19 @@ def analyze(c, hist, market_date):
         return None
 
     low = float(today["Low"])
+
+    # 量能倍數：今日量 / 前20日均量（不含今日）
+    vol_ratio = None
+    if "Volume" in hist.columns:
+        vols = hist["Volume"].dropna()
+        if len(vols) >= 6:
+            base = vols.iloc[-21:-1] if len(vols) > 21 else vols.iloc[:-1]
+            avg = float(base.mean())
+            if avg > 0:
+                vol_ratio = round(float(vols.iloc[-1]) / avg, 2)
+
+    stops = {f"stop{p}": round(close * (1 - p / 100), 2) for p in STOP_PCTS}
+
     return {
         "code": c["code"],
         "name": c["name"],
@@ -232,9 +252,11 @@ def analyze(c, hist, market_date):
         "close": round(close, 2),
         "chg_pct": round((close / prev_close - 1) * 100, 2),
         "vol_lots": round(c["vol_lots"]),
+        "vol_ratio": vol_ratio,
         "signals": signals,
-        "stop": round(low, 2),
+        "stop_low": round(low, 2),
         "risk_pct": round((close - low) / close * 100, 2),
+        **stops,
     }
 
 
@@ -247,19 +269,23 @@ def build_messages(matches, market_date, scanned):
     rule = "週一/月初當天突破" if ONLY_FIRST_DAY else "當週/當月首次收盤突破"
     header = (
         f"{title}\n"
-        f"條件：量≥{MIN_VOL_LOTS:,}張、價≥{MIN_PRICE}、{rule}\n"
+        f"條件：量≥{MIN_VOL_LOTS:,}張、價≥{MIN_PRICE}、漲幅≤{MAX_CHG_PCT:g}%、{rule}\n"
         f"掃描 {scanned} 檔 → 月突破 {n_month}｜週突破 {n_week}，顯示前 {len(shown)} 檔\n"
-        f"停損：突破日K棒最低價\n"
+        f"排序：月突破優先 → 量能倍數\n"
+        f"停損：以今日收盤價 -3% / -5%\n"
     )
 
     blocks = []
     for s in shown:
         tags = "".join(f"[{g['kind']}]" for g in s["signals"])
         levels = "、".join(f"{g['kind']}高 {fmt(g['level'])}" for g in s["signals"])
+        vr = f"｜量能 {s['vol_ratio']:.1f}倍" if s.get("vol_ratio") else ""
         blocks.append(
-            f"\n{tags} {s['code']} {s['name']}  收 {fmt(s['close'])} ({s['chg_pct']:+.1f}%)｜量 {s['vol_lots']:,}張\n"
+            f"\n{tags} {s['code']} {s['name']}  收 {fmt(s['close'])} ({s['chg_pct']:+.1f}%)\n"
+            f"  量 {s['vol_lots']:,}張{vr}\n"
             f"  突破 {levels}\n"
-            f"  停損 {fmt(s['stop'])} (-{s['risk_pct']:.1f}%)"
+            f"  停損 -3% {fmt(s['stop3'])}｜-5% {fmt(s['stop5'])}\n"
+            f"  （當日低 {fmt(s['stop_low'])}，-{s['risk_pct']:.1f}%）"
         )
 
     if not shown:
@@ -329,23 +355,36 @@ def main():
         print(f"⏸ 最新資料為 {market_date}，不是今天 {now.date()}，本次不推播")
         return
 
-    matches, missing = [], []
+    matches, missing, too_hot = [], [], []
     for c in cands:
         hist = merged.get(c["code"])
         if hist is None:
             missing.append(c["code"])
             continue
         s = analyze(c, hist, market_date)
-        if s:
-            matches.append(s)
+        if not s:
+            continue
+        if s["chg_pct"] > MAX_CHG_PCT:
+            too_hot.append(s)
+            continue
+        matches.append(s)
 
     def sort_key(s):
         kinds = {g["kind"] for g in s["signals"]}
         score = (2 if "月" in kinds else 0) + (1 if "週" in kinds else 0)
-        return (-score, -s["vol_lots"])
+        ratio = s.get("vol_ratio") or 0
+        return (-score, -ratio, -s["vol_lots"])
 
-    matches.sort(key=sort_key)
-    print(f"符合條件 {len(matches)} 檔；無歷史資料 {len(missing)} 檔")
+    # 量能倍數不足的排到後面（資料缺漏者不淘汰）
+    strong = [s for s in matches if (s.get("vol_ratio") is None
+                                     or s["vol_ratio"] >= MIN_VOL_RATIO)]
+    weak = [s for s in matches if s not in strong]
+    strong.sort(key=sort_key)
+    weak.sort(key=sort_key)
+    matches = strong + weak
+    print(f"符合條件 {len(matches)} 檔；"
+          f"漲幅超過 {MAX_CHG_PCT}% 剔除 {len(too_hot)} 檔；"
+          f"無歷史資料 {len(missing)} 檔")
 
     out_dir = os.path.dirname(OUTPUT_JSON)
     if out_dir:
@@ -357,9 +396,12 @@ def main():
             "settings": {
                 "min_vol_lots": MIN_VOL_LOTS, "min_price": MIN_PRICE,
                 "only_first_day": ONLY_FIRST_DAY,
+                "max_push": MAX_PUSH, "stop_pcts": list(STOP_PCTS),
+                "min_vol_ratio": MIN_VOL_RATIO, "max_chg_pct": MAX_CHG_PCT,
             },
             "scanned": len(cands),
             "stocks": matches,
+            "too_hot": too_hot,
             "missing": missing,
         }, f, ensure_ascii=False, indent=2)
 
