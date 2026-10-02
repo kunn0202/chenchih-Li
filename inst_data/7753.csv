@@ -1101,3 +1101,6 @@
 2026-10-01,7753,0,Dealer_self,0
 2026-10-01,7753,0,Foreign_Investor,1000
 2026-10-01,7753,0,Investment_Trust,0
+2026-10-02,7753,0,Dealer_self,0
+2026-10-02,7753,5000,Foreign_Investor,1000
+2026-10-02,7753,0,Investment_Trust,0
