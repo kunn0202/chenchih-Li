@@ -27,6 +27,8 @@ MAX_PUSH = 15            # 最多推播幾檔（10~15 檔）
 STOP_PCTS = (3, 5)       # 停損百分比，以突破日收盤價計算
 MIN_VOL_RATIO = 1.5      # 量能倍數下限：今日量 / 前20日均量
 MAX_CHG_PCT = 6.0        # 當日漲幅上限（%）；超過視為已追高，不推播
+MAX_UPPER_RATIO = 0.4    # 上引線佔整根K棒（高-低）比例上限；超過視為上引線過長
+MIN_UPPER_PCT = 1.0      # 上引線至少佔收盤價幾 % 才剔除（避免小K棒被誤殺）
 EXCLUDE_ETF = True       # 排除 0 開頭的 ETF
 CHUNK = 100              # yfinance 每批下載檔數
 OUTPUT_JSON = "data/swing_breakout.json"
@@ -138,13 +140,13 @@ def load_universe():
             "code": ["Code", "證券代號"], "name": ["Name", "證券名稱"],
             "vol": ["TradeVolume", "成交股數"], "high": ["HighestPrice", "最高價"],
             "low": ["LowestPrice", "最低價"], "close": ["ClosingPrice", "收盤價"],
-            "date": ["Date", "日期"],
+            "open": ["OpeningPrice", "開盤價"], "date": ["Date", "日期"],
         }),
         (TPEX_URL, ".TWO", "上櫃", {
             "code": ["SecuritiesCompanyCode", "Code"], "name": ["CompanyName", "Name"],
             "vol": ["TradingShares", "TradeVolume"], "high": ["High", "HighestPrice"],
             "low": ["Low", "LowestPrice"], "close": ["Close", "ClosingPrice"],
-            "date": ["Date"],
+            "open": ["Open", "OpeningPrice"], "date": ["Date"],
         }),
     ]
     universe, seen = [], set()
@@ -172,6 +174,7 @@ def load_universe():
                 "close": close,
                 "high": to_num(pick(row, keys["high"])),
                 "low": to_num(pick(row, keys["low"])),
+                "open": to_num(pick(row, keys["open"])),
                 "date": parse_date(pick(row, keys["date"])),
             })
             n += 1
@@ -273,6 +276,15 @@ def analyze(c, hist, market_date):
             if avg > 0:
                 vol_ratio = round(float(vols.iloc[-1]) / avg, 2)
 
+    # 上引線：最高價 - max(開盤, 收盤)
+    high = float(today["High"])
+    open_ = c.get("open")
+    body_top = max(open_, close) if open_ else close
+    upper = max(high - body_top, 0.0)
+    rng = high - low
+    upper_ratio = round(upper / rng, 2) if rng > 0 else 0.0
+    upper_pct = round(upper / close * 100, 2)
+
     stops = {f"stop{p}": round(close * (1 - p / 100), 2) for p in STOP_PCTS}
 
     return {
@@ -286,6 +298,8 @@ def analyze(c, hist, market_date):
         "signals": signals,
         "stop_low": round(low, 2),
         "risk_pct": round((close - low) / close * 100, 2),
+        "upper_ratio": upper_ratio,
+        "upper_pct": upper_pct,
         **stops,
     }
 
@@ -299,7 +313,7 @@ def build_messages(matches, market_date, scanned):
     rule = "週一/月初當天突破" if ONLY_FIRST_DAY else "當週/當月首次收盤突破"
     header = (
         f"{title}\n"
-        f"條件：量≥{MIN_VOL_LOTS:,}張、價≥{MIN_PRICE}、漲幅≤{MAX_CHG_PCT:g}%、{rule}\n"
+        f"條件：量≥{MIN_VOL_LOTS:,}張、價≥{MIN_PRICE}、漲幅≤{MAX_CHG_PCT:g}%、排除長上引線、{rule}\n"
         f"掃描 {scanned} 檔 → 月突破 {n_month}｜週突破 {n_week}，顯示前 {len(shown)} 檔\n"
         f"排序：月突破優先 → 量能倍數\n"
         f"停損：以今日收盤價 -3% / -5%\n"
@@ -385,7 +399,7 @@ def main():
         print(f"⏸ 最新資料為 {market_date}，不是今天 {now.date()}，本次不推播")
         return
 
-    matches, missing, too_hot = [], [], []
+    matches, missing, too_hot, long_upper = [], [], [], []
     for c in cands:
         hist = merged.get(c["code"])
         if hist is None:
@@ -396,6 +410,9 @@ def main():
             continue
         if s["chg_pct"] > MAX_CHG_PCT:
             too_hot.append(s)
+            continue
+        if s["upper_ratio"] > MAX_UPPER_RATIO and s["upper_pct"] >= MIN_UPPER_PCT:
+            long_upper.append(s)
             continue
         matches.append(s)
 
@@ -414,6 +431,9 @@ def main():
     matches = strong + weak
     print(f"符合條件 {len(matches)} 檔；"
           f"漲幅超過 {MAX_CHG_PCT}% 剔除 {len(too_hot)} 檔；"
+          f"上引線過長剔除 {len(long_upper)} 檔"
+          + (f"（{'、'.join(x['code'] + x['name'] for x in long_upper)}）" if long_upper else "")
+          + "；"
           f"無歷史資料 {len(missing)} 檔")
 
     out_dir = os.path.dirname(OUTPUT_JSON)
@@ -428,10 +448,12 @@ def main():
                 "only_first_day": ONLY_FIRST_DAY,
                 "max_push": MAX_PUSH, "stop_pcts": list(STOP_PCTS),
                 "min_vol_ratio": MIN_VOL_RATIO, "max_chg_pct": MAX_CHG_PCT,
+                "max_upper_ratio": MAX_UPPER_RATIO, "min_upper_pct": MIN_UPPER_PCT,
             },
             "scanned": len(cands),
             "stocks": matches,
             "too_hot": too_hot,
+            "long_upper": long_upper,
             "missing": missing,
         }, f, ensure_ascii=False, indent=2)
 
