@@ -2069,3 +2069,6 @@
 2026-10-19,9935,0,Dealer_self,0
 2026-10-19,9935,9000,Foreign_Investor,50000
 2026-10-19,9935,0,Investment_Trust,0
+2026-10-20,9935,1000,Dealer_self,1000
+2026-10-20,9935,18000,Foreign_Investor,14000
+2026-10-20,9935,0,Investment_Trust,2022

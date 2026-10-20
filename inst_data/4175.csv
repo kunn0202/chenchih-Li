@@ -1730,3 +1730,6 @@
 2026-10-16,4175,0,Dealer_self,0
 2026-10-16,4175,0,Foreign_Investor,1000
 2026-10-16,4175,0,Investment_Trust,0
+2026-10-20,4175,0,Dealer_self,0
+2026-10-20,4175,1000,Foreign_Investor,1000
+2026-10-20,4175,0,Investment_Trust,0
