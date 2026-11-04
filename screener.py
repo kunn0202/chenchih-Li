@@ -84,10 +84,12 @@ for f in files:
     c3 = ma5.iloc[-1] > ma10.iloc[-1] > ma24.iloc[-1]
     c4 = ma24.iloc[-1] > ma72.iloc[-1] > ma200.iloc[-1]
 
-    d5 = last > close.iloc[-6]
-    d10 = last > close.iloc[-11]
-    d24 = last > close.iloc[-25]
-    d72 = last > close.iloc[-73]
+    # 扣抵值 = 均線視窗內最舊的那根收盤（明天會被擠出均線的那根）
+    # MA5 視窗是 iloc[-5]~iloc[-1]，所以扣抵值是 iloc[-5]，與圖表的扣抵三角形一致
+    d5 = last > close.iloc[-5]
+    d10 = last > close.iloc[-10]
+    d24 = last > close.iloc[-24]
+    d72 = last > close.iloc[-72]
 
     cross = bool(ma5.iloc[-2] <= ma24.iloc[-2] and ma5.iloc[-1] > ma24.iloc[-1])
 
