@@ -3,11 +3,20 @@ import numpy as np
 import os
 import glob
 import json
+import time
+import requests
+import urllib3
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "stock_data")
 INST_DIR = os.path.join(BASE_DIR, "inst_data")
 TDCC_DIR = os.path.join(BASE_DIR, "tdcc_data")
+REV_DIR = os.path.join(BASE_DIR, "revenue_data")
+FIN_DIR = os.path.join(BASE_DIR, "fin_data")
+
+# ===== 基本面設定 =====
+YIELD_MIN = 5.0          # 高殖利率門檻（%）
+# ======================
 
 files = glob.glob(os.path.join(DATA_DIR, "*.csv"))
 print("讀取檔案數:", len(files))
@@ -58,6 +67,137 @@ def get_big_up(sid):
         return False
     w0, w1, w2 = big.iloc[-1], big.iloc[-2], big.iloc[-3]
     return bool(w0 > w1 > w2)
+
+def http_json(url, retries=3):
+    headers = {"User-Agent": "Mozilla/5.0"}
+    for att in range(1, retries + 1):
+        try:
+            try:
+                r = requests.get(url, headers=headers, timeout=30)
+            except requests.exceptions.SSLError:
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+                r = requests.get(url, headers=headers, timeout=30, verify=False)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            print(f"  連線失敗（{att}/{retries}）{url}：{e}")
+            if att < retries:
+                time.sleep(5 * att)
+    return []
+
+
+def pick(row, keys, contains=None):
+    for k in keys:
+        if k in row and str(row[k]).strip() not in ("", "-"):
+            return str(row[k]).strip()
+    if contains:
+        for k, v in row.items():
+            if any(c in k for c in contains) and str(v).strip() not in ("", "-"):
+                return str(v).strip()
+    return ""
+
+
+def load_yield():
+    """全市場殖利率 {股票代號: 殖利率%}，上市 + 上櫃"""
+    out = {}
+    sources = [
+        ("https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL",
+         ["Code", "證券代號"], ["DividendYield", "殖利率(%)"], "上市"),
+        ("https://www.tpex.org.tw/openapi/v1/tpex_mainboard_peratio_analysis",
+         ["SecuritiesCompanyCode", "Code"], ["YieldRatio", "DividendYield"], "上櫃"),
+    ]
+    for url, code_keys, y_keys, label in sources:
+        rows = http_json(url)
+        n = 0
+        for row in rows or []:
+            code = pick(row, code_keys)
+            y = pick(row, y_keys, contains=["Yield", "殖利率"])
+            try:
+                out[code] = float(y.replace(",", ""))
+                n += 1
+            except ValueError:
+                continue
+        print(f"殖利率 {label}：{n} 檔")
+    return out
+
+
+def get_revenue_flags(sid):
+    """回傳 (營收創歷史新高, 營收創同期新高)
+
+    歷史新高：最新月營收 > 資料期間內所有月份（至少要有 12 個月資料）
+    同期新高：最新月營收 > 往年同月份的營收（至少要有 1 年前同月資料）
+    """
+    path = os.path.join(REV_DIR, f"{sid}.csv")
+    if not os.path.exists(path):
+        return False, False
+    try:
+        df = pd.read_csv(path)
+    except Exception:
+        return False, False
+    if df.empty or "revenue" not in df.columns:
+        return False, False
+    df = df.dropna(subset=["revenue", "revenue_year", "revenue_month"])
+    df = df.sort_values(["revenue_year", "revenue_month"]).drop_duplicates(
+        subset=["revenue_year", "revenue_month"], keep="last")
+    if len(df) < 13:
+        return False, False
+    latest = df.iloc[-1]
+    prev = df.iloc[:-1]
+    rev = float(latest["revenue"])
+    if rev <= 0:
+        return False, False
+    ath = bool(rev > prev["revenue"].max())
+    same = prev[prev["revenue_month"] == latest["revenue_month"]]
+    same_high = bool(len(same) > 0 and rev > same["revenue"].max())
+    return ath, same_high
+
+
+def get_fin_flags(sid):
+    """回傳 (毛利率年增, 營益率年增, 公司未虧損)
+
+    毛利率 / 營益率：最新一季 vs 去年同一季
+    未虧損：最新一季 EPS > 0 且近四季 EPS 合計 > 0
+    """
+    path = os.path.join(FIN_DIR, f"{sid}.csv")
+    if not os.path.exists(path):
+        return False, False, False
+    try:
+        df = pd.read_csv(path)
+    except Exception:
+        return False, False, False
+    if df.empty or "type" not in df.columns:
+        return False, False, False
+    df["date"] = pd.to_datetime(df["date"])
+    piv = df.pivot_table(index="date", columns="type", values="value", aggfunc="last").sort_index()
+    if piv.empty:
+        return False, False, False
+
+    def margin(row, col):
+        rev, v = row.get("Revenue"), row.get(col)
+        if pd.notna(rev) and pd.notna(v) and rev > 0:
+            return v / rev
+        return None
+
+    latest_dt = piv.index[-1]
+    latest = piv.iloc[-1]
+    ly_dt = latest_dt - pd.DateOffset(years=1)
+    gm_up = om_up = False
+    if ly_dt in piv.index:
+        ly = piv.loc[ly_dt]
+        g0, g1 = margin(latest, "GrossProfit"), margin(ly, "GrossProfit")
+        o0, o1 = margin(latest, "OperatingIncome"), margin(ly, "OperatingIncome")
+        gm_up = bool(g0 is not None and g1 is not None and g0 > g1)
+        om_up = bool(o0 is not None and o1 is not None and o0 > o1)
+
+    profit = False
+    if "EPS" in piv.columns:
+        eps = piv["EPS"].dropna()
+        if len(eps) >= 4:
+            profit = bool(eps.iloc[-1] > 0 and eps.tail(4).sum() > 0)
+    return gm_up, om_up, profit
+
+
+YIELDS = load_yield()
 
 results = []
 
@@ -122,6 +262,9 @@ for f in files:
 
     foreign_buy, trust_buy = get_inst_flags(sid)
     big_up = get_big_up(sid)
+    rev_ath, rev_same_high = get_revenue_flags(sid)
+    gm_up, om_up, profit = get_fin_flags(sid)
+    dy = YIELDS.get(sid)
 
     results.append({
         "stock_id": sid,
@@ -143,6 +286,13 @@ for f in files:
         "foreign_buy": foreign_buy,
         "trust_buy": trust_buy,
         "big_up": big_up,
+        "rev_ath": rev_ath,
+        "rev_same_high": rev_same_high,
+        "gm_up": gm_up,
+        "om_up": om_up,
+        "high_yield": bool(dy is not None and dy >= YIELD_MIN),
+        "profit": profit,
+        "dy": dy,
     })
 
 res = pd.DataFrame(results).dropna(subset=["rs_raw"])
@@ -163,7 +313,8 @@ print(f"已輸出 {json_path}  ({os.path.getsize(json_path)/1024:.0f} KB)")
 
 cols = ["c1", "c2", "c3", "c4", "d5", "d10", "d24", "d72",
         "over_month", "over_week", "cross",
-        "foreign_buy", "trust_buy", "big_up"]
+        "foreign_buy", "trust_buy", "big_up",
+        "rev_ath", "rev_same_high", "gm_up", "om_up", "high_yield", "profit"]
 print("\n各條件符合檔數:")
 for c in cols:
     print(f"  {c}: {res[c].sum()}")
