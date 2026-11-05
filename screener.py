@@ -303,7 +303,9 @@ res["c1"] = res["rs_score"] > 90
 res = res.drop(columns=["rs_raw"]).sort_values("rs_score", ascending=False)
 
 data_date = str(last_date.date())
-out = {"updated": data_date, "count": len(res), "stocks": res.to_dict(orient="records")}
+# to_json 會把 NaN 轉成 null，避免輸出不合法的 JSON 讓網頁載入失敗
+records = json.loads(res.to_json(orient="records", force_ascii=False))
+out = {"updated": data_date, "count": len(res), "stocks": records}
 
 json_path = os.path.join(BASE_DIR, "screener_data.json")
 with open(json_path, "w", encoding="utf-8") as fp:
