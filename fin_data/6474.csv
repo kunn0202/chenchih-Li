@@ -125,6 +125,7 @@
 2026-03-31,6474,TAX,10205000.0,所得稅費用（利益）
 2026-03-31,6474,TotalConsolidatedProfitForThePeriod,61899000.0,本期綜合損益總額
 2026-03-31,6474,TotalNonoperatingIncomeAndExpense,4728000.0,營業外收入及支出
+2026-06-30,6474,ComprehensiveIncomeAttributableToOwnersOfParent,61650000.0,綜合損益總額歸屬於母公司業主
 2026-06-30,6474,CostOfGoodsSold,945307000.0,營業成本
 2026-06-30,6474,EPS,1.15,基本每股盈餘
 2026-06-30,6474,EquityAttributableToOwnersOfParent,60518000.0,淨利（淨損）歸屬於母公司業主
@@ -139,3 +140,18 @@
 2026-06-30,6474,TAX,12964000.0,所得稅費用（利益）
 2026-06-30,6474,TotalConsolidatedProfitForThePeriod,61650000.0,本期綜合損益總額
 2026-06-30,6474,TotalNonoperatingIncomeAndExpense,2740000.0,營業外收入及支出
+2026-09-30,6474,ComprehensiveIncomeAttributableToOwnersOfParent,63756000.0,綜合損益總額歸屬於母公司業主
+2026-09-30,6474,CostOfGoodsSold,1006450000.0,營業成本
+2026-09-30,6474,EPS,1.14,基本每股盈餘
+2026-09-30,6474,EquityAttributableToOwnersOfParent,59655000.0,淨利（淨損）歸屬於母公司業主
+2026-09-30,6474,GrossProfit,277637000.0,營業毛利（毛損）
+2026-09-30,6474,IncomeAfterTaxes,59655000.0,本期淨利（淨損）
+2026-09-30,6474,IncomeFromContinuingOperations,59655000.0,繼續營業單位本期淨利（淨損）
+2026-09-30,6474,OperatingExpenses,199890000.0,營業費用
+2026-09-30,6474,OperatingIncome,77747000.0,營業利益（損失）
+2026-09-30,6474,OtherComprehensiveIncome,4101000.0,其他綜合損益（淨額）
+2026-09-30,6474,PreTaxIncome,74561000.0,稅前淨利（淨損）
+2026-09-30,6474,Revenue,1284087000.0,營業收入
+2026-09-30,6474,TAX,14906000.0,所得稅費用（利益）
+2026-09-30,6474,TotalConsolidatedProfitForThePeriod,63756000.0,本期綜合損益總額
+2026-09-30,6474,TotalNonoperatingIncomeAndExpense,-3186000.0,營業外收入及支出

@@ -225,6 +225,7 @@
 2026-03-31,4129,TotalConsolidatedProfitForThePeriod,106296000.0,本期綜合損益總額
 2026-03-31,4129,TotalNonoperatingIncomeAndExpense,4167000.0,營業外收入及支出
 2026-03-31,4129,UnrealizedGain,1025000.0,未實現銷貨（損）益
+2026-06-30,4129,ComprehensiveIncomeAttributableToOwnersOfParent,131479000.0,綜合損益總額歸屬於母公司業主
 2026-06-30,4129,ComprehensiveIncomeConsolidatedNetIncomeAttributedNonControllingInterest,333000.0,綜合損益總額歸屬於非控制權益
 2026-06-30,4129,CostOfGoodsSold,336896000.0,營業成本
 2026-06-30,4129,EPS,1.44,基本每股盈餘
@@ -238,7 +239,7 @@
 2026-06-30,4129,OperatingIncome,188147000.0,營業利益（損失）
 2026-06-30,4129,OtherComprehensiveIncome,-7666000.0,其他綜合損益（淨額）
 2026-06-30,4129,PreTaxIncome,181788000.0,稅前淨利（淨損）
-2026-06-30,4129,RealizedGain,-1440000.0,已實現銷貨（損）益
+2026-06-30,4129,RealizedGain,-415000.0,已實現銷貨（損）益
 2026-06-30,4129,Revenue,1565152000.0,營業收入
 2026-06-30,4129,TAX,42310000.0,所得稅費用（利益）
 2026-06-30,4129,TotalConsolidatedProfitForThePeriod,131812000.0,本期綜合損益總額
