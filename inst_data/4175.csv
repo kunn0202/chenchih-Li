@@ -1784,3 +1784,6 @@
 2026-11-19,4175,0,Dealer_self,0
 2026-11-19,4175,1000,Foreign_Investor,4000
 2026-11-19,4175,0,Investment_Trust,0
+2026-11-20,4175,4000,Dealer_self,4000
+2026-11-20,4175,400,Foreign_Investor,1000
+2026-11-20,4175,0,Investment_Trust,0
