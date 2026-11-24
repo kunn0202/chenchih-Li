@@ -231,6 +231,8 @@ const STRUCT=[
  {type:"group",id:"gInst",t:"籌碼面",items:[
    {k:"foreign_buy",t:"外資買超",d:"最新一日外資買賣超為正",s:"外資買"},
    {k:"trust_buy",t:"投信買超",d:"最新一日投信買賣超為正",s:"投信買"},
+   {k:"domestic_buy",t:"內資買超",d:"最新一日 投信＋自營商 合計買超",s:"內資買"},
+   {k:"domestic_streak",t:"內資連續 3 日買超",d:"投信＋自營商 合計連續 3 天買超",s:"內資連買"},
    {k:"big_up",t:"大戶連續兩週增加",d:"400張以上大戶持股比例連兩週上升",s:"大戶增"},
  ]},
  {type:"group",id:"gFund",t:"基本面",items:[
@@ -268,6 +270,7 @@ let mainTab="chart";
 let fundData=null;
 let savedRange=null;
 let rawWeek=null;
+let tdcc=null;   // 大戶持股週資料 [{date,big}]
 let dailyList=null;
 function openDaily(){
   const box=document.getElementById("dailyBox");
@@ -425,18 +428,31 @@ function pick(id){
   fundData=null;
   savedRange=null;
   rawWeek=null;
+  tdcc=null;
   document.getElementById("panel").classList.add("show");
   document.getElementById("detail").innerHTML='<div class="ph">載入中…</div>';
+  const tdccReq=fetch("tdcc_data/"+id+".csv?"+Date.now())
+    .then(r=>r.ok?r.text():"").catch(()=>"");
   fetch("chart/"+id+".json?"+Date.now())
     .then(r=>r.json())
-    .then(d=>{
+    .then(d=>tdccReq.then(txt=>{
       if(cur && cur.stock_id !== id) return;
+      tdcc=parseTdcc(txt);
       raw=d;build()
-    })
+    }))
    .catch(()=>{
      if(cur && cur.stock_id !== id) return;
      document.getElementById("detail").innerHTML='<div class="ph">找不到線圖資料</div>'
    });
+}
+function parseTdcc(txt){
+  if(!txt)return [];
+  const lines=txt.replace(/^\uFEFF/,"").trim().split(/\r?\n/);
+  const head=lines.shift().split(",");
+  const iD=head.indexOf("date"),iB=head.indexOf("big");
+  if(iD<0||iB<0)return [];
+  return lines.map(l=>{const c=l.split(",");return {date:c[iD],big:parseFloat(c[iB])}})
+    .filter(r=>r.date&&!isNaN(r.big)).sort((a,b)=>a.date<b.date?-1:1);
 }
 function closePanel(){
   fs=false;
@@ -562,6 +578,7 @@ function renderChartTab(){
      <div class="chart"><div class="legend" id="lg2">成交量(張)</div><div id="c2"></div></div>
      <div class="chart"><div class="legend" id="lg4"></div><div id="c4"></div></div>
      <div class="chart"><div class="legend" id="lg5"></div><div id="c5"></div></div>
+     <div class="chart"><div class="legend" id="lg6"></div><div id="c6"></div></div>
      <div class="chart"><div class="legend" id="lg3"></div><div id="c3"></div></div>`;
   buildMaList();
   draw();
@@ -939,6 +956,26 @@ window.refreshDed = () => {
     color:x.it>=0?"#ef4444":"#22c55e"})));
   c5.priceScale("right").applyOptions({scaleMargins:{top:0.12,bottom:0.12}});
 
+  // c6：400 張以上大戶持股比例（週資料，對齊到每一根 K 棒）
+  const tdArr=tdcc||[];
+  let tj=-1;
+  const bigAgg=bars.map((b,i)=>{
+    const nextT=i+1<bars.length?bars[i+1].time:"9999-12-31";
+    while(tj+1<tdArr.length&&tdArr[tj+1].date<nextT)tj++;
+    if(tj<0)return {time:b.time,v:null,chg:null,date:null};
+    const r=tdArr[tj],p=tj>0?tdArr[tj-1].big:null;
+    return {time:b.time,v:r.big,chg:p==null?0:r.big-p,date:r.date};
+  });
+  const bigVals=bigAgg.filter(x=>x.v!=null).map(x=>x.v);
+  const bMin=bigVals.length?Math.min(...bigVals):0,bMax=bigVals.length?Math.max(...bigVals):1;
+  const bBase=bMin-Math.max((bMax-bMin)*0.3,0.2);
+  const c6=LightweightCharts.createChart(document.getElementById("c6"),{...opt,height:fs?130:110,timeScale:{...opt.timeScale,visible:false},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
+  charts.push(c6);
+  const bgSr=c6.addHistogramSeries({base:bBase,priceFormat:{type:"price",precision:2,minMove:0.01},priceLineVisible:false});
+  bgSr.setData(bigAgg.map(x=>x.v==null?{time:x.time}:{time:x.time,value:x.v,
+    color:x.chg>0?"#ef4444":x.chg<0?"#22c55e":"#64748b"}));
+  c6.priceScale("right").applyOptions({scaleMargins:{top:0.12,bottom:0.02}});
+
   const c3=LightweightCharts.createChart(document.getElementById("c3"),{...opt,height:fs?160:130,crosshair:{mode:LightweightCharts.CrosshairMode.Normal,horzLine:{visible:false,labelVisible:false}}});
   let s3=[];
   if(sub==="KD"){
@@ -972,9 +1009,10 @@ window.refreshDed = () => {
     others.forEach(o=>{try{o.timeScale().setVisibleLogicalRange(r)}catch(e){}});
     setTimeout(() => { window.syncLock = false; }, 10);
   });
-  sync(c1,[c2,c3,c4,c5]);sync(c2,[c1,c3,c4,c5]);sync(c3,[c1,c2,c4,c5]);sync(c4,[c1,c2,c3,c5]);sync(c5,[c1,c2,c3,c4]);
+  const allCharts=[c1,c2,c3,c4,c5,c6];
+  allCharts.forEach(a=>sync(a,allCharts.filter(o=>o!==a)));
   
-  const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:fiSr},{c:c5,s:itSr},{c:c3,s:s3[0].sr}];
+  const crossList=[{c:c1,s:cs},{c:c2,s:vs},{c:c4,s:fiSr},{c:c5,s:itSr},{c:c6,s:bgSr},{c:c3,s:s3[0].sr}];
   let crossLock=false;
   crossList.forEach(({c})=>{
     c.subscribeCrosshairMove(p=>{
@@ -983,7 +1021,7 @@ window.refreshDed = () => {
       crossList.forEach(t=>{
         if(t.c===c)return;
         if(!p.time)t.c.clearCrosshairPosition();
-        else t.c.setCrosshairPosition(0,p.time,t.s);
+        else{try{t.c.setCrosshairPosition(0,p.time,t.s)}catch(e){}}
       });
       crossLock=false;
     });
@@ -1006,6 +1044,15 @@ window.refreshDed = () => {
            `<span style="color:#8fa0b8">張</span>`;
   }
 
+  function bigLegend(i){
+    const x=i>=0?bigAgg[i]:null;
+    if(!x||x.v==null)return `<span style="color:#8fa0b8">大戶持股(400張以上)${tdArr.length?"":" 無資料"}</span>`;
+    const c=x.chg>0?"#ef4444":x.chg<0?"#22c55e":"#8fa0b8";
+    return `<span style="color:#8fa0b8">大戶持股</span> ${x.v.toFixed(2)}% `+
+           `<span style="color:${c}">${x.chg>=0?"+":""}${x.chg.toFixed(2)}</span> `+
+           `<span style="color:#8fa0b8">(${x.date.slice(5).replace("-","/")} 週)</span>`;
+  }
+
   function subLegend(i){
     if(i<0)return s3.map(x=>`<span style="color:${x.col}">${x.n}</span>`).join(" ");
     return s3.map(x=>{
@@ -1021,6 +1068,7 @@ window.refreshDed = () => {
       i>=0&&bars[i]?`量 ${bars[i].volume.toLocaleString()} 張`:"成交量(張)";
     document.getElementById("lg4").innerHTML=fiLegend(i);
     document.getElementById("lg5").innerHTML=itLegend(i);
+    document.getElementById("lg6").innerHTML=bigLegend(i);
     document.getElementById("lg3").innerHTML=subLegend(i);
   }
 

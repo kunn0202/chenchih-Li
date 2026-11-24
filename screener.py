@@ -25,26 +25,37 @@ info = pd.read_csv(os.path.join(BASE_DIR, "stock_list.csv"), dtype={"stock_id": 
 names = info.set_index("stock_id")["stock_name"].to_dict()
 inds = info.set_index("stock_id")["industry_category"].to_dict()
 
+DOMESTIC = ["Investment_Trust", "Dealer_self", "Dealer_Hedging"]   # 內資 = 投信 + 自營商
+DOMESTIC_STREAK = 3      # 內資連續買超天數
+
+
 def get_inst_flags(sid):
-    """回傳 (外資買超, 投信買超)"""
+    """回傳 (外資買超, 投信買超, 內資買超, 內資連續買超)"""
     path = os.path.join(INST_DIR, f"{sid}.csv")
     if not os.path.exists(path):
-        return False, False
+        return False, False, False, False
     try:
         df = pd.read_csv(path)
     except Exception:
-        return False, False
+        return False, False, False, False
     if df.empty or "date" not in df.columns:
-        return False, False
+        return False, False, False, False
+    df["net"] = pd.to_numeric(df["buy"], errors="coerce").fillna(0) - \
+                pd.to_numeric(df["sell"], errors="coerce").fillna(0)
     last_date = df["date"].max()
     today = df[df["date"] == last_date]
 
     foreign = today[today["name"] == "Foreign_Investor"]
     trust = today[today["name"] == "Investment_Trust"]
+    f_buy = bool(len(foreign) and foreign["net"].sum() > 0)
+    t_buy = bool(len(trust) and trust["net"].sum() > 0)
 
-    f_buy = bool(len(foreign) and (foreign["buy"].sum() - foreign["sell"].sum()) > 0)
-    t_buy = bool(len(trust) and (trust["buy"].sum() - trust["sell"].sum()) > 0)
-    return f_buy, t_buy
+    # 內資：投信 + 自營商 每日合計買賣超
+    dom = df[df["name"].isin(DOMESTIC)].groupby("date")["net"].sum().sort_index()
+    d_buy = bool(len(dom) and dom.index[-1] == last_date and dom.iloc[-1] > 0)
+    d_streak = bool(len(dom) >= DOMESTIC_STREAK and (dom.tail(DOMESTIC_STREAK) > 0).all()
+                    and dom.index[-1] == last_date)
+    return f_buy, t_buy, d_buy, d_streak
 
 def get_big_up(sid):
     """大戶(400張以上)持股比例是否連續兩週增加
@@ -260,7 +271,7 @@ for f in files:
     rs_raw = (0.4 * ret(0, 63) + 0.2 * ret(63, 126)
               + 0.2 * ret(126, 189) + 0.2 * ret(189, 252))
 
-    foreign_buy, trust_buy = get_inst_flags(sid)
+    foreign_buy, trust_buy, domestic_buy, domestic_streak = get_inst_flags(sid)
     big_up = get_big_up(sid)
     rev_ath, rev_same_high = get_revenue_flags(sid)
     gm_up, om_up, profit = get_fin_flags(sid)
@@ -285,6 +296,8 @@ for f in files:
         "cross": cross,
         "foreign_buy": foreign_buy,
         "trust_buy": trust_buy,
+        "domestic_buy": domestic_buy,
+        "domestic_streak": domestic_streak,
         "big_up": big_up,
         "rev_ath": rev_ath,
         "rev_same_high": rev_same_high,
@@ -315,7 +328,7 @@ print(f"已輸出 {json_path}  ({os.path.getsize(json_path)/1024:.0f} KB)")
 
 cols = ["c1", "c2", "c3", "c4", "d5", "d10", "d24", "d72",
         "over_month", "over_week", "cross",
-        "foreign_buy", "trust_buy", "big_up",
+        "foreign_buy", "trust_buy", "domestic_buy", "domestic_streak", "big_up",
         "rev_ath", "rev_same_high", "gm_up", "om_up", "high_yield", "profit"]
 print("\n各條件符合檔數:")
 for c in cols:
